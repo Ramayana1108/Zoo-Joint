@@ -50,7 +50,7 @@ const NewUser = () => {
     return(
         <div>
             <form onSubmit={AddUser}>
-           <input type="string" name="first_name" placeholder="First Name" value={values.first_name} onChange={handleInputChange}/>
+            <input type="string" name="first_name" placeholder="First Name" value={values.first_name} onChange={handleInputChange}/>
             <input type="text" name="last_name" placeholder="Last Name" value={values.last_name} onChange={handleInputChange}/>
             <input type="text" name="username" placeholder="Username" value={values.username} onChange={handleInputChange}/>
             <input   type={isShown ? "text" : "password"} placeholder="Password" name="password"  value={values.password} onChange={handleInputChange}/>

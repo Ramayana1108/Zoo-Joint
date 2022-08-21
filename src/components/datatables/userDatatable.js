@@ -3,7 +3,8 @@ import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 import { userColumns, userRows } from "../datatablesource/user_DatatableSource";
 import { useEffect, useState } from "react";
-import { Link,Redirect } from "react-router-dom";
+import { Link,Navigate,useNavigate } from 'react-router-dom';
+
 import {
   collection,
   getDocs,
@@ -14,6 +15,8 @@ import {
 import { db } from "../../services/firebase-config";
 
 const Datatable = () => {
+  const navigate = useNavigate();
+
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -46,8 +49,6 @@ const Datatable = () => {
     }
   };
 
-
-
   const actionColumn = [
     {
       field: "action",
@@ -58,11 +59,11 @@ const Datatable = () => {
           <div className="cellAction"> 
           <button
               className="updateButton"
-              title="Update"
-              onClick={() =>handleDelete(params.row.id)}
+              onClick={() => navigate('/updateUser',{state: {userid:params.row.id}})}
             >
               Update
             </button>
+          
             <div
               className="deleteButton"
               hidden={params.row.role === 'Admin' ? true : false}

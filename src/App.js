@@ -7,7 +7,7 @@ import Users from "./pages/Admin/Users/Users";
 import Login from "./pages/Home/Login";
 import ResetPassword from "./pages/Home/ResetPassword";
 import NewUser from "./pages/Admin/Users/newUsers";
-import updateUser from "./pages/Admin/Users/updateUser"
+import UserUpdate from "./pages/Admin/Users/userUpdate"
 
 function App() {
     return (      
@@ -18,7 +18,7 @@ function App() {
               <Route path="/users" element={<Users />} />
               <Route path="/resetPassword" element={<ResetPassword />} />
               <Route path="/newUser" element={<NewUser/>}/>
-              <Route path="/updateUser" element={<updateUser/>}/>
+              <Route path="/updateUser" element={<UserUpdate/>}/>
             </Routes>
           </BrowserRouter>
         </div> 
