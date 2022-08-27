@@ -1,4 +1,4 @@
-import "./datatable.scss";
+import "./userdatatable.scss";
 
 import { DataGrid } from "@mui/x-data-grid";
 import { userColumns, userRows } from "../datatablesource/user_DatatableSource";
