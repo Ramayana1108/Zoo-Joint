@@ -36,7 +36,7 @@ const NewUser = () => {
             username: values.username
          })
          .then(() => {
-           alert('Message submitted 👍' );
+           alert('User Created' );
          })
          .catch((error) => {
            alert(error.message);
