@@ -1,4 +1,4 @@
-import "./datatable.scss";
+import "./aboutusdatatable.scss";
 
 import { DataGrid } from "@mui/x-data-grid";
 import { userColumns, userRows } from "../datatablesource/user_DatatableSource";
@@ -60,11 +60,11 @@ const Datatable = () => {
           <div className="cellAction"> 
           <button
               className="updateButton"
+              hidden={params.row.role === 'Admin' ? true : false}
               onClick={() => navigate('/updateUser',{state: {userid:params.row.id}})}
             >
-              Edit
+              Update
             </button>
-          
             <div
               className="deleteButton"
               hidden={params.row.role === 'Admin' ? true : false}
@@ -82,28 +82,23 @@ const Datatable = () => {
     },
   ];
   return (
-    <div className="row">
-                <div className="col-12 col-md-2">
-                    <Sidebar />
-                </div>
-      <div className="col-12 col-md">
+     
     <div className="datatable">
       <div className="datatableTitle">
       <Link to="/newUser" className="link">
           Add New
         </Link>
       </div>
-      
+     
       <DataGrid
         className="datagrid"
         rows={data}
         columns={userColumns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}
+        
       />
       </div>
-    </div>
-    </div>
   );
 };
 

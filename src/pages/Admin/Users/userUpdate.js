@@ -6,6 +6,7 @@ import { collection, query, where,getDocs, doc, getDoc,updateDoc, QuerySnapshot 
 import firebase from 'firebase/compat/app';
 import 'firebase/firestore';
 import Dropdown from 'react-bootstrap/Dropdown';
+import Sidebar from "../../../components/bars/Sidebar";
 
 
 const UserUpdate = () => {
@@ -70,7 +71,7 @@ const UserUpdate = () => {
     
     return(
         <div>
-          
+          <Sidebar/>
             <form>
                 <h5>first name</h5>
                 <input type="string" name="first_name" value={values.first_name} onChange={handleInputChange} />

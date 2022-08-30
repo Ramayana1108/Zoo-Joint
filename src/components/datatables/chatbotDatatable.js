@@ -1,7 +1,7 @@
-import "./datatable.scss";
+import "./chatbotdatatable.scss";
 
 import { DataGrid } from "@mui/x-data-grid";
-import { userColumns, userRows } from "../datatablesource/user_DatatableSource";
+import { chatColumns } from "../datatablesource/chatbotDatatableSource";
 import { useEffect, useState } from "react";
 import { Link,Navigate,useNavigate } from 'react-router-dom';
 import Sidebar from "../bars/Sidebar";
@@ -15,14 +15,14 @@ import {
 } from "firebase/firestore";
 import { db } from "../../services/firebase-config";
 
-const Datatable = () => {
+const ChatbotDatatable = () => {
   const navigate = useNavigate();
 
   const [data, setData] = useState([]);
 
   useEffect(() => {
     const unsub = onSnapshot(
-      collection(db, "Users"),
+      collection(db, "chatbot"),
       (snapShot) => {
         let list = [];
         snapShot.docs.forEach((doc) => {
@@ -41,15 +41,6 @@ const Datatable = () => {
     };
   }, []);
 
-  const handleDelete = async (id) => {
-    try {
-      await deleteDoc(doc(db, "Users", id));
-      setData(data.filter((item) => item.id !== id));
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   const actionColumn = [
     {
       field: "action",
@@ -60,18 +51,11 @@ const Datatable = () => {
           <div className="cellAction"> 
           <button
               className="updateButton"
-              onClick={() => navigate('/updateUser',{state: {userid:params.row.id}})}
+              onClick={() => navigate('/updateChatbot',{state: {qid:params.row.id}})}
             >
               Edit
             </button>
-          
-            <div
-              className="deleteButton"
-              hidden={params.row.role === 'Admin' ? true : false}
-              onClick={() => handleDelete(params.row.id)}
-            >
-              Delete
-            </div>
+            
             <div
              
             >
@@ -82,29 +66,28 @@ const Datatable = () => {
     },
   ];
   return (
-    <div className="row">
-                <div className="col-12 col-md-2">
-                    <Sidebar />
-                </div>
-      <div className="col-12 col-md">
+  <div>
+    <div className="col-12 col-md-2">
+    <Sidebar />
+</div>
     <div className="datatable">
       <div className="datatableTitle">
-      <Link to="/newUser" className="link">
+      <Link to="/addChatbot" className="link">
           Add New
         </Link>
       </div>
-      
+     
       <DataGrid
         className="datagrid"
         rows={data}
-        columns={userColumns.concat(actionColumn)}
+        columns={chatColumns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}
+        
       />
       </div>
-    </div>
-    </div>
+      </div>
   );
 };
 
-export default Datatable;
+export default ChatbotDatatable;

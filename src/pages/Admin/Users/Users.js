@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import Datatable from "../../../components/datatables/userDatatable";
 import "./Users.scss"
 import Sidebar from "../../../components/bars/Sidebar";
-
-
 const  UsersList = () => {
   return (
       <div>

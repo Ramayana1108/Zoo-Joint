@@ -5,8 +5,8 @@ import { slide as Menu } from 'react-burger-menu';
 export default props => {
   return (
     <Menu>
-      <a className="menu-item" href="/">
-        Home
+      <a className="menu-item" href="/users">
+        Users
       </a>
 
       <a className="menu-item" href="/laravel">
@@ -17,7 +17,7 @@ export default props => {
         AboutUs
       </a>
 
-      <a className="menu-item" href="/react">
+      <a className="menu-item" href="/chatbot">
         Chatbot
       </a>
 
