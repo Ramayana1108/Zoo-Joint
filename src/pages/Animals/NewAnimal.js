@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from "react";
-import AnimalDatatable from "../../components/datatables/animalsDatatable";
 import Navbar from "../../components/navbar/Navbar";
 
-const  AnimalList = () => {
+const  NewAnimal = () => {
   return (
       <div>
         <Navbar/>
         <div className="list">  
         <div className="listContainer">
-        <AnimalDatatable/>
+        <h1>New Animal</h1>
       </div>
     </div>
     </div>
   );
 };
 
-export default AnimalList;
+export default NewAnimal;

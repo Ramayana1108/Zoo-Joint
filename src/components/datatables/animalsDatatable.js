@@ -1,6 +1,6 @@
 import "../datatables/Css/datatable.scss"
 import { DataGrid } from "@mui/x-data-grid";
-import { userColumns, userRows } from "../datatablesource/user_DatatableSource";
+import { animalColumns } from "../datatablesource/animals_DatatableSource";
 import { useEffect, useState } from "react";
 import { Link,Navigate,useNavigate } from 'react-router-dom';
 //import Sidebar from "../bars/Sidebar";
@@ -12,43 +12,52 @@ import {
   getDocs,
   deleteDoc,
   doc,
-  onSnapshot,
+  onSnapshot, where, query,updateDoc
 } from "firebase/firestore";
 import { db } from "../../services/firebase-config";
 
-const Datatable = () => {
+const AnimalDatatable = () => {
   const navigate = useNavigate();
+  //animal query
+  const colRef = collection(db,"animals");
+  const q = query(colRef, where("animal_archive","==",false))
+
 
   const [data, setData] = useState([]);
-
+ 
   useEffect(() => {
-    const unsub = onSnapshot(
-      collection(db, "Users"),
+    const unsub = onSnapshot(       
+      q,
       (snapShot) => {
         let list = [];
         snapShot.docs.forEach((doc) => {
-          list.push({ id: doc.id, ...doc.data() });
-        });
+                list.push({ id: doc.id, ...doc.data() });           
+            });
+
         setData(list);
-        
+        console.log(data)      
       },
       (error) => {
         console.log(error);
       }
     );
-
     return () => {
       unsub();
     };
   }, []);
 
-  const handleDelete = async (id) => {
-    try {
-      await deleteDoc(doc(db, "Users", id));
-      setData(data.filter((item) => item.id !== id));
-    } catch (err) {
-      console.log(err);
-    }
+  console.log(data);
+
+  const handleArchive= async (id) => {
+    const docRef = doc(db,'animals',id);
+   
+        updateDoc(docRef,{
+            animal_archive: true
+        } ).then(response => {
+          alert("Successfully Archived")
+        }).catch(error =>{
+          console.log(error.message)
+        })
   };
 
   const actionColumn = [
@@ -61,7 +70,7 @@ const Datatable = () => {
           <div className="cellAction"> 
           <button
               className="updateButton"
-              onClick={() => navigate('/updateUser',{state: {userid:params.row.id}})}
+              onClick={() => navigate('/updateanimals',{state: {aid:params.row.id}})}
             >
               Edit
             </button>
@@ -69,9 +78,9 @@ const Datatable = () => {
             <div
               className="deleteButton"
               hidden={params.row.role === 'Admin' ? true : false}
-              onClick={() => handleDelete(params.row.id)}
+              onClick={() => handleArchive(params.row.id)}
             >
-              Delete
+              Arhive
             </div>
             <div
              
@@ -86,7 +95,7 @@ const Datatable = () => {
 
     <div className="datatable">
       <div className="datatableTitle">
-      <Link to="/newUser" className="link">
+      <Link to="/newanimals" className="link">
           Add New
         </Link>
       </div>
@@ -94,7 +103,7 @@ const Datatable = () => {
       <DataGrid
         className="datagrid"
         rows={data}
-        columns={userColumns.concat(actionColumn)}
+        columns={animalColumns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}
       />
@@ -102,4 +111,4 @@ const Datatable = () => {
   );
 };
 
-export default Datatable;
+export default AnimalDatatable;

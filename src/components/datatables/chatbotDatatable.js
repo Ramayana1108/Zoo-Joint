@@ -1,4 +1,4 @@
-import "./chatbotdatatable.scss";
+import "./Css/chatbotdatatable.scss";
 
 import { DataGrid } from "@mui/x-data-grid";
 import { chatColumns } from "../datatablesource/chatbotDatatableSource";

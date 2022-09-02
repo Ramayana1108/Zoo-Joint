@@ -1,7 +1,7 @@
-import "./aboutusdatatable.scss";
+import "./Css/aboutusdatatable.scss";
 
 import { DataGrid } from "@mui/x-data-grid";
-import { userColumns, userRows } from "../datatablesource/user_DatatableSource";
+import { userColumns, userRows } from "../datatablesource/aboutus_DatatableSource";
 import { useEffect, useState } from "react";
 import { Link,Navigate,useNavigate } from 'react-router-dom';
 import Sidebar from "../bars/Sidebar";
@@ -15,14 +15,14 @@ import {
 } from "firebase/firestore";
 import { db } from "../../services/firebase-config";
 
-const Datatable = () => {
+const AboutusDatatable = () => {
   const navigate = useNavigate();
 
   const [data, setData] = useState([]);
 
   useEffect(() => {
     const unsub = onSnapshot(
-      collection(db, "Users"),
+      collection(db, "aboutus"),
       (snapShot) => {
         let list = [];
         snapShot.docs.forEach((doc) => {
@@ -41,15 +41,6 @@ const Datatable = () => {
     };
   }, []);
 
-  const handleDelete = async (id) => {
-    try {
-      await deleteDoc(doc(db, "Users", id));
-      setData(data.filter((item) => item.id !== id));
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   const actionColumn = [
     {
       field: "action",
@@ -61,21 +52,10 @@ const Datatable = () => {
           <button
               className="updateButton"
               hidden={params.row.role === 'Admin' ? true : false}
-              onClick={() => navigate('/updateUser',{state: {userid:params.row.id}})}
+              onClick={() => navigate('/updateaboutus',{state: {abtid:params.row.id}})}
             >
               Update
             </button>
-            <div
-              className="deleteButton"
-              hidden={params.row.role === 'Admin' ? true : false}
-              onClick={() => handleDelete(params.row.id)}
-            >
-              Delete
-            </div>
-            <div
-             
-            >
-            </div>
           </div>
         );
       },
@@ -84,12 +64,7 @@ const Datatable = () => {
   return (
      
     <div className="datatable">
-      <div className="datatableTitle">
-      <Link to="/newUser" className="link">
-          Add New
-        </Link>
-      </div>
-     
+      <Sidebar />
       <DataGrid
         className="datagrid"
         rows={data}
@@ -102,4 +77,4 @@ const Datatable = () => {
   );
 };
 
-export default Datatable;
+export default AboutusDatatable;

@@ -11,6 +11,13 @@ import UserUpdate from "./pages/Admin/Users/userUpdate"
 import ChatbotList from "./pages/Chatbot/ManageChatbot";
 import ChatbotUpdate from "./pages/Chatbot/chatbotUpdate";
 import NewQA from "./pages/Chatbot/chatbotAdd";
+import Aboutus from "./pages/AboutUs/Aboutus";
+import AboutUsUpdate from "./pages/AboutUs/UpdateAboutus";
+import AnimalList from "./pages/Animals/AnimalList";
+import ManageAnimal from "./pages/Animals/UpdateAnimal";
+import AnimalarchiveList from "./pages/Animals/ArchiveAnimal";
+import NewAnimal from "./pages/Animals/NewAnimal";
+
 
 function App() {
     return (      
@@ -27,6 +34,16 @@ function App() {
               <Route path="/chatbot" element={<ChatbotList/>}/>
               <Route path="/updateChatbot" element={<ChatbotUpdate/>}/>
               <Route path="/addChatbot" element={<NewQA/>}/>
+
+
+              <Route path="/aboutus" element={<Aboutus/>}/>
+              <Route path="/updateaboutus" element={<AboutUsUpdate/>}/>
+
+              <Route path="/animals" element={<AnimalList/>}/>
+              <Route path="/newanimals" element={<NewAnimal/>}/>
+              <Route path="/updateanimals" element={<ManageAnimal/>}/>
+              <Route path="/archiveanimals" element={<AnimalarchiveList/>}/>
+
             </Routes>
           </BrowserRouter>
         </div> 
