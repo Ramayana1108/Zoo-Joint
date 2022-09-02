@@ -1,39 +1,97 @@
-.Login {
-    background-color: white;
-  }
-  
-  .Auth-form-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    height: 100vh;
-  }
-  
-  .Auth-form {
-    width: 420px;
-    box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
-    padding-top: 30px;
-    padding-bottom: 20px;
-    border-radius: 8px;
-    background-color: white;
-  }
-  
-  .Auth-form-content {
-    padding-left: 12%;
-    padding-right: 12%;
-  }
-  
-  .Auth-form-title {
-    text-align: center;
-    margin-bottom: 1em;
-    font-size: 24px;
-    color: rgb(34, 34, 34);
-    font-weight: 800;
-  }
-  
-  label {
-    font-size: 14px;
-    font-weight: 600;
-    color: rgb(34, 34, 34);
-  }
+// .Login {
+//     background-color: white;
+//   }
+
+// @font-face {
+//     font-family: 'glacial_indifferenceregular';
+//     src: url('fontsfree-net-glacialindifference-regular-webfont.woff') format('woff');
+//     font-weight: normal;
+//     font-style: normal;
+// }
+
+.background {
+  background-repeat: no-repeat;
+  max-width: 100%;
+  height: auto;
+}
+
+.center {
+  text-align: center;
+}
+
+.Auth-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.Auth-form {
+  width: 420px;
+  box-shadow: rgb(0 0 0 / 25%) 1px 1px 10px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.Auth-form-content {
+  padding-left: 12%;
+  padding-right: 12%;
+}
+
+.loginLogo {
+  max-width: 100%;
+  height: auto;
+}
+
+.Auth-form-title {
+  text-align: center;
+  margin-bottom: 1em;
+  font-size: 24px;
+  color: rgb(34, 34, 34);
+  font-weight: 800;
+}
+
+label {
+  text-align: left;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(34, 34, 34);
+}
+
+.d-grid {
+  padding-top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
+
+.d-grid a {
+  font-size: 14px;
+  position: center;
+}
+
+.login-btn {
+  width: 100%;
+  display: flex;
+  padding-top: 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn-primary {
+  padding: 5px 50px;
+  border-color: #668d3c;
+  background-color: white;
+  border-radius: 25px;
+  color: #668d3c;
+}
+
+.btn-primary:hover {
+  background-color: #668d3c;
+  border-color: #668d3c;
+}
