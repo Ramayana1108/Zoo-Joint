@@ -1,5 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css"
+import "./Login.scss";
 
 const Login = () => {
     
@@ -30,7 +31,7 @@ const Login = () => {
           </button>
         </div>
         <p className="forgot-password text-right mt-2">
-          Forgot <a href="#">password?</a>
+        <a href="#">Forgot password?</a>
         </p>
       </div>
     </form>
