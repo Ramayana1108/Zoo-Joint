@@ -27,8 +27,8 @@ const Login = () => {
                 placeholder="Enter password"
               />
             </div>
-            <div className="d-grid mt-1">
-              <p className="forgot-password text-right mt-1">
+            <div className="d-grid">
+              <p className="forgot-password text-right">
                 <a href="#">Forgot password?</a>
               </p>
             </div>

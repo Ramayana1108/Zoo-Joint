@@ -51,7 +51,12 @@
 }
 
 .nav-text a:hover {
-  background-color: #1a83ff;
+  background-color: white;
+  color:#668d3c;
+}
+
+.nav-text:hover {
+  fill:#668d3c !important;
 }
 
 .nav-menu-items {
