@@ -19,7 +19,7 @@ export const SidebarData = [
   {
     title: 'Animals',
     path: '/reports',
-    icon: <GiIcons.GiFlatPawPrint />,
+    icon: <FaIcons.FaPaw />,
     cName: 'nav-text'
   },
   {

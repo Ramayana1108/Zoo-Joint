@@ -9,11 +9,11 @@ export default props => {
         Users
       </a>
 
-      <a className="menu-item" href="/laravel">
+      <a className="menu-item" href="/animals">
         Animals
       </a>
 
-      <a className="menu-item" href="/angular">
+      <a className="menu-item" href="/aboutus">
         AboutUs
       </a>
 
@@ -21,7 +21,7 @@ export default props => {
         Chatbot
       </a>
 
-      <a className="menu-item" href="/vue">
+      <a className="menu-item" href="/archive">
         Archives
       </a>
 
