@@ -4,10 +4,7 @@ import "./Login.scss";
 
 const Login = () => {
   return (
-    <div
-      className="background"
-      style={{ backgroundImage: 'url("images/bg.png")' }}
-    >
+    
       <div className="Auth-form-container">
         <form className="Auth-form">
           <div className="Auth-form-content">
@@ -43,7 +40,6 @@ const Login = () => {
           </div>
         </form>
       </div>
-    </div>
   );
 };
 
