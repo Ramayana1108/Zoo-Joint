@@ -4,7 +4,7 @@ import { userColumns, userRows } from "../datatablesource/user_DatatableSource";
 import { useEffect, useState } from "react";
 import { Link,Navigate,useNavigate } from 'react-router-dom';
 //import Sidebar from "../bars/Sidebar";
-
+import DataTemplate from './DataTemplate';
 import Navbar from "../navbar/Navbar";
 
 import {
@@ -20,6 +20,9 @@ const Datatable = () => {
   const navigate = useNavigate();
 
   const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+
+  const [query, setQuery] = useState(null);
 
   useEffect(() => {
     const unsub = onSnapshot(
@@ -30,7 +33,7 @@ const Datatable = () => {
           list.push({ id: doc.id, ...doc.data() });
         });
         setData(list);
-        
+        setFilteredData(list);
       },
       (error) => {
         console.log(error);
@@ -41,6 +44,10 @@ const Datatable = () => {
       unsub();
     };
   }, []);
+
+  useEffect(() => {
+      setFilteredData(data.filter(item => item?.first_name.toLowerCase().includes(query.toLowerCase()) || item?.last_name.toLowerCase().includes(query.toLowerCase()) || item?.username.toLowerCase().includes(query.toLowerCase())))
+  }, [query])
 
   const handleDelete = async (id) => {
     try {
@@ -90,10 +97,10 @@ const Datatable = () => {
           Add New
         </Link>
       </div>
-      
+      <input type="text" onChange={ (e) => setQuery(e.target.value)} placeholder="Search"/>
       <DataGrid
         className="datagrid"
-        rows={data}
+        rows={filteredData}
         columns={userColumns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}

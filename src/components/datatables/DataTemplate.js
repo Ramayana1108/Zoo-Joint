@@ -15,14 +15,14 @@ import {
 } from "firebase/firestore";
 import { db } from "../../services/firebase-config";
 
-const ChatbotDatatable = () => {
+const DataTemplate = ({collectionName, listColumn, actionColumn, link}) => {
   const navigate = useNavigate();
 
   const [data, setData] = useState([]);
 
   useEffect(() => {
     const unsub = onSnapshot(
-      collection(db, "chatbot"),
+      collection(db, collectionName),
       (snapShot) => {
         let list = [];
         snapShot.docs.forEach((doc) => {
@@ -41,38 +41,15 @@ const ChatbotDatatable = () => {
     };
   }, []);
 
-  const actionColumn = [
-    {
-      field: "action",
-      headerName: "Action",
-      width: 200,
-      renderCell: (params) => {
-        return (
-          <div className="cellAction"> 
-          <button
-              className="updateButton"
-              onClick={() => navigate('/updateChatbot',{state: {qid:params.row.id}})}
-            >
-              Edit
-            </button>
-            
-            <div
-             
-            >
-            </div>
-          </div>
-        );
-      },
-    },
-  ];
+
   return (
   <div>
     <div className="col-12 col-md-2">
-    <Sidebar />
+        <Sidebar />
     </div>
     <div className="datatable">
       <div className="datatableTitle">
-      <Link to="/addChatbot" className="link">
+      <Link to={link} className="link">
           Add New
         </Link>
       </div>
@@ -80,7 +57,7 @@ const ChatbotDatatable = () => {
       <DataGrid
         className="datagrid"
         rows={data}
-        columns={chatColumns.concat(actionColumn)}
+        columns={listColumn.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}
         
@@ -90,4 +67,4 @@ const ChatbotDatatable = () => {
   );
 };
 
-export default ChatbotDatatable;
+export default DataTemplate;

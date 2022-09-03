@@ -18,7 +18,7 @@ export const SidebarData = [
   },
   {
     title: 'Animals',
-    path: '/reports',
+    path: '/animals',
     icon: <FaIcons.FaPaw />,
     cName: 'nav-text'
   },

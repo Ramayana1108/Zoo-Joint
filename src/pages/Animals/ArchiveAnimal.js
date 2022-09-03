@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from "react";
 import AnimalarchiveDatatable from "../../components/datatables/animalarchiveDatatable";
-import Navbar from "../../components/navbar/Navbar";
+import NavWrapper from "../../components/navbar/NavWrapper";
 
 const  AnimalarchiveList = () => {
   return (
-      <div>
-        <Navbar/>
-        <div className="list">  
-        <div className="listContainer">
-        <AnimalarchiveDatatable/>
-      </div>
-    </div>
-    </div>
+    //   <div>
+    //     <Navbar/>
+    //     <div className="list">  
+    //     <div className="listContainer">
+    //     <AnimalarchiveDatatable/>
+    //   </div>
+    // </div>
+    // </div>
+  <NavWrapper>
+    <AnimalarchiveDatatable/>
+  </NavWrapper>
   );
 };
 
