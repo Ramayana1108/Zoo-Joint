@@ -1,15 +1,15 @@
 import "./Aboutus.scss"
 import AboutusDatatable from "../../components/datatables/aboutusDatatable";
+import NavWrapper from "../../components/navbar/NavWrapper";
 
 const  Aboutus = () => {
     return (
         <div>
-          <div className="list">  
-          <div className="listContainer">
-          <AboutusDatatable/>
+          <NavWrapper>
+            <AboutusDatatable/>
+          </NavWrapper>
+          
         </div>
-      </div>
-      </div>
     );
   };
   

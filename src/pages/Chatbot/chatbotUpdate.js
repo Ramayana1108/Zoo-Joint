@@ -5,7 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { collection, query, where,getDocs, doc, getDoc,updateDoc, QuerySnapshot } from "firebase/firestore";
 import firebase from 'firebase/compat/app';
 import 'firebase/firestore';
-import Sidebar from "../../components/bars/Sidebar";
+import NavWrapper from "../../components/navbar/NavWrapper";
 
 
 const ChatbotUpdate = () => {
@@ -61,20 +61,19 @@ const ChatbotUpdate = () => {
     
     return(
       <div>
-         <div className="col-12 col-md-2">
-              <Sidebar />
-          </div>  
-        <div class="container">
-          <label><b>Question</b></label>
-    <input type="text" name="question" value={values.question} onChange={handleInputChange}></input>
+        <NavWrapper>
+          <div class="container">
+            <label><b>Question</b></label>
+              <input type="text" name="question" value={values.question} onChange={handleInputChange}></input>
 
-    <label><b>Answer</b></label>
-    <input  name="answer" value={values.answer} onChange={handleInputChange}></input>
-    <br/>
-    <button onClick={HandleUpdate}>Save</button>
-    <button onClick={Cancel}>Cancel</button>
-  </div>
-  </div>
+            <label><b>Answer</b></label>
+              <input  name="answer" value={values.answer} onChange={handleInputChange}></input>
+            <br/>
+            <button onClick={HandleUpdate}>Save</button>
+            <button onClick={Cancel}>Cancel</button>
+          </div>
+        </NavWrapper>
+      </div>
     );
 };
 

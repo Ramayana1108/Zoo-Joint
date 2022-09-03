@@ -2,7 +2,7 @@ import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../services/firebase-config";
 import React,{useState} from "react";
 import { Link, useNavigate } from 'react-router-dom'
-import Sidebar from "../../components/bars/Sidebar";
+import NavWrapper from "../../components/navbar/NavWrapper";
 
 
 const NewQA = () => {
@@ -45,20 +45,18 @@ const NewQA = () => {
     
     return(
       <div>
-        <div className="col-12 col-md-2">
-              <Sidebar />
-          </div>
-  
-        <div class="container">
-        <label><b>Question</b></label>
-        <input type="text" name="question" value={values.question} onChange={handleInputChange}></input>
+        <NavWrapper>
+          <div class="container">
+            <label><b>Question</b></label>
+             <input type="text" name="question" value={values.question} onChange={handleInputChange}></input>
     
-        <label><b>Answer</b></label>
-        <input  name="answer" value={values.answer} onChange={handleInputChange}></input>
-        <br/>
-        <button onClick={AddQA}>Save</button>
-        <button onClick={Cancel}>Cancel</button>
-      </div>
+             <label><b>Answer</b></label>
+              <input  name="answer" value={values.answer} onChange={handleInputChange}></input>
+            <br/>
+            <button onClick={AddQA}>Save</button>
+            <button onClick={Cancel}>Cancel</button>
+          </div>
+        </NavWrapper>      
       </div>
     );
 };

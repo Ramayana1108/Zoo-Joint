@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from "react";
 import AnimalDatatable from "../../components/datatables/animalsDatatable";
-import Navbar from "../../components/navbar/Navbar";
+import NavWrapper from "../../components/navbar/NavWrapper";
 
 const  UpdateAnimal = () => {
   return (
       <div>
-        <Navbar/>
-        <div className="list">  
-        <div className="listContainer">
-        <h1>Update Animal</h1>
+        <NavWrapper>
+          <h1>Update Animal</h1>
+        </NavWrapper>      
       </div>
-    </div>
-    </div>
   );
 };
 

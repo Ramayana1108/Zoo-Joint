@@ -3,9 +3,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { animalColumns } from "../datatablesource/animalsarchive_DatatableSource";
 import { useEffect, useState } from "react";
 import { Link,Navigate,useNavigate } from 'react-router-dom';
-//import Sidebar from "../bars/Sidebar";
 
-import Navbar from "../navbar/Navbar";
 
 import {
   collection,
@@ -18,13 +16,17 @@ import { db } from "../../services/firebase-config";
 
 const AnimalarchiveDatatable = () => {
   const navigate = useNavigate();
+
   //animal query
   const colRef = collection(db,"animals");
   const q = query(colRef, where("animal_archive","==",true))
 
 
+// initializing arrays
   const [data, setData] = useState([]);
- 
+  const [filteredData, setFilteredData] = useState([]);
+  const [search, setSearch] = useState(null);
+
   useEffect(() => {
     const unsub = onSnapshot(       
       q,
@@ -35,7 +37,7 @@ const AnimalarchiveDatatable = () => {
             });
 
         setData(list);
-        console.log(data)      
+        setFilteredData(list);    
       },
       (error) => {
         console.log(error);
@@ -46,7 +48,10 @@ const AnimalarchiveDatatable = () => {
     };
   }, []);
 
-  console.log(data);
+  useEffect(() => {
+    setFilteredData(data.filter(item => item?.animal_name.toLowerCase().includes(search.toLowerCase()) || item?.animal_enclosure.toLowerCase().includes(search.toLowerCase())))
+  }, [search]);
+
 
   const handleRestore= async (id) => {
     const docRef = doc(db,'animals',id);
@@ -102,14 +107,14 @@ const AnimalarchiveDatatable = () => {
     },
   ];
   return (
-
     <div className="datatable">
       <div className="datatableTitle">
+        <h1>Animal Archives</h1>
       </div>
-      
+      <input type="text" onChange={ (e) => setSearch(e.target.value)} placeholder="Search"/>
       <DataGrid
         className="datagrid"
-        rows={data}
+        rows={filteredData}
         columns={animalColumns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}

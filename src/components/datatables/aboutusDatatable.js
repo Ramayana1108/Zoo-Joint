@@ -4,7 +4,6 @@ import { DataGrid } from "@mui/x-data-grid";
 import { userColumns, userRows } from "../datatablesource/aboutus_DatatableSource";
 import { useEffect, useState } from "react";
 import { Link,Navigate,useNavigate } from 'react-router-dom';
-import Sidebar from "../bars/Sidebar";
 
 import {
   collection,
@@ -29,6 +28,7 @@ const AboutusDatatable = () => {
           list.push({ id: doc.id, ...doc.data() });
         });
         setData(list);
+        console.log(list[0])
         
       },
       (error) => {
@@ -64,7 +64,9 @@ const AboutusDatatable = () => {
   return (
      
     <div className="datatable">
-      <Sidebar />
+      <div className="datatableTitle">
+        <h1>About Us</h1>
+      </div>
       <DataGrid
         className="datagrid"
         rows={data}

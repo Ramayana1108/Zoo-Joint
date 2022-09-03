@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import AnimalDatatable from "../../components/datatables/animalsDatatable";
 // import Navbar from "../../components/navbar/Navbar";
 import NavWrapper from '../../components/navbar/NavWrapper';
+
 const  AnimalList = () => {
   console.log("report page")
   return (

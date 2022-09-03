@@ -1,15 +1,14 @@
 import "./Chatbot.scss"
 import ChatbotDatatable from "../../components/datatables/chatbotDatatable";
+import NavWrapper from "../../components/navbar/NavWrapper";
 
 const  ChatbotList = () => {
     return (
-        <div>
-          <div className="list">  
-          <div className="listContainer">
-          <ChatbotDatatable/>
+        <div>   
+          <NavWrapper>
+            <ChatbotDatatable/>     
+          </NavWrapper>             
         </div>
-      </div>
-      </div>
     );
   };
   

@@ -12,7 +12,7 @@ import {
   getDocs,
   deleteDoc,
   doc,
-  onSnapshot,
+  onSnapshot,where, query
 } from "firebase/firestore";
 import { db } from "../../services/firebase-config";
 
@@ -21,12 +21,17 @@ const Datatable = () => {
 
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
+  const [search, setSearch] = useState(null);
 
-  const [query, setQuery] = useState(null);
+    //user query
+    const colRef = collection(db,"Users");
+    const q = query(colRef, where("role","==","Staff"))
+  
+  
 
   useEffect(() => {
     const unsub = onSnapshot(
-      collection(db, "Users"),
+      q,
       (snapShot) => {
         let list = [];
         snapShot.docs.forEach((doc) => {
@@ -46,8 +51,8 @@ const Datatable = () => {
   }, []);
 
   useEffect(() => {
-      setFilteredData(data.filter(item => item?.first_name.toLowerCase().includes(query.toLowerCase()) || item?.last_name.toLowerCase().includes(query.toLowerCase()) || item?.username.toLowerCase().includes(query.toLowerCase())))
-  }, [query])
+      setFilteredData(data.filter(item => item?.first_name.toLowerCase().includes(search.toLowerCase()) || item?.last_name.toLowerCase().includes(search.toLowerCase()) || item?.username.toLowerCase().includes(search.toLowerCase())))
+  }, [search])
 
   const handleDelete = async (id) => {
     try {
@@ -97,7 +102,7 @@ const Datatable = () => {
           Add New
         </Link>
       </div>
-      <input type="text" onChange={ (e) => setQuery(e.target.value)} placeholder="Search"/>
+      <input type="text" onChange={ (e) => setSearch(e.target.value)} placeholder="Search"/>
       <DataGrid
         className="datagrid"
         rows={filteredData}

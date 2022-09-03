@@ -24,7 +24,7 @@ export const SidebarData = [
   },
   {
     title: 'About Us',
-    path: '/products',
+    path: '/aboutus',
     icon: <AiIcons.AiFillInfoCircle />,
     cName: 'nav-text'
   },
@@ -36,7 +36,7 @@ export const SidebarData = [
   },
   {
     title: 'Archives',
-    path: '/messages',
+    path: '/archiveanimals',
     icon: <BsIcons.BsFillArchiveFill />,
     cName: 'nav-text'
   },

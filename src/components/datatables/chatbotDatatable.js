@@ -4,7 +4,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { chatColumns } from "../datatablesource/chatbotDatatableSource";
 import { useEffect, useState } from "react";
 import { Link,Navigate,useNavigate } from 'react-router-dom';
-import Sidebar from "../bars/Sidebar";
+
 
 import {
   collection,
@@ -67,11 +67,9 @@ const ChatbotDatatable = () => {
   ];
   return (
   <div>
-    <div className="col-12 col-md-2">
-    <Sidebar />
-    </div>
     <div className="datatable">
       <div className="datatableTitle">
+        <h1>Chatbot</h1>
       <Link to="/addChatbot" className="link">
           Add New
         </Link>

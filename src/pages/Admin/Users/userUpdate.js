@@ -3,10 +3,7 @@ import { db } from "../../../services/firebase-config";
 import React,{useState, useEffect} from "react";
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { collection, query, where,getDocs, doc, getDoc,updateDoc, QuerySnapshot } from "firebase/firestore";
-import firebase from 'firebase/compat/app';
-import 'firebase/firestore';
-import Dropdown from 'react-bootstrap/Dropdown';
-import Sidebar from "../../../components/bars/Sidebar";
+import NavWrapper from "../../../components/navbar/NavWrapper";
 
 
 const UserUpdate = () => {
@@ -70,8 +67,7 @@ const UserUpdate = () => {
     }
     
     return(
-        <div>
-          <Sidebar/>
+        <div>        
             <form>
                 <h5>first name</h5>
                 <input type="string" name="first_name" value={values.first_name} onChange={handleInputChange} />
@@ -93,6 +89,7 @@ const UserUpdate = () => {
             </form>
             <button onClick={HandleUpdate}>Save</button> 
             <button onClick={Cancel}>Cancel</button>   
+          
         </div>
     );
 };

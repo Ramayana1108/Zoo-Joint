@@ -3,7 +3,7 @@ import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../../services/firebase-config";  
 import React,{useState} from "react";
 import { Link, useNavigate } from 'react-router-dom'
-import Sidebar from "../../../components/bars/Sidebar";
+import NavWrapper from "../../../components/navbar/NavWrapper";
 
 
 const initialValues = {
@@ -59,7 +59,7 @@ const NewUser = () => {
 
     return(
         <div>
-          <Sidebar/>
+          <NavWrapper>
             <input type="string" name="first_name" placeholder="First Name" value={values.first_name} onChange={handleInputChange}/>
             <input type="text" name="last_name" placeholder="Last Name" value={values.last_name} onChange={handleInputChange}/>
             <input type="text" name="username" placeholder="Username" value={values.username} onChange={handleInputChange}/>
@@ -69,7 +69,7 @@ const NewUser = () => {
                 <br></br>
                 <button onClick={AddUser}>Save User</button>
                 <button onClick={Cancel}>Cancel</button>
-        
+          </NavWrapper>
         </div>
     );
 };

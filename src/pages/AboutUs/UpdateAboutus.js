@@ -5,7 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { collection, query, where,getDocs, doc, getDoc,updateDoc, QuerySnapshot } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import 'firebase/firestore';
-import Sidebar from "../../components/bars/Sidebar";
+import NavWrapper from "../../components/navbar/NavWrapper";
 
 
 const AboutUsUpdate = () => {
@@ -75,33 +75,49 @@ const AboutUsUpdate = () => {
             },
             () => {
               getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                setValues((prev) => ({ ...prev, abt_img: downloadURL }));
+                //setValues((prev) => ({ ...prev, abt_img: downloadURL }));
+                updateDoc(docRef,{
+                  abt_email: String(values.abt_email),
+                  abt_website: String(values.abt_website),
+                  abt_description: String(values.abt_description),
+                  abt_address: String(values.abt_address),
+                  abt_image: String(downloadURL)
+                    
+              } ).then(response => {
+                alert("Successfully Updated")
+                navigate("/aboutus");
+              }).catch(error =>{
+                console.log(error.message)
+              })
+         
               });
             }
           );
         };
-      
+
   
     //update Database
     function HandleUpdate(e){
         e.preventDefault();
 
         uploadFile();
-          
-        updateDoc(docRef,{
-            abt_email: String(values.abt_email),
-            abt_website: String(values.abt_website),
-            abt_description: String(values.abt_description),
-            abt_address: String(values.abt_address),
-            abt_image: values.abt_image
+          console.log(values.abt_image);
+    //    updateDoc(docRef,{
+    //         abt_email: String(values.abt_email),
+    //        abt_website: String(values.abt_website),
+    //         abt_description: String(values.abt_description),
+    //         abt_address: String(values.abt_address),
+    //         abt_image: String(values.abt_image)
+            
            
-        } ).then(response => {
-          alert("Successfully Updated")
-          navigate("/aboutus");
-        }).catch(error =>{
-          console.log(error.message)
-        })
+    //     } ).then(response => {
+    //       alert("Successfully Updated")
+    //       navigate("/aboutus");
+    //     }).catch(error =>{
+    //       console.log(error.message)
+    //     })
     };
+
     //cancel Button
     function Cancel(){
             navigate("/aboutus")
@@ -109,38 +125,37 @@ const AboutUsUpdate = () => {
          
     return(
       <div>
-         <div className="col-12 col-md-2">
-              <Sidebar />
-          </div>  
-        <div class="container">
-          <label><b>Email</b></label>
-    <input type="text" name="abt_name" value={values.abt_email} onChange={handleInputChange}></input>
-    <label><b>Website</b></label>
-    <input type="text" name="abt_website" value={values.abt_website} onChange={handleInputChange}></input>
+        <NavWrapper>
+          <div class="container">
+            <label><b>Email</b></label>
+              <input type="text" name="abt_name" value={values.abt_email} onChange={handleInputChange}></input>
+            <label><b>Website</b></label>
+              <input type="text" name="abt_website" value={values.abt_website} onChange={handleInputChange}></input>
 
-    <label><b>Description</b></label>
-    <textarea  name="abt_description" value={values.abt_description} onChange={handleInputChange}></textarea>
-    <label><b>Address</b></label>
-    <textarea  name="abt_address" value={values.abt_address} onChange={handleInputChange}></textarea>
-    <br/>
-    <button>
-        <label htmlFor="file">
-            Upload Image
-        </label>
-        <input
-            type="file"
-            name="abt_image"
-            id="file"
-            onChange={(e) => setFile(e.target.files[0])}
-            style={{ display: "none" }}
-            />
-    </button>
+            <label><b>Description</b></label>
+              <textarea  name="abt_description" value={values.abt_description} onChange={handleInputChange}></textarea>
+            <label><b>Address</b></label>
+              <textarea  name="abt_address" value={values.abt_address} onChange={handleInputChange}></textarea>
+            <br/>
+            <button>
+              <label htmlFor="file">
+                Upload Image
+              </label>
+              <input
+                type="file"
+                name="abt_image"
+                id="file"
+                onChange={(e) => setFile(e.target.files[0])}
+                style={{ display: "none" }}
+              />
+            </button>
                 
           
-    <button onClick={HandleUpdate}>Save</button>
-    <button onClick={Cancel}>Cancel</button>
-  </div>
-  </div>
+            <button onClick={HandleUpdate}>Save</button>
+            <button onClick={Cancel}>Cancel</button>
+          </div>
+        </NavWrapper>
+      </div>
     );
 };
 
