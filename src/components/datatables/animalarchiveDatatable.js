@@ -59,7 +59,7 @@ const AnimalarchiveDatatable = () => {
         updateDoc(docRef,{
             animal_archive: false
         } ).then(response => {
-          alert("Successfully Archived")
+          alert("Animal Restored")
         }).catch(error =>{
           console.log(error.message)
         })
@@ -94,7 +94,7 @@ const AnimalarchiveDatatable = () => {
               className="deleteButton"
               onClick={() => handleDelete(params.row.id)}
             >
-              Edit
+              Delete
             </button>
           
             <div

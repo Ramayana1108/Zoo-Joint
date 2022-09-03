@@ -147,8 +147,10 @@ const AboutUsUpdate = () => {
                 id="file"
                 onChange={(e) => setFile(e.target.files[0])}
                 style={{ display: "none" }}
-              />
+              />             
             </button>
+            <input value={file.name} disabled={true}/>
+            <br></br>
                 
           
             <button onClick={HandleUpdate}>Save</button>
