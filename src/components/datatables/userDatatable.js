@@ -72,14 +72,14 @@ const Datatable = () => {
         return (
           <div className="cellAction"> 
           <button
-              className="updateButton"
+              className="updateButton" style={{backgroundColor: "white"}}
               onClick={() => navigate('/updateUser',{state: {userid:params.row.id}})}
             >
               Edit
             </button>
           
             <div
-              className="deleteButton"
+              className="deleteButton" style={{backgroundColor: "white"}}
               hidden={params.row.role === 'Admin' ? true : false}
               onClick={() => handleDelete(params.row.id)}
             >
@@ -98,7 +98,7 @@ const Datatable = () => {
 
     <div className="datatable">
       <div className="datatableTitle">
-        <h1>Users</h1>
+        <h1 style={{color: "black"}}>Users</h1>
       <Link to="/newUser" className="link">
           Add New
         </Link>

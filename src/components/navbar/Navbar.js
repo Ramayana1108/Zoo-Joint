@@ -13,16 +13,16 @@ function Navbar({showSidebar, sidebar}) {
     <>
       <IconContext.Provider value={{ color: '#fff' }}>
         <div className='navbar'>
-          <Link to='#' className='menu-bars'>
+          <div className={sidebar ? 'menu-bars' : 'menu-bars-close'}>
             <FaIcons.FaBars onClick={showSidebar} />
-          </Link>
+          </div>
         </div>
         <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
           <ul className='nav-menu-items' onClick={showSidebar}>
             <li className='navbar-toggle'>
-              <Link to='#' className='menu-bars'>
+              <div className='menu-bars'>
                 <MdIcons.MdClose />
-              </Link>
+              </div>
             </li>
             {SidebarData.map((item, index) => {
               return (
