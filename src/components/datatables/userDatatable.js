@@ -72,14 +72,14 @@ const Datatable = () => {
         return (
           <div className="cellAction"> 
           <button
-              className="updateButton" style={{backgroundColor: "white"}}
+              className="updateButton" style={{backgroundColor: "white", color: "#145da0", borderColor: "#145da0"}}
               onClick={() => navigate('/updateUser',{state: {userid:params.row.id}})}
             >
               Edit
             </button>
           
             <div
-              className="deleteButton" style={{backgroundColor: "white"}}
+              className="deleteButton" style={{backgroundColor: "white", color: "#c4391d", borderColor: "#c4391d"}}
               hidden={params.row.role === 'Admin' ? true : false}
               onClick={() => handleDelete(params.row.id)}
             >
