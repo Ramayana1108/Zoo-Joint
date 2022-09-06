@@ -83,7 +83,7 @@ const AnimalarchiveDatatable = () => {
         return (
           <div className="cellAction">         
             <div
-              className="updateButton"
+              className="updateButton" style={{backgroundColor: "white", color: "#145da0", borderColor: "#145da0"}}
               hidden={params.row.role === 'Admin' ? true : false}
               onClick={() => handleRestore(params.row.id)}
             >
@@ -91,7 +91,7 @@ const AnimalarchiveDatatable = () => {
             </div>
 
             <button
-              className="deleteButton"
+              className="deleteButton" style={{backgroundColor: "white", color: "#c4391d", borderColor: "#c4391d"}}
               onClick={() => handleDelete(params.row.id)}
             >
               Delete
@@ -109,7 +109,7 @@ const AnimalarchiveDatatable = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        <h1>Animal Archives</h1>
+        <h1 style={{color: "black"}}>Animal Archives</h1>
       </div>
       <input type="text" onChange={ (e) => setSearch(e.target.value)} placeholder="Search"/>
       <DataGrid

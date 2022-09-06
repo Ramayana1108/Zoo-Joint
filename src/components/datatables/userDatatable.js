@@ -6,6 +6,7 @@ import { Link,Navigate,useNavigate } from 'react-router-dom';
 //import Sidebar from "../bars/Sidebar";
 import DataTemplate from './DataTemplate';
 import Navbar from "../navbar/Navbar";
+import "../datatables/Css/userDatatable.scss"
 
 import {
   collection,
@@ -81,7 +82,7 @@ const Datatable = () => {
             <div
               className="deleteButton" style={{backgroundColor: "white", color: "#c4391d", borderColor: "#c4391d"}}
               hidden={params.row.role === 'Admin' ? true : false}
-              onClick={() => handleDelete(params.row.id)}
+              onClick={() => handleDelete(params.row.id)} 
             >
               Delete
             </div>

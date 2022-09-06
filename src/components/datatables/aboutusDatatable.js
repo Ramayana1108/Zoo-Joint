@@ -50,11 +50,11 @@ const AboutusDatatable = () => {
         return (
           <div className="cellAction"> 
           <button
-              className="updateButton"
+              className="updateButton" style={{backgroundColor: "white", color: "#145da0", borderColor: "#145da0"}}
               hidden={params.row.role === 'Admin' ? true : false}
               onClick={() => navigate('/updateaboutus',{state: {abtid:params.row.id}})}
             >
-              Update
+              Edit
             </button>
           </div>
         );
@@ -65,7 +65,7 @@ const AboutusDatatable = () => {
      
     <div className="datatable">
       <div className="datatableTitle">
-        <h1>About Us</h1>
+        <h1 style={{color: "black"}}>About Us</h1>
       </div>
       <DataGrid
         className="datagrid"
