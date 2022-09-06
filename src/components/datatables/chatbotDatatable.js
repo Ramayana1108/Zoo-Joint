@@ -50,7 +50,7 @@ const ChatbotDatatable = () => {
         return (
           <div className="cellAction"> 
           <button
-              className="updateButton" style={{backgroundColor: "white", color: "#145da0", borderColor: "#145da0"}}
+              className="updateButton"
               onClick={() => navigate('/updateChatbot',{state: {qid:params.row.id}})}
             >
               Edit
