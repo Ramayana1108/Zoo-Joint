@@ -8,17 +8,43 @@ import { Link, useNavigate } from 'react-router-dom'
 const  NewAnimal = () => {
 
   const [values, setValues] = useState([]);
+  const [quiz1, setQuiz1]= useState([]);
+  const [quiz2, setQuiz2]= useState([]);
+  const [quiz3, setQuiz3]= useState([]);
   const [file, setFile] = useState("");
   const [per, setPerc] = useState(null);
   //Redirecting
   
   const navigate = useNavigate();
 
+
   //handle input change
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setValues({
       ...values,
+      [name]: value,
+    });
+  };
+
+  const handleInputChangeQuiz1 = (e) => {
+    const { name, value } = e.target;
+    setQuiz1({
+      ...quiz1,
+      [name]: value,
+    });
+  };
+  const handleInputChangeQuiz2 = (e) => {
+    const { name, value } = e.target;
+    setQuiz2({
+      ...quiz2,
+      [name]: value,
+    });
+  };
+  const handleInputChangeQuiz3 = (e) => {
+    const { name, value } = e.target;
+    setQuiz3({
+      ...quiz3,
       [name]: value,
     });
   };
@@ -54,11 +80,13 @@ const  NewAnimal = () => {
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          addDoc(collection(db, "animals"), {
+          const animalRef = doc(db, 'animals', values.animal_name);
+         
+          setDoc(animalRef, {
             animal_archive:false,
             animal_name:values.animal_name,
             animal_sciname:values.animal_sciname,
-            animal_enclosure:values.animal_enclosure,
+            animal_enclosure:String(values.animal_enclosure),
             animal_habitat:values.animal_habitat,
             animal_description:values.animal_description,
             animal_conservationstatus:values.animal_conservationstatus,
@@ -67,10 +95,65 @@ const  NewAnimal = () => {
             animal_distribution:values.animal_distribution,
             animal_nutrition:values.animal_nutrition,
             animal_imageurl:downloadURL
+            
          })
          .then(() => {
-           alert('Animal Added' );
-           navigate("/animals")
+          //quiz1
+           const q1Ref = doc(db, "animals", values.animal_name,"animal_quiz","quiz1");
+            setDoc(q1Ref,{
+              question: String(quiz1.question),
+              choicea: String(quiz1.choicea),
+              choiceb: String(quiz1.choiceb),
+              choicec: String(quiz1.choicec),
+              answer: String(quiz1.answer),
+              explanation: String(quiz1.explanation)
+            }).then(() => {
+              //quiz2
+              const q2Ref = doc(db, "animals", values.animal_name,"animal_quiz","quiz2");
+              setDoc(q2Ref,{
+                question: String(quiz2.question),
+                choicea: String(quiz2.choicea),
+                choiceb: String(quiz2.choiceb),
+                choicec: String(quiz2.choicec),
+                answer: String(quiz2.answer),
+                explanation: String(quiz2.explanation)
+              }).then(() => {
+                //quiz3
+                const q3Ref = doc(db, "animals", values.animal_name,"animal_quiz","quiz3");
+                setDoc(q3Ref,{
+                  question: String(quiz3.question),
+                  choicea: String(quiz3.choicea),
+                  choiceb: String(quiz3.choiceb),
+                  choicec: String(quiz3.choicec),
+                  answer: String(quiz3.answer),
+                  explanation: String(quiz3.explanation)
+                }).then(() => {
+
+                  alert('Animal Added' );
+                  navigate("/animals")
+          
+                })
+                .catch((error) => {
+                alert(error.message);
+                });
+
+                //end of 3rd quiz
+ 	            
+          
+              })
+              .catch((error) => {
+                alert(error.message);
+              });
+
+            //end of 2nd quiz     
+ 	            
+          
+            })
+            .catch((error) => {
+              alert(error.message);
+            });
+
+          //end of first quiz
          })
          .catch((error) => {
            alert(error.message);
@@ -113,13 +196,37 @@ const  NewAnimal = () => {
               </label>
               <input
                 type="file"
-                name="abt_image"
+                name="animal_image"
                 id="file"
                 onChange={(e) => setFile(e.target.files[0])}
                 style={{ display: "none" }}
               />             
             </button>
-            <input value={file.name} disabled={true}/>
+            <input value={file.name} disabled={true}/>{per}%
+          <br></br>
+          <label>Question 1: </label>
+          <input type="text" name="question" placeholder="Question" value={quiz1.question} onChange={handleInputChangeQuiz1}/>
+          <input type="text" name="choicea" placeholder="1st Choice" value={quiz1.choicea} onChange={handleInputChangeQuiz1}/>
+          <input type="text" name="choiceb" placeholder="2nd Choice" value={quiz1.choiceb} onChange={handleInputChangeQuiz1}/>
+          <input type="text" name="choicec" placeholder="3rd Choice" value={quiz1.choicec} onChange={handleInputChangeQuiz1}/>
+          <input type="text" name="answer" placeholder="Answer" value={quiz1.answer} onChange={handleInputChangeQuiz1}/>
+          <input type="text" name="explanation" placeholder="Explnation" value={quiz1.explanation} onChange={handleInputChangeQuiz1}/>
+          <br></br>
+          <label>Question 2: </label>
+          <input type="text" name="question" placeholder="Question" value={quiz2.question} onChange={handleInputChangeQuiz2}/>
+          <input type="text" name="choicea" placeholder="1st Choice" value={quiz2.choicea} onChange={handleInputChangeQuiz2}/>
+          <input type="text" name="choiceb" placeholder="2nd Choice" value={quiz2.choiceb} onChange={handleInputChangeQuiz2}/>
+          <input type="text" name="choicec" placeholder="3rd Choice" value={quiz2.choicec} onChange={handleInputChangeQuiz2}/>
+          <input type="text" name="answer" placeholder="answer" value={quiz2.answer} onChange={handleInputChangeQuiz2}/>
+          <input type="text" name="explanation" placeholder="Explnation" value={quiz2.explanation} onChange={handleInputChangeQuiz2}/>
+          <br></br>
+          <label>Question 3: </label>
+          <input type="text" name="question" placeholder="Question" value={quiz3.question} onChange={handleInputChangeQuiz3}/>
+          <input type="text" name="choicea" placeholder="1st Choice" value={quiz3.choicea} onChange={handleInputChangeQuiz3}/>
+          <input type="text" name="choiceb" placeholder="2nd Choice" value={quiz3.choiceb} onChange={handleInputChangeQuiz3}/>
+          <input type="text" name="choicec" placeholder="3rd Choice" value={quiz3.choicec} onChange={handleInputChangeQuiz3}/>
+          <input type="text" name="answer" placeholder="answer" value={quiz3.answer} onChange={handleInputChangeQuiz3}/>
+          <input type="text" name="explanation" placeholder="Explnation" value={quiz3.explanation} onChange={handleInputChangeQuiz3}/>
           <br></br>
           <button onClick={AddAnimal}>Submit</button>
           <button onClick={Cancel}>Discard</button>

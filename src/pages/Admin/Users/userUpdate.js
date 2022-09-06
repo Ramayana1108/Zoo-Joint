@@ -1,7 +1,7 @@
 
 import { db } from "../../../services/firebase-config";  
 import React,{useState, useEffect} from "react";
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate,location,state } from 'react-router-dom'
 import { collection, query, where,getDocs, doc, getDoc,updateDoc, QuerySnapshot } from "firebase/firestore";
 import NavWrapper from "../../../components/navbar/NavWrapper";
 

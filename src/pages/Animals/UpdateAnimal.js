@@ -12,6 +12,7 @@ const  UpdateAnimal = () => {
   const [values, setValues] = useState([]);
   const [data, setData] = useState({});
   const [file, setFile] = useState("");
+  const [sound, setSound] = useState("");
   const [per, setPerc] = useState(null);
 
   //getting animal
@@ -43,12 +44,22 @@ const  UpdateAnimal = () => {
   //Add Animal with image
   const UpdateAnimal = () => {
     const name = new Date().getTime() + file.name;
+    const name2 = new Date().getTime() + sound.name;
 
     console.log(name);
     const storageRef = ref(storage, file.name);
     const uploadTask = uploadBytesResumable(storageRef, file);
 
-    uploadTask.on(
+    const storageRef2 = ref(storage, sound.name);
+    const uploadTask2 = uploadBytesResumable(storageRef2, sound);
+
+    
+  
+
+
+    //uploading new image
+    if(file.name !== null){
+       uploadTask.on(
       "state_changed",
       (snapshot) => {
         const progress =
@@ -72,7 +83,7 @@ const  UpdateAnimal = () => {
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           const storage = getStorage();
-
+         
           // Create a reference to the file to delete
           const desertRef = ref(storage, data.animal_imageurl);
 
@@ -81,32 +92,43 @@ const  UpdateAnimal = () => {
           // File deleted successfully
           }).catch((error) => {
           // Uh-oh, an error occurred!
-          });
-
+          }); 
+          
           updateDoc(docRef, {
-            animal_name:values.animal_name,
-            animal_sciname:values.animal_sciname,
-            animal_enclosure:values.animal_enclosure,
-            animal_habitat:values.animal_habitat,
-            animal_description:values.animal_description,
-            animal_conservationstatus:values.animal_conservationstatus,
-            animal_behavior:values.animal_behavior,
-            animal_diet:values.animal_diet,
-            animal_distribution:values.animal_distribution,
-            animal_nutrition:values.animal_nutrition,
             animal_imageurl:downloadURL
          })
          .then(() => {
-           alert('Updated' );
-           navigate("/animals")
+          console.log("animal image updated");
          })
          .catch((error) => {
            alert(error.message);
          });
-          
         });
       }
     );
+    }
+
+    //updating document
+    updateDoc(docRef, {
+      animal_name:values.animal_name,
+      animal_sciname:values.animal_sciname,
+      animal_enclosure:values.animal_enclosure,
+      animal_habitat:values.animal_habitat,
+      animal_description:values.animal_description,
+      animal_conservationstatus:values.animal_conservationstatus,
+      animal_behavior:values.animal_behavior,
+      animal_diet:values.animal_diet,
+      animal_distribution:values.animal_distribution,
+      animal_nutrition:values.animal_nutrition,
+   })
+   .then(() => {
+     alert('Updated' );
+     navigate("/animals")
+   })
+   .catch((error) => {
+     alert(error.message);
+   });
+   
   };
   
 
@@ -148,6 +170,7 @@ const  UpdateAnimal = () => {
               />             
             </button>
             <input value={file.name} disabled={true}/>
+            {per}
           <br></br>
           <button onClick={UpdateAnimal}>Submit</button>
           <button onClick={Cancel}>Discard</button>

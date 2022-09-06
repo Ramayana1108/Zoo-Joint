@@ -2,6 +2,7 @@
 import Navbar from "./Navbar";
 import {useState} from 'react'
 
+
 const NavWrapper = ({children}) => {
 
   const styles = {
