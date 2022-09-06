@@ -50,7 +50,7 @@ const AboutusDatatable = () => {
         return (
           <div className="cellAction"> 
           <button
-              className="updateButton" style={{backgroundColor: "white", color: "#145da0", borderColor: "#145da0"}}
+              className="updateButton"
               hidden={params.row.role === 'Admin' ? true : false}
               onClick={() => navigate('/updateaboutus',{state: {abtid:params.row.id}})}
             >

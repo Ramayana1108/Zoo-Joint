@@ -83,7 +83,7 @@ const AnimalarchiveDatatable = () => {
         return (
           <div className="cellAction">         
             <div
-              className="updateButton" style={{backgroundColor: "white", color: "#145da0", borderColor: "#145da0"}}
+              className="updateButton"
               hidden={params.row.role === 'Admin' ? true : false}
               onClick={() => handleRestore(params.row.id)}
             >
@@ -91,7 +91,7 @@ const AnimalarchiveDatatable = () => {
             </div>
 
             <button
-              className="deleteButton" style={{backgroundColor: "white", color: "#c4391d", borderColor: "#c4391d"}}
+              className="deleteButton"
               onClick={() => handleDelete(params.row.id)}
             >
               Delete

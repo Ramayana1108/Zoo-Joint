@@ -73,18 +73,18 @@ const AnimalDatatable = () => {
         return (
           <div className="cellAction"> 
           <button
-              className="updateButton" style={{backgroundColor: "white", color: "#145da0", borderColor: "#145da0"}}
+              className="updateButton"
               onClick={() => navigate('/updateanimals',{state: {aid:params.row.id}})}
             >
               Edit
             </button>
           
             <div
-              className="deleteButton" style={{backgroundColor: "white", color: "#c4391d", borderColor: "#c4391d"}}
+              className="deleteButton"
               hidden={params.row.role === 'Admin' ? true : false}
               onClick={() => handleArchive(params.row.id)}
             >
-              Arhive
+              Archive
             </div>
             <div
              
