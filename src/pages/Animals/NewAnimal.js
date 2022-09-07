@@ -12,7 +12,9 @@ const  NewAnimal = () => {
   const [quiz2, setQuiz2]= useState([]);
   const [quiz3, setQuiz3]= useState([]);
   const [file, setFile] = useState("");
+  const [sound, setSound] = useState("");
   const [per, setPerc] = useState(null);
+  const [per2, setPerc2] = useState(null);
   //Redirecting
   
   const navigate = useNavigate();
@@ -52,10 +54,14 @@ const  NewAnimal = () => {
   //Add Animal with image
   const AddAnimal = () => {
     const name = new Date().getTime() + file.name;
+    const name2 = new Date().getTime() + sound.name;
 
-    console.log(name);
+  
     const storageRef = ref(storage, file.name);
     const uploadTask = uploadBytesResumable(storageRef, file);
+
+    const storageRef2 = ref(storage, sound.name);
+    const uploadTask2 = uploadBytesResumable(storageRef2, sound);
 
     uploadTask.on(
       "state_changed",
@@ -129,8 +135,47 @@ const  NewAnimal = () => {
                   explanation: String(quiz3.explanation)
                 }).then(() => {
 
-                  alert('Animal Added' );
-                  navigate("/animals")
+                  uploadTask2.on(
+                    "state_changed",
+                    (snapshot) => {
+                      const progress =
+                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                      console.log("Upload is " + progress + "% done");
+                      setPerc2(progress);
+                      switch (snapshot.state) {
+                        case "paused":
+                          console.log("Upload is paused");
+                          break;
+                        case "running":
+                          console.log("Upload is running");
+                          break;
+                        default:
+                          break;
+                      }
+                    },
+                    (error) => {
+                      console.log(error);
+                    },
+                    () => {
+                      getDownloadURL(uploadTask2.snapshot.ref).then((downloadURL) => {        
+                                
+                        updateDoc(animalRef, {
+                          animal_sound:downloadURL
+                       })
+                       .then(() => {
+
+                        alert('Animal Added' );
+                        navigate("/animals")
+                       
+                       })
+                       .catch((error) => {
+                         alert(error.message);
+                       });
+                      });
+                    }
+                  );
+                  
+                  
           
                 })
                 .catch((error) => {
@@ -201,8 +246,23 @@ const  NewAnimal = () => {
                 onChange={(e) => setFile(e.target.files[0])}
                 style={{ display: "none" }}
               />             
-            </button>
-            <input value={file.name} disabled={true}/>{per}%
+          </button>
+          <input value={file.name} disabled={true}/>{per}%
+          <br></br>
+          <button>
+              <label htmlFor="sound">
+                Upload sound
+              </label>
+              <input
+                type="file"
+                name="animal_sound"
+                id="sound"
+                onChange={(e) => setSound(e.target.files[0])}
+                style={{ display: "none" }}
+              />             
+          </button>
+          <input value={sound.name} disabled={true}/>{per2}%
+            
           <br></br>
           <label>Question 1: </label>
           <input type="text" name="question" placeholder="Question" value={quiz1.question} onChange={handleInputChangeQuiz1}/>
