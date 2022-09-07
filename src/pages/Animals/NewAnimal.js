@@ -57,10 +57,10 @@ const  NewAnimal = () => {
     const name2 = new Date().getTime() + sound.name;
 
   
-    const storageRef = ref(storage, file.name);
+    const storageRef = ref(storage, 'images/'+file.name);
     const uploadTask = uploadBytesResumable(storageRef, file);
 
-    const storageRef2 = ref(storage, sound.name);
+    const storageRef2 = ref(storage, 'sound/'+sound.name);
     const uploadTask2 = uploadBytesResumable(storageRef2, sound);
 
     uploadTask.on(
@@ -70,16 +70,6 @@ const  NewAnimal = () => {
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         console.log("Upload is " + progress + "% done");
         setPerc(progress);
-        switch (snapshot.state) {
-          case "paused":
-            console.log("Upload is paused");
-            break;
-          case "running":
-            console.log("Upload is running");
-            break;
-          default:
-            break;
-        }
       },
       (error) => {
         console.log(error);
