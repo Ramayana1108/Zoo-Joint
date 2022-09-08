@@ -17,20 +17,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  
   width: 100vw;
   height: 100vh;
 }
 
 .Auth-form {
   width: 420px;
-  box-shadow: rgb(0 0 0 / 25%) 1px 1px 10px;
+  color: black;
+  border-width: 1px;
+  border-color: #668d3c;
+  border-style: solid;
   padding-top: 30px;
   padding-bottom: 40px;
-  border-radius: 10px;
+  border-radius: 20px;
   background-color: white;
 }
 
 .Auth-form-content {
+  
   padding-left: 12%;
   padding-right: 12%;
 }

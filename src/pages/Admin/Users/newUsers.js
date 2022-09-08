@@ -4,7 +4,7 @@ import { db } from "../../../services/firebase-config";
 import React,{useState} from "react";
 import { Link, useNavigate } from 'react-router-dom'
 import NavWrapper from "../../../components/navbar/NavWrapper";
-
+import "./newUser.scss"
 
 const initialValues = {
     first_name: "",
@@ -58,19 +58,83 @@ const NewUser = () => {
     
 
     return(
-        <div>
-          <NavWrapper>
-            <input type="string" name="first_name" placeholder="First Name" value={values.first_name} onChange={handleInputChange}/>
-            <input type="text" name="last_name" placeholder="Last Name" value={values.last_name} onChange={handleInputChange}/>
-            <input type="text" name="username" placeholder="Username" value={values.username} onChange={handleInputChange}/>
-            <input   type={isShown ? "text" : "password"} placeholder="Password" name="password"  value={values.password} onChange={handleInputChange}/>
-            <label htmlFor="checkbox">Show password?</label>
+      <NavWrapper>
+        <h1>Register Admin Staff</h1> 
+        <div className="Auth-form-container-add">
+        <form className="Auth-form-add">
+          <div className="Auth-form-content-add">
+            <div class="center">
+            </div>
+            <div className="form-group mt-3">
+              <label>First Name</label>
+              <input
+                type="string"
+                name="first_name"
+                className="form-control mt-1"
+                placeholder="Enter First Name"
+                value={values.first_name}
+                onChange={handleInputChange}
+              />
+
+            </div>
+            <div className="form-group mt-3">
+              <label>Last Name</label>
+              <input
+                type="text"
+                name="last_name"
+                className="form-control mt-1"
+                placeholder="Enter Last Name"
+                value={values.last_name} 
+                onChange={handleInputChange}
+              />
+            </div>
+
+            <div className="form-group mt-3">
+              <label>Username</label>
+              <input
+                type="text"
+                name="username"
+                className="form-control mt-1"
+                placeholder="Enter Username"
+                value={values.username} 
+                onChange={handleInputChange}
+              />
+            </div>
+
+            <div className="form-group mt-3">
+              <label>Password</label>
+              <input
+                type={isShown ? "text" : "password"}
+                name="password"
+                className="form-control mt-1"
+                placeholder="Enter Password"
+                value={values.password} 
+                onChange={handleInputChange}
+              />
+            </div>
+
+            <div class="right">
+            <label htmlFor="checkbox">Show password?&nbsp;</label>
             <input id="checkbox" type="checkbox" checked={isShown}  onChange={togglePassword}/>
-                <br></br>
-                <button onClick={AddUser}>Save User</button>
-                <button onClick={Cancel}>Cancel</button>
+            </div>
+            
+            <div className="login-btn-add">
+              <button onClick={AddUser} type="submit" className="btn btn-primary-add">
+                Save
+              </button>
+              
+            </div>
+
+            <div className="login-btn-add">
+              <button onClick={Cancel} className="btn btn-primary-cancel">
+                Cancel
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
           </NavWrapper>
-        </div>
+        
     );
 };
 
