@@ -3,9 +3,6 @@ import { DataGrid } from "@mui/x-data-grid";
 import { userColumns, userRows } from "../datatablesource/user_DatatableSource";
 import { useEffect, useState } from "react";
 import { Link,Navigate,useNavigate } from 'react-router-dom';
-//import Sidebar from "../bars/Sidebar";
-import DataTemplate from './DataTemplate';
-import Navbar from "../navbar/Navbar";
 import "../datatables/Css/userDatatable.scss"
 
 import {

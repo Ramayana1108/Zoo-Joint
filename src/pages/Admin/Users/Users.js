@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Datatable from "../../../components/datatables/userDatatable";
 import "./Users.scss"
-import Sidebar from "../../../components/bars/Sidebar";
 import NavWrapper from "../../../components/navbar/NavWrapper";
 // import NavWrapper from '..NavWrapper';
 const  UsersList = () => {

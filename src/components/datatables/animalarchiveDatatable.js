@@ -3,6 +3,9 @@ import { DataGrid } from "@mui/x-data-grid";
 import { animalColumns } from "../datatablesource/animalsarchive_DatatableSource";
 import { useEffect, useState } from "react";
 import { Link,Navigate,useNavigate } from 'react-router-dom';
+import { ref, deleteObject} from "firebase/storage";
+import { getDoc } from "firebase/firestore";
+
 
 
 import {
@@ -12,7 +15,7 @@ import {
   doc,
   onSnapshot, where, query,updateDoc
 } from "firebase/firestore";
-import { db } from "../../services/firebase-config";
+import { db, storage } from "../../services/firebase-config";
 
 const AnimalarchiveDatatable = () => {
   const navigate = useNavigate();
@@ -26,6 +29,7 @@ const AnimalarchiveDatatable = () => {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [search, setSearch] = useState(null);
+  const[info, setInfo] = useState([]);
 
   useEffect(() => {
     const unsub = onSnapshot(       
@@ -66,13 +70,40 @@ const AnimalarchiveDatatable = () => {
   };
 
   const handleDelete = async (id) => {
-    try {
-      await deleteDoc(doc(db, "animals", id));
-      setData(data.filter((item) => item.id !== id));
-    } catch (err) {
-      console.log(err);
-    }
+    const docRef = doc(db,'animals',id);
+      
+    getDoc(docRef).then(doc => {
+      const newData = doc.data();      
+      const image_url = ref(storage,getPathStorageFromUrl(newData.animal_imageurl));
+      const sound_url = ref(storage,getPathStorageFromUrl(newData.animal_sound));
+      deleteObject(image_url)   
+      deleteObject(sound_url)  
+    }).then(()=>{        
+        deleteDoc(doc(db,"animals/"+id+"/animal_quiz/quiz1"));
+        deleteDoc(doc(db,"animals/"+id+"/animal_quiz/quiz2"));
+        deleteDoc(doc(db,"animals/"+id+"/animal_quiz/quiz3"));
+        deleteDoc(doc(db,"animals",id));          
+    }).then(()=>{
+      alert("Animal Deleted")
+    });
   };
+
+const getPathStorageFromUrl=(url)=>{
+
+    const baseUrl = "https://firebasestorage.googleapis.com/v0/b/manilazooproject.appspot.com/o/";
+
+     url = url.replace(baseUrl,""); 
+
+    let index = url.indexOf("?")
+
+    url = url.substring(0,index);
+    
+    url = url.replace("%2F","/");
+
+    return url;
+}
+
+
 
   const actionColumn = [
     {
