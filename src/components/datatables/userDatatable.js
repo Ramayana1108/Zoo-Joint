@@ -95,6 +95,7 @@ const Datatable = () => {
   return (
 
     <div className="datatable">
+      
       <div className="datatableTitle">
         <h1 style={{color: "black"}}>Users</h1>
       <Link to="/newUser" className="link">
@@ -102,6 +103,7 @@ const Datatable = () => {
         </Link>
       </div>
       <input type="text" onChange={ (e) => setSearch(e.target.value)} placeholder="Search"/>
+      <br></br>
       <DataGrid
         className="datagrid"
         rows={filteredData}

@@ -60,20 +60,54 @@ const ChatbotUpdate = () => {
     }
     
     return(
-      <div>
-        <NavWrapper>
-          <div class="container">
-            <label><b>Question</b></label>
-              <input type="text" name="question" value={values.question} onChange={handleInputChange}></input>
+      <NavWrapper>
+      <h1>Edit Chatbot Response</h1>
+      <div className="Auth-form-container-chatadd">
+        <form className="Auth-form-chatadd">
+          <div className="Auth-form-content-chatadd">
+            <div class="center">
+            </div>
+            
+            <div className="form-group mt-3">
+              <label>Question</label>
+              <input
+                type="text"
+                className="form-control mt-1"
+                placeholder="Enter question"
+                name="question" 
+                value={values.question} 
+                onChange={handleInputChange}
+              />
+            </div>
 
-            <label><b>Answer</b></label>
-              <input  name="answer" value={values.answer} onChange={handleInputChange}></input>
-            <br/>
-            <button onClick={HandleUpdate}>Save</button>
-            <button onClick={Cancel}>Cancel</button>
+            <div className="form-group mt-3">
+              <label>Answer</label>
+              <input
+                type="answer"
+                className="form-control mt-1"
+                placeholder="Enter answer"
+                name="answer" 
+                value={values.answer} 
+                onChange={handleInputChange}
+              />
+            </div>
+            
+            <div className="login-btn-chatadd">
+              <button onClick={HandleUpdate} className="btn btn-primary-chatadd">
+                Save
+              </button>
+            </div>
+
+            <div className="login-btn-chatadd">
+              <button onClick={Cancel} className="btn btn-primary-chatcancel">
+                Cancel
+              </button>
+            </div>
+
           </div>
-        </NavWrapper>
+        </form>
       </div>
+      </NavWrapper>
     );
 };
 

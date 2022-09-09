@@ -67,30 +67,89 @@ const UserUpdate = () => {
     }
     
     return(
-        <div>        
-            <form>
-                <h5>first name</h5>
-                <input type="string" name="first_name" value={values.first_name} onChange={handleInputChange} />
-                <h5>Last name</h5>
-                <input type="text" name="last_name" value={values.last_name} onChange={handleInputChange} />
-                <h5>Username</h5>
-                <input type="text" name="username" value={values.username} onChange={handleInputChange}  />
-                <h5>Password</h5>
-                <input   type={isShown ? "text" : "password"} name="password" value={values.password} onChange={handleInputChange}/>
-                <label htmlFor="checkbox">Show password?</label>
-                <input id="checkbox" type="checkbox" checked={isShown}  onChange={togglePassword}/>
-                <h5>Can Edit</h5>
-                <select name="canEdit" onChange={handleInputChange}>
-                    <option value={String(values.canEdit) === "true" ? Boolean(true) : Boolean(false)}>{values.canEdit === "true" ? "Yes" : "No"}</option>
-                    <option value={String(values.canEdit) === "true" ? Boolean(false) : Boolean(true)}>{values.canEdit === "true" ? "No" : "Yes"}</option>
-                </select>
-                <br></br>
-                <br></br>           
-            </form>
-            <button onClick={HandleUpdate}>Save</button> 
-            <button onClick={Cancel}>Cancel</button>   
-          
-        </div>
+        <NavWrapper>
+        <h1>Edit Admin Staff</h1> 
+        <div className="Auth-form-container-add">
+        <form className="Auth-form-add">
+          <div className="Auth-form-content-add">
+            <div class="center">
+            </div>
+            <div className="form-group mt-3">
+              <label>First Name</label>
+              <input
+                type="string"
+                name="first_name"
+                className="form-control mt-1"
+                placeholder="Enter First Name"
+                value={values.first_name}
+                onChange={handleInputChange}
+              />
+
+            </div>
+            <div className="form-group mt-3">
+              <label>Last Name</label>
+              <input
+                type="text"
+                name="last_name"
+                className="form-control mt-1"
+                placeholder="Enter Last Name"
+                value={values.last_name} 
+                onChange={handleInputChange}
+              />
+            </div>
+
+            <div className="form-group mt-3">
+              <label>Username</label>
+              <input
+                type="text"
+                name="username"
+                className="form-control mt-1"
+                placeholder="Enter Username"
+                value={values.username} 
+                onChange={handleInputChange}
+              />
+            </div>
+
+            <div className="form-group mt-3">
+              <label>Password</label>
+              <input
+                type={isShown ? "text" : "password"}
+                name="password"
+                className="form-control mt-1"
+                placeholder="Enter Password"
+                value={values.password} 
+                onChange={handleInputChange}
+              />
+            </div>
+
+            <div class="right">
+            <label htmlFor="checkbox">Show Password?&nbsp;</label>
+            <input id="checkbox" type="checkbox" checked={isShown}  onChange={togglePassword}/>
+            
+            <label>&nbsp;&nbsp;Can Edit?&nbsp;&nbsp;</label>
+            <select name="canEdit" onChange={handleInputChange}>
+
+            <option value={String(values.canEdit) === "true" ? Boolean(true) : Boolean(false)}>{values.canEdit === "true" ? "Yes" : "No"}</option>
+            <option value={String(values.canEdit) === "true" ? Boolean(false) : Boolean(true)}>{values.canEdit === "true" ? "No" : "Yes"}</option>
+             </select>
+            </div>
+            
+            <div className="login-btn-add">
+              <button onClick={HandleUpdate} type="submit" className="btn btn-primary-add">
+                Save
+              </button>
+              
+            </div>
+
+            <div className="login-btn-add">
+              <button onClick={Cancel} className="btn btn-primary-cancel">
+                Cancel
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+          </NavWrapper>
     );
 };
 

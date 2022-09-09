@@ -1,10 +1,3 @@
-// @font-face {
-//     font-family: 'glacial_indifferenceregular';
-//     src: url('fontsfree-net-glacialindifference-regular-webfont.woff') format('woff');
-//     font-weight: normal;
-//     font-style: normal;
-// }
-
 @media screen and (min-width: 200px) {
     h1 {
         color: black;
@@ -43,7 +36,7 @@
   padding-top: 1%;
 }
 
-.Auth-form-container-add {
+.Auth-form-container-about {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -52,7 +45,7 @@
   height: 70vh;
 }
 
-.Auth-form-add {
+.Auth-form-about {
   width: 650px;
   height: auto;
   color: black;
@@ -65,14 +58,14 @@
   background-color: white;
 }
 
-.Auth-form-content-add {
+.Auth-form-content-about {
   
   padding-left: 12%;
   padding-right: 12%;
 }
 
 
-.Auth-form-title-add {
+.Auth-form-title-about {
   text-align: center;
   margin-bottom: 1em;
   font-size: 24px;
@@ -87,19 +80,19 @@ label {
   color: rgb(34, 34, 34);
 }
 
-.d-grid-add {
+.d-grid-about {
   padding-top: 0;
   width: 100%;
   display: flex;
   justify-content: end;
 }
 
-.d-grid-add a {
+.d-grid-about a {
   font-size: 12px;
   position: center;
 }
 
-.login-btn-add {
+.login-btn-about {
   width: 100%;
   display: flex;
   padding-top: 20px;
@@ -109,7 +102,7 @@ label {
   
 }
 
-.btn-primary-add {
+.btn-primary-about {
   display: flex;
   width: 40%;
   align-items: center;
@@ -121,7 +114,18 @@ label {
   color: #668d3c;
 }
 
-.btn-primary-cancel {
+.btn-primary-upload {
+    width: 12vw;
+    text-align: center;
+    border-color: black;
+    background-color: white;
+    border-radius: 1px;
+    color: black;
+    margin-right: 1%;
+    padding-right: 2%;
+  }
+
+.btn-primary-aboutcancel {
     display: flex;
     width: 40%;
     align-items: center;
@@ -133,12 +137,12 @@ label {
     color: #A52A2A;
   }
 
-.btn-primary-add:hover {
+.btn-primary-about:hover {
   background-color: #668d3c;
   border-color: #668d3c;
 }
 
-.btn-primary-cancel:hover {
+.btn-primary-aboutcancel:hover {
     background-color: #A52A2A;
     border-color: #A52A2A;
   }

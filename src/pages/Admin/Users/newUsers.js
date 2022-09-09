@@ -114,7 +114,7 @@ const NewUser = () => {
             </div>
 
             <div class="right">
-            <label htmlFor="checkbox">Show password?&nbsp;</label>
+            <label htmlFor="checkbox">Show Password?&nbsp;</label>
             <input id="checkbox" type="checkbox" checked={isShown}  onChange={togglePassword}/>
             </div>
             

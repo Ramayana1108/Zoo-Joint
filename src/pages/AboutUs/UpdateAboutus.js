@@ -1,4 +1,3 @@
-
 import { db, storage  } from "../../services/firebase-config";
 import React,{useState, useEffect} from "react";
 import { Link, useLocation, useNavigate } from 'react-router-dom'
@@ -6,7 +5,7 @@ import { collection, query, where,getDocs, doc, getDoc,updateDoc, QuerySnapshot 
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import 'firebase/firestore';
 import NavWrapper from "../../components/navbar/NavWrapper";
-
+import "./UpdateAboutus.scss";
 
 const AboutUsUpdate = () => {
 
@@ -126,36 +125,88 @@ const AboutUsUpdate = () => {
     return(
       <div>
         <NavWrapper>
-          <div class="container">
-            <label><b>Email</b></label>
-              <input type="text" name="abt_name" value={values.abt_email} onChange={handleInputChange}></input>
-            <label><b>Website</b></label>
-              <input type="text" name="abt_website" value={values.abt_website} onChange={handleInputChange}></input>
-
-            <label><b>Description</b></label>
-              <textarea  name="abt_description" value={values.abt_description} onChange={handleInputChange}></textarea>
-            <label><b>Address</b></label>
-              <textarea  name="abt_address" value={values.abt_address} onChange={handleInputChange}></textarea>
-            <br/>
-            <button>
-              <label htmlFor="file">
-                Upload Image
-              </label>
+        <h1>Edit About Us Page</h1>
+        <div className="Auth-form-container-about">
+        <form className="Auth-form-about">
+          <div className="Auth-form-content-about">
+            <div class="center">
+            </div>
+            <div className="form-group mt-3">
+              <label>Email</label>
               <input
+                type="text"
+                name="abt_name"
+                className="form-control mt-1"
+                value={values.abt_email} 
+                onChange={handleInputChange}
+              />
+            </div>
+
+            <div className="form-group mt-3">
+              <label>Website</label>
+              <input
+                type="text"
+                name="abt_website"
+                className="form-control mt-1"
+                placeholder="Enter Last Name"
+                value={values.abt_website} 
+                onChange={handleInputChange}
+              />
+            </div>
+
+            <div className="form-group mt-3">
+              <label>Description</label>
+              <textarea
+                type="text"
+                name="abt_description"
+                className="form-control mt-1"
+                value={values.abt_description} 
+                onChange={handleInputChange}
+              />
+            </div>
+
+            <div className="form-group mt-3">
+              <label>Address</label>
+              <textarea
+                type="text"
+                name="abt_address"
+                className="form-control mt-1"
+                value={values.abt_address} 
+                onChange={handleInputChange}
+              />
+            </div>
+            <br></br>
+
+            <div class="right">
+            <button className="btn btn-primary-upload">
+            <label htmlFor="file">Upload Image&nbsp;</label>
+            <input
                 type="file"
                 name="abt_image"
                 id="file"
                 onChange={(e) => setFile(e.target.files[0])}
                 style={{ display: "none" }}
-              />             
+              />    
             </button>
-            <input value={file.name} disabled={true}/>
+            <input value={file.name} disabled={true}/>           
+            </div>
             <br></br>
-                
-          
-            <button onClick={HandleUpdate}>Save</button>
-            <button onClick={Cancel}>Cancel</button>
+            
+            <div className="login-btn-about">
+              <button onClick={HandleUpdate} className="btn btn-primary-about">
+                Save
+              </button>
+              
+            </div>
+
+            <div className="login-btn-about">
+              <button onClick={Cancel} className="btn btn-primary-aboutcancel">
+                Cancel
+              </button>
+            </div>
           </div>
+        </form>
+      </div>
         </NavWrapper>
       </div>
     );

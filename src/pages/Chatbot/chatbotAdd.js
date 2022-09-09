@@ -3,7 +3,7 @@ import { db } from "../../services/firebase-config";
 import React,{useState} from "react";
 import { Link, useNavigate } from 'react-router-dom'
 import NavWrapper from "../../components/navbar/NavWrapper";
-
+import "./chatbotAdd.scss"
 
 const NewQA = () => {
     const [isShown, setIsSHown] = useState(false);
@@ -44,20 +44,54 @@ const NewQA = () => {
     }
     
     return(
-      <div>
-        <NavWrapper>
-          <div class="container">
-            <label><b>Question</b></label>
-             <input type="text" name="question" value={values.question} onChange={handleInputChange}></input>
-    
-             <label><b>Answer</b></label>
-              <input  name="answer" value={values.answer} onChange={handleInputChange}></input>
-            <br/>
-            <button onClick={AddQA}>Save</button>
-            <button onClick={Cancel}>Cancel</button>
+      <NavWrapper>
+      <h1>Add Chatbot Response</h1>
+      <div className="Auth-form-container-chatadd">
+        <form className="Auth-form-chatadd">
+          <div className="Auth-form-content-chatadd">
+            <div class="center">
+            </div>
+            
+            <div className="form-group mt-3">
+              <label>Question</label>
+              <input
+                type="text"
+                className="form-control mt-1"
+                placeholder="Enter question"
+                name="question" 
+                value={values.question} 
+                onChange={handleInputChange}
+              />
+            </div>
+
+            <div className="form-group mt-3">
+              <label>Answer</label>
+              <input
+                type="answer"
+                className="form-control mt-1"
+                placeholder="Enter answer"
+                name="answer" 
+                value={values.answer} 
+                onChange={handleInputChange}
+              />
+            </div>
+            
+            <div className="login-btn-chatadd">
+              <button onClick={AddQA} className="btn btn-primary-chatadd">
+                Save
+              </button>
+            </div>
+
+            <div className="login-btn-chatadd">
+              <button onClick={Cancel} className="btn btn-primary-chatcancel">
+                Cancel
+              </button>
+            </div>
+
           </div>
-        </NavWrapper>      
+        </form>
       </div>
+      </NavWrapper>
     );
 };
 
