@@ -274,10 +274,7 @@ const  UpdateAnimal = () => {
         <NavWrapper>
           <input type="text" name="animal_name" placeholder="Common Name" value={values.animal_name} onChange={handleInputChange}/>
           <input type="text" name="animal_sciname" placeholder="Scientific Name" value={values.animal_sciname} onChange={handleInputChange}/>
-          <select name="animal_enclosure" onChange={handleInputChange}>
-                    <option value={"Enclosure 1"}>Enclosure 1</option>
-                    <option value={"Enclosure 2"}>Enclosure 2</option>
-                </select> 
+          <input type="text" name="animal_enclosure" placeholder="Enclosure" value={values.animal_enclosure} onChange={handleInputChange}/>
           <input type="text" name="animal_habitat" placeholder="Animal Habitat" value={values.animal_habitat} onChange={handleInputChange}/>
           <input type="text" name="animal_description" placeholder="Description" value={values.animal_description} onChange={handleInputChange}/>
             <br></br>
