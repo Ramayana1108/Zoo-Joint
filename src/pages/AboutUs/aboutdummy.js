@@ -4,55 +4,30 @@
         <div className="Auth-form-container-about">
         <form className="Auth-form-about">
           <div className="Auth-form-content-about">
-            <div class="center">
+            <div classname="center">
             </div>
             <div className="form-group mt-3">
               <label>Email</label>
-              <input
-                type="text"
-                name="abt_name"
-                className="form-control mt-1"
-                value={values.abt_email} 
-                onChange={handleInputChange}
-              />
+              <input type="text" name="abt_email" value={values.abt_email} onChange={handleInputChange}></input>
             </div>
 
             <div className="form-group mt-3">
               <label>Website</label>
-              <input
-                type="text"
-                name="abt_website"
-                className="form-control mt-1"
-                placeholder="Enter Last Name"
-                value={values.abt_website} 
-                onChange={handleInputChange}
-              />
+              <input type="text" name="abt_website" value={values.abt_website} onChange={handleInputChange}></input>
             </div>
 
             <div className="form-group mt-3">
               <label>Description</label>
-              <textarea
-                type="text"
-                name="abt_description"
-                className="form-control mt-1"
-                value={values.abt_description} 
-                onChange={handleInputChange}
-              />
+              <textarea  name="abt_description" value={values.abt_description} onChange={handleInputChange}></textarea>
             </div>
 
             <div className="form-group mt-3">
               <label>Address</label>
-              <textarea
-                type="text"
-                name="abt_address"
-                className="form-control mt-1"
-                value={values.abt_address} 
-                onChange={handleInputChange}
-              />
+              <textarea  name="abt_address" value={values.abt_address} onChange={handleInputChange}></textarea>
             </div>
             <br></br>
 
-            <div class="right">
+            <div classname="right">
             <button className="btn btn-primary-upload">
             <label htmlFor="file">Upload Image&nbsp;</label>
             <input
@@ -61,14 +36,14 @@
                 id="file"
                 onChange={(e) => setFile(e.target.files[0])}
                 style={{ display: "none" }}
-              />    
+              />        
             </button>
             <input value={file.name} disabled={true}/>           
             </div>
             <br></br>
             
             <div className="login-btn-about">
-              <button onClick={HandleUpdate} className="btn btn-primary-about">
+              <button onClick={UpdateAboutus} className="btn btn-primary-about">
                 Save
               </button>
               

@@ -1,25 +1,25 @@
 import { db, storage  } from "../../services/firebase-config";
 import React,{useState, useEffect} from "react";
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { collection, query, where,getDocs, doc, getDoc,updateDoc, QuerySnapshot } from "firebase/firestore";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { collection, query, where,setDoc, doc, getDoc,updateDoc, QuerySnapshot } from "firebase/firestore";
+import { ref, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage";
 import 'firebase/firestore';
 import NavWrapper from "../../components/navbar/NavWrapper";
 import "./UpdateAboutus.scss";
+import { UploadFile } from "@mui/icons-material";
 
 const AboutUsUpdate = () => {
-
 
     //Redirecting
     const navigate = useNavigate();
 
     //getting user
     const getabtid = useLocation();
-    const abtid = getabtid.state.abtid;
+    const abtid = "abt_id"
 
     //kuha data from firebase
     const [file, setFile] = useState("");
-    const [data, setData] = useState({});
+    const [data, setData] = useState("");
     const [per, setPerc] = useState(null);
     const [values, setValues] = useState("");
 
@@ -42,80 +42,62 @@ const AboutUsUpdate = () => {
         });
       };
 
-    //uploading image
+       //Updating animal
+  const UpdateAboutus = () => {
+    const imagename = (file.name === undefined || file.name == null || file.name <= 0) ? true : false;
+    console.log(imagename)
+    const storageRef = ref(storage, 'images/'+file.name);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+    console.log(imagename)
+ 
+    // Create a reference to the file to delete
+ 
+    const desertimageRef = ref(storage, data.abt_image);
 
-        const uploadFile = () => {
-          const name = new Date().getTime() + file.name;
-    
-          console.log(name);
-          const storageRef = ref(storage, file.name);
-          const uploadTask = uploadBytesResumable(storageRef, file);
-    
-          uploadTask.on(
-            "state_changed",
-            (snapshot) => {
-              const progress =
-                (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-              console.log("Upload is " + progress + "% done");
-              setPerc(progress);
-              switch (snapshot.state) {
-                case "paused":
-                  console.log("Upload is paused");
-                  break;
-                case "running":
-                  console.log("Upload is running");
-                  break;
-                default:
-                  break;
-              }
-            },
-            (error) => {
-              console.log(error);
-            },
-            () => {
-              getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                //setValues((prev) => ({ ...prev, abt_img: downloadURL }));
-                updateDoc(docRef,{
-                  abt_email: String(values.abt_email),
-                  abt_website: String(values.abt_website),
-                  abt_description: String(values.abt_description),
-                  abt_address: String(values.abt_address),
-                  abt_image: String(downloadURL)
-                    
-              } ).then(response => {
-                alert("Successfully Updated")
-                navigate("/aboutus");
-              }).catch(error =>{
-                console.log(error.message)
-              })
-         
-              });
-            }
-          );
-        };
-
-  
-    //update Database
-    function HandleUpdate(e){
-        e.preventDefault();
-
-        uploadFile();
-          console.log(values.abt_image);
-    //    updateDoc(docRef,{
-    //         abt_email: String(values.abt_email),
-    //        abt_website: String(values.abt_website),
-    //         abt_description: String(values.abt_description),
-    //         abt_address: String(values.abt_address),
-    //         abt_image: String(values.abt_image)
-            
-           
-    //     } ).then(response => {
-    //       alert("Successfully Updated")
-    //       navigate("/aboutus");
-    //     }).catch(error =>{
-    //       console.log(error.message)
-    //     })
-    };
+    if(imagename === false){
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+          setPerc(progress);
+        },
+        (error) => {
+          console.log(error);
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+               console.log(data.abt_image)
+              // Delete the file
+              updateDoc(docRef, {
+                abt_image:downloadURL
+             }).then(() => {                
+               deleteObject(desertimageRef)                                
+               }).catch((error) => {
+             // Uh-oh, an error occurred!
+             });
+            });
+      });
+    }else{
+      uploadTask.cancel()
+    }
+   
+    updateDoc(docRef,{
+      abt_email: String(values.abt_email),
+      abt_website: String(values.abt_website),
+      abt_description: String(values.abt_description),
+      abt_address: String(values.abt_address),
+    }).then(response => {
+      alert("Successfully Updated")
+      navigate("/aboutus");
+    })
+      .catch((error) => {
+      alert(error.message);
+      });
+          
+   
+  };
 
     //cancel Button
     function Cancel(){
@@ -125,88 +107,36 @@ const AboutUsUpdate = () => {
     return(
       <div>
         <NavWrapper>
-        <h1>Edit About Us Page</h1>
-        <div className="Auth-form-container-about">
-        <form className="Auth-form-about">
-          <div className="Auth-form-content-about">
-            <div class="center">
-            </div>
-            <div className="form-group mt-3">
-              <label>Email</label>
+          <div class="container">
+            <label><b>Email</b></label>
+            <input type="text" name="abt_email" value={values.abt_email} onChange={handleInputChange}></input>
+            <label><b>Website</b></label>
+              <input type="text" name="abt_website" value={values.abt_website} onChange={handleInputChange}></input>
+
+            <label><b>Description</b></label>
+              <textarea  name="abt_description" value={values.abt_description} onChange={handleInputChange}></textarea>
+            <label><b>Address</b></label>
+              <textarea  name="abt_address" value={values.abt_address} onChange={handleInputChange}></textarea>
+            <br/>
+            <button>
+              <label htmlFor="file">
+                Upload Image
+              </label>
               <input
-                type="text"
-                name="abt_name"
-                className="form-control mt-1"
-                value={values.abt_email} 
-                onChange={handleInputChange}
-              />
-            </div>
-
-            <div className="form-group mt-3">
-              <label>Website</label>
-              <input
-                type="text"
-                name="abt_website"
-                className="form-control mt-1"
-                placeholder="Enter Last Name"
-                value={values.abt_website} 
-                onChange={handleInputChange}
-              />
-            </div>
-
-            <div className="form-group mt-3">
-              <label>Description</label>
-              <textarea
-                type="text"
-                name="abt_description"
-                className="form-control mt-1"
-                value={values.abt_description} 
-                onChange={handleInputChange}
-              />
-            </div>
-
-            <div className="form-group mt-3">
-              <label>Address</label>
-              <textarea
-                type="text"
-                name="abt_address"
-                className="form-control mt-1"
-                value={values.abt_address} 
-                onChange={handleInputChange}
-              />
-            </div>
-            <br></br>
-
-            <div class="right">
-            <button className="btn btn-primary-upload">
-            <label htmlFor="file">Upload Image&nbsp;</label>
-            <input
                 type="file"
                 name="abt_image"
                 id="file"
                 onChange={(e) => setFile(e.target.files[0])}
                 style={{ display: "none" }}
-              />    
+              />             
             </button>
-            <input value={file.name} disabled={true}/>           
-            </div>
+            <input value={file.name} disabled={true}/>
             <br></br>
-            
-            <div className="login-btn-about">
-              <button onClick={HandleUpdate} className="btn btn-primary-about">
-                Save
-              </button>
-              
-            </div>
-
-            <div className="login-btn-about">
-              <button onClick={Cancel} className="btn btn-primary-aboutcancel">
-                Cancel
-              </button>
-            </div>
+                
+          
+            <button onClick={UpdateAboutus}>Save</button>
+            <button onClick={Cancel}>Cancel</button>
           </div>
-        </form>
-      </div>
         </NavWrapper>
       </div>
     );
