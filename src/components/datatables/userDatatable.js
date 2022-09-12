@@ -102,7 +102,7 @@ const Datatable = () => {
           Add New
         </Link>
       </div>
-      <input type="text" onChange={ (e) => setSearch(e.target.value)} placeholder="Search"/>
+      <input type="text" onChange={ (e) => setSearch(e.target.value)} placeholder="Search" className="search-bar"/>
       <br></br>
       <DataGrid
         className="datagrid"

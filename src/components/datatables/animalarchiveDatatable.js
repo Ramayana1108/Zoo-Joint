@@ -142,7 +142,7 @@ const getPathStorageFromUrl=(url)=>{
       <div className="datatableTitle">
         <h1 style={{color: "black"}}>Animal Archives</h1>
       </div>
-      <input type="text" onChange={ (e) => setSearch(e.target.value)} placeholder="Search"/>
+      <input type="text" onChange={ (e) => setSearch(e.target.value)} placeholder="Search" className="search-bar"/>
       <DataGrid
         className="datagrid"
         rows={filteredData}

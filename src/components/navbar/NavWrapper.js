@@ -7,9 +7,11 @@ const NavWrapper = ({children}) => {
 
   const styles = {
     position: "absolute",
-    width: "85%",
-    left: "15%",
-    transition: '850ms'
+    width: "100%",
+    // float: "left",
+    // left: '200px',
+    transition: '850ms',
+    overflow: 'auto'
   }
 
   const [sidebar, setSidebar] = useState(false);
