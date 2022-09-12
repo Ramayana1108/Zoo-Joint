@@ -93,13 +93,13 @@ const ChatbotUpdate = () => {
             </div>
             
             <div className="login-btn-chatadd">
-              <button onClick={HandleUpdate} className="btn btn-primary-chatadd">
+              <button onClick={HandleUpdate} className="btn btn-primary-add">
                 Save
               </button>
             </div>
 
             <div className="login-btn-chatadd">
-              <button onClick={Cancel} className="btn btn-primary-chatcancel">
+              <button onClick={Cancel} className="btn btn-primary-cancel">
                 Cancel
               </button>
             </div>
