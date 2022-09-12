@@ -91,7 +91,7 @@
 
       // UPDATE ABOUT US ORIG CODES
 
-      <div>
+      /*<div>
         <NavWrapper>
           <div class="container">
             <label><b>Email</b></label>
@@ -158,4 +158,4 @@
   <button onClick={UpdateAboutus}>Save</button>
   <button onClick={Cancel}>Cancel</button>
 </div>
-</NavWrapper>
+</NavWrapper>*/

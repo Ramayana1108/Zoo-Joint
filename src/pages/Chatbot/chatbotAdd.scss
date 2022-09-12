@@ -1,8 +1,6 @@
 @media screen and (min-width: 200px) {
-    h1 {
+    .chatbot {
         color: black;
-        font-family: 'Futura';
-        font-weight: 800;
         align-items: center;
         text-align: center;
         padding-top: 40px;
@@ -10,13 +8,20 @@
         justify-content: center;
         
         }
+      
+    .Auth-form-container-chatadd {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 2%;  
+        width: 100vw;
+        height: 50%;
+        }   
   }
 
   @media screen and (max-width: 800px) {
-    h1 {
+    .chatbot{
         color: black;
-        font-family: 'Futura';
-        font-weight: 800;
         align-items: center;
         text-align: center;
         padding-top: 40px;
@@ -24,6 +29,14 @@
         justify-content: center;
         
         }
+    .Auth-form-container-chatadd {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2%;  
+        width: 100vw;
+        height: 50%;
+        }    
     }
 .NewQA {
     background-color: black;
@@ -31,15 +44,6 @@
 
 .center {
   text-align: center;
-}
-
-.Auth-form-container-chatadd {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
-  width: 100vw;
-  height: 50vh;
 }
 
 .Auth-form-chatadd {

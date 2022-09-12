@@ -61,7 +61,7 @@ const ChatbotUpdate = () => {
     
     return(
       <NavWrapper>
-      <h1>Edit Chatbot Response</h1>
+      <h1 class="chatbot">Edit Chatbot Response</h1>
       <div className="Auth-form-container-chatadd">
         <form className="Auth-form-chatadd">
           <div className="Auth-form-content-chatadd">

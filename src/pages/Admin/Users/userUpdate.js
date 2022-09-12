@@ -67,7 +67,7 @@ const UserUpdate = () => {
     
     return(
         <NavWrapper>
-        <h1>Edit Admin Staff</h1> 
+        <h1 class="registerTitle">Edit Admin Staff</h1> 
         <div className="Auth-form-container-add">
         <form className="Auth-form-add">
           <div className="Auth-form-content-add">

@@ -1,6 +1,44 @@
-.registerTitle{
-  font-size: 2rem;
+@media screen and (min-width: 601px) {
+  .registerTitle {
+      color: black;
+      align-items: center;
+      text-align: center;
+      padding-top: 40px;
+      display: flex;
+      justify-content: center;
+      
+      }
+  .Auth-form-container-add {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 2%;
+      margin-bottom: 5%;
+      width: 100vw;
+      height: 50%;
+      }
+
 }
+
+@media screen and (max-width: 600px) {
+  .registerTitle{
+      color: black;
+      align-items: center;
+      text-align: center;
+      padding-top: 40px;
+      display: flex;
+      justify-content: center;
+      }
+      .Auth-form-container-add {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2%; 
+        width: 100vw;
+        height: 65%;
+        }
+
+  }
 
 .Login {
     background-color: white;
@@ -11,15 +49,6 @@
   padding-top: 1%;
 }
 
-.Auth-form-container-add {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 10%;
-  margin-bottom: 10%;
-  width: 100vw;
-  height: 70vh;
-}
 
   @media screen and (max-width: 800px) {
   .Auth-form-container-add{

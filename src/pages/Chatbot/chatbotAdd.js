@@ -45,7 +45,7 @@ const NewQA = () => {
     
     return(
       <NavWrapper>
-      <h1>Add Chatbot Response</h1>
+      <h1 class="chatbot">Add Chatbot Response</h1>
       <div className="Auth-form-container-chatadd">
         <form className="Auth-form-chatadd">
           <div className="Auth-form-content-chatadd">
