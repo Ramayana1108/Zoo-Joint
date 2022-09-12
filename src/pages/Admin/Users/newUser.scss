@@ -127,18 +127,20 @@ label {
     align-items: center;
     justify-content: center;
     padding: 5px 50px;
-    border-color: #A52A2A;
+    border-color: #c4391d;
     background-color: white;
     border-radius: 25px;
-    color: #A52A2A;
+    color: #c4391d;
   }
 
 .btn-primary-add:hover {
   background-color: #668d3c;
   border-color: #668d3c;
+  color: white;
 }
 
 .btn-primary-cancel:hover {
-    background-color: #A52A2A;
-    border-color: #A52A2A;
+    background-color: #c4391d;
+    border-color: #c4391d;
+    color: white;
   }

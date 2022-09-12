@@ -28,7 +28,7 @@ function Navbar({showSidebar, sidebar}) {
               return (
                 <li key={index} className={item.cName}>
                   <Link to={item.path}>
-                    {item.icon}
+                    <span className="navbar-icons">{item.icon}</span>
                     <span>{item.title}</span>
                   </Link>
                 </li>
