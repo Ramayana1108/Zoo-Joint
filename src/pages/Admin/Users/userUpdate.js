@@ -1,4 +1,3 @@
-
 import { db } from "../../../services/firebase-config";  
 import React,{useState, useEffect} from "react";
 import { Link, useLocation, useNavigate,location,state } from 'react-router-dom'
@@ -125,10 +124,11 @@ const UserUpdate = () => {
             <div class="right">
             <label htmlFor="checkbox">Show Password?&nbsp;</label>
             <input id="checkbox" type="checkbox" checked={isShown}  onChange={togglePassword}/>
-            
-            <label>&nbsp;&nbsp;Can Edit?&nbsp;&nbsp;</label>
-            <select name="canEdit" onChange={handleInputChange}>
+            </div>
 
+            <div className="form-group mt-3">
+              <label>Can Edit?</label>
+            <select name="canEdit" className="form-control mt-1" formonChange={handleInputChange}>
             <option value={String(values.canEdit) === "true" ? Boolean(true) : Boolean(false)}>{values.canEdit === "true" ? "Yes" : "No"}</option>
             <option value={String(values.canEdit) === "true" ? Boolean(false) : Boolean(true)}>{values.canEdit === "true" ? "No" : "Yes"}</option>
              </select>
