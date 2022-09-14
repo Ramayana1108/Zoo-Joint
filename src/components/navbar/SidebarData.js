@@ -11,7 +11,7 @@ import * as FcIcons from 'react-icons/fc';
 
 export const SidebarData = [
   {
-    title: 'Users',
+    title: 'Admin Staff',
     path: '/users',
     icon: <FaIcons.FaUsers />,
     cName: 'nav-text'

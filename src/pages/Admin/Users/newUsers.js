@@ -5,6 +5,7 @@ import React,{useState} from "react";
 import { Link, useNavigate } from 'react-router-dom'
 import NavWrapper from "../../../components/navbar/NavWrapper";
 import "./newUser.scss"
+import bcrypt from 'bcryptjs';
 
 const initialValues = {
     first_name: "",
@@ -35,7 +36,7 @@ const NewUser = () => {
             canEdit:true,
             first_name: values.first_name,
             last_name: values.last_name,
-            password: values.password,
+            password: bcrypt.hashSync(values.password,10),
             role:"Staff",
             username: values.username
          })

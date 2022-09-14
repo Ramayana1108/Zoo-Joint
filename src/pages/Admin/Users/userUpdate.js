@@ -3,6 +3,7 @@ import React,{useState, useEffect} from "react";
 import { Link, useLocation, useNavigate,location,state } from 'react-router-dom'
 import { collection, query, where,getDocs, doc, getDoc,updateDoc, QuerySnapshot } from "firebase/firestore";
 import NavWrapper from "../../../components/navbar/NavWrapper";
+import bcrypt from 'bcryptjs';
 
 
 const UserUpdate = () => {
@@ -12,7 +13,7 @@ const UserUpdate = () => {
     //getting user
     const getUser = useLocation();
     const uid = getUser.state.userid;
-
+    
     //kuha data from firebase
     const [data, setData] = useState("");
     const [values, setValues] = useState("");
@@ -48,10 +49,7 @@ const UserUpdate = () => {
         e.preventDefault();
         updateDoc(docRef,{
             canEdit:values.canEdit,
-            first_name: String(values.first_name),
-            last_name: String(values.last_name),
-            password: String(values.password),
-            username: String(values.username)
+            password: String(bcrypt.hashSync(values.password,10))
         } ).then(response => {
           alert("Successfully Updated")
           navigate("/users");
@@ -82,6 +80,7 @@ const UserUpdate = () => {
                 placeholder="Enter First Name"
                 value={values.first_name}
                 onChange={handleInputChange}
+                disabled ={true}
               />
 
             </div>
@@ -94,6 +93,7 @@ const UserUpdate = () => {
                 placeholder="Enter Last Name"
                 value={values.last_name} 
                 onChange={handleInputChange}
+                disabled ={true}
               />
             </div>
 
@@ -106,6 +106,7 @@ const UserUpdate = () => {
                 placeholder="Enter Username"
                 value={values.username} 
                 onChange={handleInputChange}
+                disabled ={true}
               />
             </div>
 
@@ -115,8 +116,7 @@ const UserUpdate = () => {
                 type={isShown ? "text" : "password"}
                 name="password"
                 className="form-control mt-1"
-                placeholder="Enter Password"
-                value={values.password} 
+                placeholder="Enter New Password"
                 onChange={handleInputChange}
               />
             </div>
