@@ -1,32 +1,45 @@
-/*@media screen and (min-width: 200px) {
-    h1 {
-        color: black;
-        font-family: 'Futura';
-        font-weight: 800;
-        font-size: 50px;
-        align-items: center;
-        text-align: center;
-        padding-top: 40px;
+@media screen and (min-width: 601px) {
+  .registerTitle {
+      color: black;
+      align-items: center;
+      text-align: center;
+      padding-top: 40px;
+      display: flex;
+      justify-content: center;
+      
+      }
+  .Auth-form-container-add {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 2%;
+      margin-bottom: 5%;
+      width: 100vw;
+      height: 50%;
+      }
+
+}
+
+@media screen and (max-width: 600px) {
+  .registerTitle{
+      color: black;
+      align-items: center;
+      text-align: center;
+      padding-top: 40px;
+      display: flex;
+      justify-content: center;
+      }
+      .Auth-form-container-add {
         display: flex;
         justify-content: center;
-        
+        align-items: center;
+        padding: 2%; 
+        width: 100vw;
+        height: 65%;
         }
+
   }
 
-  @media screen and (max-width: 800px) {
-    h1 {
-        color: black;
-        font-family: 'Futura';
-        font-weight: 800;
-        font-size: 30px;
-        align-items: center;
-        text-align: center;
-        padding-top: 40px;
-        display: flex;
-        justify-content: center;
-        
-        }
-  }*/
 .Login {
     background-color: white;
   }
@@ -36,16 +49,14 @@
   padding-top: 1%;
 }
 
-.Auth-form-container-about {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
-  width: 100vw;
-  height: 70vh;
+
+  @media screen and (max-width: 800px) {
+  .Auth-form-container-add{
+    margin-top: 0;
+  }
 }
 
-.Auth-form-about {
+.Auth-form-add {
   width: 650px;
   height: auto;
   color: black;
@@ -58,14 +69,14 @@
   background-color: white;
 }
 
-.Auth-form-content-about {
+.Auth-form-content-add {
   
   padding-left: 12%;
   padding-right: 12%;
 }
 
 
-.Auth-form-title-about {
+.Auth-form-title-add {
   text-align: center;
   margin-bottom: 1em;
   font-size: 24px;
@@ -80,19 +91,19 @@ label {
   color: rgb(34, 34, 34);
 }
 
-.d-grid-about {
+.d-grid-add {
   padding-top: 0;
   width: 100%;
   display: flex;
   justify-content: end;
 }
 
-.d-grid-about a {
+.d-grid-add a {
   font-size: 12px;
   position: center;
 }
 
-.login-btn-about {
+.login-btn-add {
   width: 100%;
   display: flex;
   padding-top: 20px;
@@ -102,7 +113,7 @@ label {
   
 }
 
-.btn-primary-about {
+.btn-primary-add {
   display: flex;
   width: 40%;
   align-items: center;
@@ -114,35 +125,26 @@ label {
   color: #668d3c;
 }
 
-.btn-primary-upload {
-    width: 12vw;
-    text-align: center;
-    border-color: black;
-    background-color: white;
-    border-radius: 1px;
-    color: black;
-    margin-right: 1%;
-    padding-right: 2%;
-  }
-
-.btn-primary-aboutcancel {
+.btn-primary-cancel {
     display: flex;
     width: 40%;
     align-items: center;
     justify-content: center;
     padding: 5px 50px;
-    border-color: #A52A2A;
+    border-color: #c4391d;
     background-color: white;
     border-radius: 25px;
-    color: #A52A2A;
+    color: #c4391d;
   }
 
-.btn-primary-about:hover {
+.btn-primary-add:hover {
   background-color: #668d3c;
   border-color: #668d3c;
+  color: white;
 }
 
-.btn-primary-aboutcancel:hover {
-    background-color: #A52A2A;
-    border-color: #A52A2A;
+.btn-primary-cancel:hover {
+    background-color: #c4391d;
+    border-color: #c4391d;
+    color: white;
   }

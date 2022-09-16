@@ -271,19 +271,43 @@ const  UpdateAnimal = () => {
 
 
 
-  return (
+return (
       <div>
         <NavWrapper>
-          <input type="text" name="animal_name" placeholder="Common Name" value={values.animal_name} onChange={handleInputChange}/>
-          <input type="text" name="animal_sciname" placeholder="Scientific Name" value={values.animal_sciname} onChange={handleInputChange}/>
-          <div className="form-group mt-3">
+        <h1 class="registerTitle">New Animal</h1> 
+        <div className="Auth-form-container-add">
+        <form className="Auth-form-add">
+          <div className="Auth-form-content-add">
+            <div class="center">
+            </div>
+            <div className="form-group mt-3">
+              <label>Common Name</label><br></br>
+              <input
+                type="text"
+                name="animal_name"
+                className="form-control mt-1"
+                placeholder="Enter Common Name"
+                value={values.animal_name} onChange={handleInputChange}/>
+              </div>
+                
+            <div className="form-group mt-3">
+              <label>Scientific Name</label>
+                <input
+                  type="text"
+                  name="animal_sciname"
+                  className="form-control mt-1"
+                  placeholder="Enter Scientific Name"
+                  value={values.animal_sciname} onChange={handleInputChange}/>
+                  </div>
+
+            <div className="form-group mt-3">
               <label>Enclosure</label>
                 <select
                   type="text"
                   name="animal_enclosure"
                   className="form-control mt-1"
                   placeholder="Select Enclosure"
-                  value={values.animal_enclosure} onChange={handleInputChange}>
+                  onChange={handleInputChange}>
                   
                   <option value={String("Elephant")}>Elephant</option>
                   <option value={String("Hippopotamus")}>Hippopotamus</option>
@@ -299,17 +323,33 @@ const  UpdateAnimal = () => {
                 </select>
                 </div>
 
-          <input type="text" name="animal_habitat" placeholder="Animal Habitat" value={values.animal_habitat} onChange={handleInputChange}/>
-          <input type="text" name="animal_description" placeholder="Description" value={values.animal_description} onChange={handleInputChange}/>
-            <br></br>
             <div className="form-group mt-3">
+              <label>Animal Habitat</label>
+                <input
+                  type="text"
+                  name="animal_habitat"
+                  className="form-control mt-1"
+                  placeholder="Enter Animal Habitat"
+                  value={values.animal_habitat} onChange={handleInputChange}/>
+                  </div>
+
+            <div className="form-group mt-3">
+              <label>Description</label>
+                <input
+                  type="text"
+                  name="animal_description"
+                  className="form-control mt-1"
+                  placeholder="Enter Description"
+                  value={values.animal_description} onChange={handleInputChange}/>
+                  </div>
+
+              <div className="form-group mt-3">
                 <label>Conservation Status</label>
                   <select
                     type="text"
                     name="animal_conservationstatus"
                     className="form-control mt-1"
                     placeholder="Select Conservation Status"
-                    value={values.animal_conservationstatus}
                     onChange={handleInputChange}>
                     
                     <option value={String("Not Evaluated")}>Not Evaluated</option>
@@ -323,19 +363,54 @@ const  UpdateAnimal = () => {
                     <option value={String("Extinct")}>Extinct</option>
                     </select>
                       </div>
-          <input type="text" name="animal_behavior" placeholder="Behavior" value={values.animal_behavior} onChange={handleInputChange}/>
-          <input type="text" name="animal_diet" placeholder="Diet" value={values.animal_diet} onChange={handleInputChange}/>
-          <input type="text" name="animal_distribution" placeholder="Distribution" value={values.animal_distribution} onChange={handleInputChange}/>
-          <input type="text" name="animal_nutrition" placeholder="Nutrition" value={values.animal_nutrition} onChange={handleInputChange}/>
-          <br></br><br></br>
-          <label htmlFor="file">Upload Image: &nbsp;</label>
+
+              <div className="form-group mt-3">
+                <label>Behavior</label>
+                  <input
+                    type="text"
+                    name="animal_behavior"
+                    className="form-control mt-1"
+                    placeholder="Enter Behavior"
+                    value={values.animal_behavior} onChange={handleInputChange}/>
+                    </div>
+
+              <div className="form-group mt-3">
+                <label>Diet</label>
+                  <input
+                    type="text"
+                    name="animal_diet"
+                    className="form-control mt-1"
+                    placeholder="Enter Diet"
+                    value={values.animal_diet} onChange={handleInputChange}/>
+                    </div>
+
+              <div className="form-group mt-3">
+                <label>Distribution</label>
+                <input 
+                  type="text"
+                  name="animal_distribution"
+                  className="form-control mt-1"
+                  placeholder="Enter Distribution"
+                  value={values.animal_distribution} onChange={handleInputChange}/>
+                  </div>
+
+                  <div className="form-group mt-3">
+                    <label>Nutrition</label>
+                    <input
+                      type="text"
+                      name="animal_nutrition"
+                      className="form-control mt-1"
+                      placeholder="Enter Nutrition"
+                      value={values.animal_nutrition} onChange={handleInputChange}/>
+                      </div>
+                      <br></br>
+                     
+                        <label htmlFor="file">Upload Image: &nbsp;</label>
                         <input
                           type="file"
                           name="animal_image"
                           id="file"
-                          onChange={(e) => setFile(e.target.files[0])}
-                          
-                        />
+                          onChange={(e) => setFile(e.target.files[0])}/>
                        
                         {!per? "":per+"%"}
                         <br></br><br></br>
@@ -347,41 +422,180 @@ const  UpdateAnimal = () => {
                               type="file"
                               name="animal_sound"
                               id="sound"
-                              onChange={(e) => setSound(e.target.files[0])}
-                            />
+                              onChange={(e) => setSound(e.target.files[0])}/>
                           
                           {!per2? "":per2+"%"}
+          <br></br><br></br>
+          
+          <label>Question 1: </label>
+          <input
+            type="text"
+            name="question"
+            className="form-control mt-1"
+            placeholder="Enter Question 1"
+            value={quiz1.question} onChange={handleInputChangeQuiz1}/>
 
             <br></br>
-          <label>Question 1: </label>
-          <input type="text" name="question" placeholder="Question" value={quiz1.question} onChange={handleInputChangeQuiz1}/>
-          <input type="text" name="choicea" placeholder="1st Choice" value={quiz1.choicea} onChange={handleInputChangeQuiz1}/>
-          <input type="text" name="choiceb" placeholder="2nd Choice" value={quiz1.choiceb} onChange={handleInputChangeQuiz1}/>
-          <input type="text" name="choicec" placeholder="3rd Choice" value={quiz1.choicec} onChange={handleInputChangeQuiz1}/>
-          <input type="text" name="answer" placeholder="Answer" value={quiz1.answer} onChange={handleInputChangeQuiz1}/>
-          <input type="text" name="explanation" placeholder="Explnation" value={quiz1.explanation} onChange={handleInputChangeQuiz1}/>
+
+          <label>Choices</label>
+          <input
+            type="text"
+            name="choicea"
+            className="form-control mt-1"
+            placeholder="Enter First Choice"
+            value={quiz1.choicea} onChange={handleInputChangeQuiz1}/>
+            
+          <input
+            type="text"
+            name="choiceb"
+            className="form-control mt-1"
+            placeholder="Enter Second Choice"
+            value={quiz1.choiceb} onChange={handleInputChangeQuiz1}/>
+
+          <input
+            type="text"
+            name="choicec"
+            className="form-control mt-1"
+            placeholder="Enter Third Choice"
+            value={quiz1.choicec} onChange={handleInputChangeQuiz1}/>
+
+          <br></br>
+          <label>Answer</label>
+          <input
+            type="text"
+            name="answer"
+            className="form-control mt-1"
+            placeholder="Enter Answer"
+            value={quiz1.answer} onChange={handleInputChangeQuiz1}/>
+          
+          <br></br>
+          <label>Explanation</label>
+          <input
+            type="text"
+            name="explanation"
+            className="form-control mt-1"
+            placeholder="Enter Explanation"
+            value={quiz1.explanation} onChange={handleInputChangeQuiz1}/>
+
           <br></br>
           <label>Question 2: </label>
-          <input type="text" name="question" placeholder="Question" value={quiz2.question} onChange={handleInputChangeQuiz2}/>
-          <input type="text" name="choicea" placeholder="1st Choice" value={quiz2.choicea} onChange={handleInputChangeQuiz2}/>
-          <input type="text" name="choiceb" placeholder="2nd Choice" value={quiz2.choiceb} onChange={handleInputChangeQuiz2}/>
-          <input type="text" name="choicec" placeholder="3rd Choice" value={quiz2.choicec} onChange={handleInputChangeQuiz2}/>
-          <input type="text" name="answer" placeholder="answer" value={quiz2.answer} onChange={handleInputChangeQuiz2}/>
-          <input type="text" name="explanation" placeholder="Explnation" value={quiz2.explanation} onChange={handleInputChangeQuiz2}/>
+          <input
+            type="text"
+            name="question"
+            className="form-control mt-1"
+            placeholder="Enter Question 2"
+            value={quiz2.question} onChange={handleInputChangeQuiz2}/>
+
+          <br></br>
+          <label>Choices</label>
+          <input
+            type="text"
+            name="choicea"
+            className="form-control mt-1"
+            placeholder="Enter First Choice"
+            value={quiz2.choicea} onChange={handleInputChangeQuiz2}/>
+            
+          <input
+            type="text"
+            name="choiceb"
+            className="form-control mt-1"
+            placeholder="Enter Second Choice"
+            value={quiz2.choiceb} onChange={handleInputChangeQuiz2}/>
+
+          <input
+            type="text"
+            name="choicec"
+            className="form-control mt-1"
+            placeholder="Enter Third Choice"
+            value={quiz2.choicec} onChange={handleInputChangeQuiz2}/>
+
+          <br></br>
+          <label>Answer</label>
+          <input
+            type="text"
+            name="answer" 
+            className="form-control mt-1"
+            placeholder="Enter Answer"
+            value={quiz2.answer} onChange={handleInputChangeQuiz2}/>
+
+          <br></br>
+          <label>Explanation</label>
+          <input
+            type="text"
+            name="explanation"
+            className="form-control mt-1"
+            placeholder="Enter Explanation"
+            value={quiz2.explanation} onChange={handleInputChangeQuiz2}/>
+          
           <br></br>
           <label>Question 3: </label>
-          <input type="text" name="question" placeholder="Question" value={quiz3.question} onChange={handleInputChangeQuiz3}/>
-          <input type="text" name="choicea" placeholder="1st Choice" value={quiz3.choicea} onChange={handleInputChangeQuiz3}/>
-          <input type="text" name="choiceb" placeholder="2nd Choice" value={quiz3.choiceb} onChange={handleInputChangeQuiz3}/>
-          <input type="text" name="choicec" placeholder="3rd Choice" value={quiz3.choicec} onChange={handleInputChangeQuiz3}/>
-          <input type="text" name="answer" placeholder="answer" value={quiz3.answer} onChange={handleInputChangeQuiz3}/>
-          <input type="text" name="explanation" placeholder="Explnation" value={quiz3.explanation} onChange={handleInputChangeQuiz3}/>
+          <input
+            type="text"
+            name="question" 
+            className="form-control mt-1"
+            placeholder="Enter Question 3"
+            value={quiz3.question} onChange={handleInputChangeQuiz3}/>
+
           <br></br>
-          <button onClick={UpdateAnimal}>Submit</button>
-          <button onClick={Cancel}>Discard</button>
+          <label>Choices</label>
+          <input
+            type="text"
+            name="choicea"
+            className="form-control mt-1"
+            placeholder="Enter First Choice"
+            value={quiz3.choicea} onChange={handleInputChangeQuiz3}/>
+
+          <input
+            type="text" 
+            name="choiceb"
+            className="form-control mt-1"
+            placeholder="Enter Second Choice"
+            value={quiz3.choiceb} onChange={handleInputChangeQuiz3}/>
+
+          <input
+            type="text"
+            name="choicec"
+            className="form-control mt-1"
+            placeholder="Enter Third Choice"
+            value={quiz3.choicec} onChange={handleInputChangeQuiz3}/>
+
+          <br></br>
+          <label>Answer</label>
+          <input
+            type="text"
+            name="answer"
+            className="form-control mt-1"
+            placeholder="Enter Answer" 
+            alue={quiz3.answer} onChange={handleInputChangeQuiz3}/>
+
+          <br></br>
+          <label>Explanation</label>
+          <input 
+            type="text"
+            name="explanation"
+            className="form-control mt-1"
+            placeholder="Enter Explanation"
+            value={quiz3.explanation} onChange={handleInputChangeQuiz3}/>
+          
+          <br></br>
+          <div className="login-btn-add">
+          <button onClick={UpdateAnimal} type="submit" className="btn btn-primary-add">
+            Save
+            </button>
+            </div>
+
+            <div className="login-btn-add">
+          <button onClick={Cancel} className="btn btn-primary-cancel">
+            Cancel
+            </button>
+          </div>
+          </div>
+          </form>
+          </div>
         </NavWrapper>  
     </div>
   );
 };
+
 
 export default UpdateAnimal;

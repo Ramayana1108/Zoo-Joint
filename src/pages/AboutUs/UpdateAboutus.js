@@ -108,10 +108,10 @@ const AboutUsUpdate = () => {
     return(
       <div>
       <NavWrapper>
-      <h1>Edit About Us Page</h1>
-      <div className="Auth-form-container-about">
-      <form className="Auth-form-about">
-        <div className="Auth-form-content-about">
+      <h1 class="registerTitle">Edit About Us Page</h1>
+      <div className="Auth-form-container-add">
+        <form className="Auth-form-add">
+          <div className="Auth-form-content-add">
           <div class="center">
           </div>
           <div className="form-group mt-3">
@@ -119,6 +119,7 @@ const AboutUsUpdate = () => {
             <input
               type="text"
               name="abt_name"
+              placeholder="Enter Email"
               className="form-control mt-1"
               value={values.abt_email} 
               onChange={handleInputChange}
@@ -131,7 +132,7 @@ const AboutUsUpdate = () => {
               type="text"
               name="abt_website"
               className="form-control mt-1"
-              placeholder="Enter Last Name"
+              placeholder="Enter Website"
               value={values.abt_website} 
               onChange={handleInputChange}
             />
@@ -142,6 +143,7 @@ const AboutUsUpdate = () => {
             <textarea
               type="text"
               name="abt_description"
+              placeholder="Enter Description"
               className="form-control mt-1"
               value={values.abt_description} 
               onChange={handleInputChange}
@@ -153,14 +155,14 @@ const AboutUsUpdate = () => {
             <textarea
               type="text"
               name="abt_address"
+              placeholder="Enter Address"
               className="form-control mt-1"
               value={values.abt_address} 
               onChange={handleInputChange}
             />
           </div>
           <br></br>
-
-          <div class="right">         
+         
           <label htmlFor="file">Upload Image: &nbsp;</label>
           <input
               type="file"
@@ -172,25 +174,24 @@ const AboutUsUpdate = () => {
           </div>
           <br></br>
           
-          <div className="login-btn-about">
-            <button onClick={UpdateAboutus} className="btn btn-primary-about">
+          <div className="login-btn-add">
+            <button onClick={UpdateAboutus} className="btn btn-primary-add">
               Save
             </button>
             
           </div>
 
-          <div className="login-btn-about">
-            <button onClick={Cancel} className="btn btn-primary-aboutcancel">
+          <div className="login-btn-add">
+            <button onClick={Cancel} className="btn btn-primary-cancel">
               Cancel
             </button>
           </div>
-        </div>
-      </form>
-    </div>
-      </NavWrapper>
-    </div>
-    );
-};
+          </form>
+          </div>
+          </NavWrapper>
+          </div>
+          );
+          };
 
 
 export default AboutUsUpdate;
