@@ -244,14 +244,22 @@ const  NewAnimal = () => {
                   type="text"
                   name="animal_enclosure"
                   className="form-control mt-1"
-                  placeholder="Select  Enclosure"
+                  placeholder="Select Enclosure"
                   value={values.animal_enclosure} onChange={handleInputChange}>
                   
-                  <option>sa bahay</option>
-                  <option>sa condo</option>
-                  <option>sa tabi</option>
-                  </select>
-                  </div>
+                  <option value={String("Elephant")}>Elephant</option>
+                  <option value={String("Hippopotamus")}>Hippopotamus</option>
+                  <option value={String("Aviary")}>Aviary</option>
+                  <option value={String("Hyena")}>Hyena</option>
+                  <option value={String("Savana")}>Savana</option>
+                  <option value={String("Apex Predators")}>Apex Predators</option>
+                  <option value={String("Philippine Endemic")}>Philippine Endemic</option>
+                  <option value={String("Outdoor Reptiles")}>Outdoor Reptiles</option>
+                  <option value={String("Indoor Reptiles")}>Indoor Reptiles</option>
+                  <option value={String("Primates")}>Primates</option>
+                  <option value={String("Butterfly Garden")}>Butterfly Garden</option>
+                </select>
+                </div>
 
             <div className="form-group mt-3">
               <label>Animal Habitat</label>
@@ -277,14 +285,24 @@ const  NewAnimal = () => {
 
               <div className="form-group mt-3">
                 <label>Conservation Status</label>
-                  <input
+                  <select
                     type="text"
                     name="animal_conservationstatus"
                     className="form-control mt-1"
-                    placeholder="Conservation Status"
-                    value={values.animal_conservationstatus} onChange={handleInputChange}
-                    />
-                    </div>
+                    placeholder="Select Conservation Status"
+                    value={values.animal_conservationstatus} onChange={handleInputChange}>
+                    
+                    <option>Not Evaluated</option>
+                    <option>Data Deficient</option>
+                    <option>Least Concern</option>
+                    <option>Near Threatened</option>
+                    <option>Vulnerable</option>
+                    <option>Endangered</option>
+                    <option>Critically Endangered</option>
+                    <option>Extinct in the Wild</option>
+                    <option>Extinct</option>
+                    </select>
+                      </div>
 
               <div className="form-group mt-3">
                 <label>Behavior</label>
