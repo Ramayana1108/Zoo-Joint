@@ -80,15 +80,13 @@ const AnimalDatatable = () => {
             </button>
           
             <div
-              className="archiveButton"
+              className="deleteButton"
               hidden={params.row.role === 'Admin' ? true : false}
               onClick={() => handleArchive(params.row.id)}
             >
               Archive
             </div>
-            <div
-             
-            >
+            <div>
             </div>
           </div>
         );

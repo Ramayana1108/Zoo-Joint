@@ -83,9 +83,7 @@ const Datatable = () => {
             >
               Delete
             </div>
-            <div
-             
-            >
+            <div>
             </div>
           </div>
         );
