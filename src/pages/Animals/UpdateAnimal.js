@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { collection, query, where,getDocs, doc, getDoc,updateDoc, QuerySnapshot,onSnapshot, setDoc } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL,getStorage,deleteObject  } from "firebase/storage";
 import 'firebase/firestore';
+
 import NavWrapper from "../../components/navbar/NavWrapper";
 
 
@@ -99,7 +100,8 @@ const  UpdateAnimal = () => {
   };
 
   //Updating animal
-  const UpdateAnimal = () => {
+  const UpdateAnimal = (e) => {
+    e.preventDefault()
     const imagename = (file.name === undefined || file.name == null || file.name <= 0) ? true : false;
     const soundname = (sound.name === undefined || sound.name == null || sound.name <= 0) ? true : false;
 
@@ -274,43 +276,82 @@ const  UpdateAnimal = () => {
         <NavWrapper>
           <input type="text" name="animal_name" placeholder="Common Name" value={values.animal_name} onChange={handleInputChange}/>
           <input type="text" name="animal_sciname" placeholder="Scientific Name" value={values.animal_sciname} onChange={handleInputChange}/>
-          <input type="text" name="animal_enclosure" placeholder="Enclosure" value={values.animal_enclosure} onChange={handleInputChange}/>
+          <div className="form-group mt-3">
+              <label>Enclosure</label>
+                <select
+                  type="text"
+                  name="animal_enclosure"
+                  className="form-control mt-1"
+                  placeholder="Select Enclosure"
+                  value={values.animal_enclosure} onChange={handleInputChange}>
+                  
+                  <option value={String("Elephant")}>Elephant</option>
+                  <option value={String("Hippopotamus")}>Hippopotamus</option>
+                  <option value={String("Aviary")}>Aviary</option>
+                  <option value={String("Hyena")}>Hyena</option>
+                  <option value={String("Savana")}>Savana</option>
+                  <option value={String("Apex Predators")}>Apex Predators</option>
+                  <option value={String("Philippine Endemic")}>Philippine Endemic</option>
+                  <option value={String("Outdoor Reptiles")}>Outdoor Reptiles</option>
+                  <option value={String("Indoor Reptiles")}>Indoor Reptiles</option>
+                  <option value={String("Primates")}>Primates</option>
+                  <option value={String("Butterfly Garden")}>Butterfly Garden</option>
+                </select>
+                </div>
+
           <input type="text" name="animal_habitat" placeholder="Animal Habitat" value={values.animal_habitat} onChange={handleInputChange}/>
           <input type="text" name="animal_description" placeholder="Description" value={values.animal_description} onChange={handleInputChange}/>
             <br></br>
-          <input type="text" name="animal_conservationstatus" placeholder="Conservation Status" value={values.animal_conservationstatus} onChange={handleInputChange}/>
+            <div className="form-group mt-3">
+                <label>Conservation Status</label>
+                  <select
+                    type="text"
+                    name="animal_conservationstatus"
+                    className="form-control mt-1"
+                    placeholder="Select Conservation Status"
+                    value={values.animal_conservationstatus}
+                    onChange={handleInputChange}>
+                    
+                    <option value={String("Not Evaluated")}>Not Evaluated</option>
+                    <option value={String("Data Deficient")}>Data Deficient</option>
+                    <option value={String("Least Concern")}>Least Concern</option>
+                    <option value={String("Near Threatened")}>Near Threatened</option>
+                    <option value={String("Vulnerable")}>Vulnerable</option>
+                    <option value={String("Endangered")}>Endangered</option>
+                    <option value={String("Critically Endangered")}>Critically Endangered</option>
+                    <option value={String("Extinct in the Wild")}>Extinct in the Wild</option>
+                    <option value={String("Extinct")}>Extinct</option>
+                    </select>
+                      </div>
           <input type="text" name="animal_behavior" placeholder="Behavior" value={values.animal_behavior} onChange={handleInputChange}/>
           <input type="text" name="animal_diet" placeholder="Diet" value={values.animal_diet} onChange={handleInputChange}/>
           <input type="text" name="animal_distribution" placeholder="Distribution" value={values.animal_distribution} onChange={handleInputChange}/>
           <input type="text" name="animal_nutrition" placeholder="Nutrition" value={values.animal_nutrition} onChange={handleInputChange}/>
-          <br></br>
-          <button>
-              <label htmlFor="file">
-                Upload Image
-              </label>
-              <input
-                type="file"
-                name="abt_image"
-                id="file"
-                onChange={(e) => setFile(e.target.files[0])}
-                style={{ display: "none" }}
-              />             
-            </button>
-            <input value={file.name} disabled={true}/>{per}
-            <br></br>
-            <button>
-              <label htmlFor="sound">
-                Upload sound
-              </label>
-              <input
-                type="file"
-                name="animal_sound"
-                id="sound"
-                onChange={(e) => setSound(e.target.files[0])}
-                style={{ display: "none" }}
-              />             
-            </button>
-            <input value={sound.name} disabled={true}/>{per2}
+          <br></br><br></br>
+          <label htmlFor="file">Upload Image: &nbsp;</label>
+                        <input
+                          type="file"
+                          name="animal_image"
+                          id="file"
+                          onChange={(e) => setFile(e.target.files[0])}
+                          
+                        />
+                       
+                        {!per? "":per+"%"}
+                        <br></br><br></br>
+                       
+                            <label htmlFor="sound">
+                              Upload sound: &nbsp;
+                            </label>
+                            <input
+                              type="file"
+                              name="animal_sound"
+                              id="sound"
+                              onChange={(e) => setSound(e.target.files[0])}
+                            />
+                          
+                          {!per2? "":per2+"%"}
+
             <br></br>
           <label>Question 1: </label>
           <input type="text" name="question" placeholder="Question" value={quiz1.question} onChange={handleInputChangeQuiz1}/>

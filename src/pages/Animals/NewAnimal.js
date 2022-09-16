@@ -52,7 +52,8 @@ const  NewAnimal = () => {
   };
 
   //Add Animal with image
-  const AddAnimal = () => {
+  const AddAnimal = (event) => {
+    event.preventDefault()
     const name = new Date().getTime() + file.name;
     const name2 = new Date().getTime() + sound.name;
 
@@ -245,7 +246,7 @@ const  NewAnimal = () => {
                   name="animal_enclosure"
                   className="form-control mt-1"
                   placeholder="Select Enclosure"
-                  value={values.animal_enclosure} onChange={handleInputChange}>
+                  onChange={handleInputChange}>
                   
                   <option value={String("Elephant")}>Elephant</option>
                   <option value={String("Hippopotamus")}>Hippopotamus</option>
@@ -290,17 +291,17 @@ const  NewAnimal = () => {
                     name="animal_conservationstatus"
                     className="form-control mt-1"
                     placeholder="Select Conservation Status"
-                    value={values.animal_conservationstatus} onChange={handleInputChange}>
+                    onChange={handleInputChange}>
                     
-                    <option>Not Evaluated</option>
-                    <option>Data Deficient</option>
-                    <option>Least Concern</option>
-                    <option>Near Threatened</option>
-                    <option>Vulnerable</option>
-                    <option>Endangered</option>
-                    <option>Critically Endangered</option>
-                    <option>Extinct in the Wild</option>
-                    <option>Extinct</option>
+                    <option value={String("Not Evaluated")}>Not Evaluated</option>
+                    <option value={String("Data Deficient")}>Data Deficient</option>
+                    <option value={String("Least Concern")}>Least Concern</option>
+                    <option value={String("Near Threatened")}>Near Threatened</option>
+                    <option value={String("Vulnerable")}>Vulnerable</option>
+                    <option value={String("Endangered")}>Endangered</option>
+                    <option value={String("Critically Endangered")}>Critically Endangered</option>
+                    <option value={String("Extinct in the Wild")}>Extinct in the Wild</option>
+                    <option value={String("Extinct")}>Extinct</option>
                     </select>
                       </div>
 
@@ -348,31 +349,30 @@ const  NewAnimal = () => {
                       />
                       </div>
                       <br></br>
-                      <button>
-                        <label htmlFor="file">Upload Image</label>
+                     
+                        <label htmlFor="file">Upload Image: &nbsp;</label>
                         <input
                           type="file"
                           name="animal_image"
                           id="file"
                           onChange={(e) => setFile(e.target.files[0])}
-                          style={{ display: "none" }}
+                          
                         />
-                        </button>
-                        <input value={file.name} disabled={true}/>{per}%
-                        <br></br>
-                        <button>
+                       
+                        {!per? "":per+"%"}
+                        <br></br><br></br>
+                       
                             <label htmlFor="sound">
-                              Upload sound
+                              Upload sound: &nbsp;
                             </label>
                             <input
                               type="file"
                               name="animal_sound"
                               id="sound"
                               onChange={(e) => setSound(e.target.files[0])}
-                              style={{ display: "none" }}
                             />
-                            </button>
-                            <input value={sound.name} disabled={true}/>{per2}%
+                          
+                          {!per2? "":per2+"%"}
 
           <br></br><br></br>
           <label>Question 1: </label>
