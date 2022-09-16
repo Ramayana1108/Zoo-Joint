@@ -442,18 +442,32 @@ const  NewAnimal = () => {
             value={quiz2.choicea} onChange={handleInputChangeQuiz2}
             />
             
-          <input type="text" name="choiceb" placeholder="2nd Choice" value={quiz2.choiceb} onChange={handleInputChangeQuiz2}/>
-          <input type="text" name="choicec" placeholder="3rd Choice" value={quiz2.choicec} onChange={handleInputChangeQuiz2}/>
-          <input type="text" name="answer" placeholder="answer" value={quiz2.answer} onChange={handleInputChangeQuiz2}/>
-          <input type="text" name="explanation" placeholder="Explnation" value={quiz2.explanation} onChange={handleInputChangeQuiz2}/>
+          <input
+            type="text"
+            name="choiceb"
+            className="form-control mt-1"
+            placeholder="2nd Choice"
+            value={quiz2.choiceb} onChange={handleInputChangeQuiz2}
+            />
+
+          <input
+            type="text"
+            name="choicec"
+            className="form-control mt-1"
+            placeholder="3rd Choice"
+            value={quiz2.choicec} onChange={handleInputChangeQuiz2}
+            />
+
+          <input type="text" name="answer"  className="form-control mt-1"placeholder="answer" value={quiz2.answer} onChange={handleInputChangeQuiz2}/>
+          <input type="text" name="explanation"  className="form-control mt-1" placeholder="Explnation" value={quiz2.explanation} onChange={handleInputChangeQuiz2}/>
           <br></br>
           <label>Question 3: </label>
-          <input type="text" name="question" placeholder="Question" value={quiz3.question} onChange={handleInputChangeQuiz3}/>
-          <input type="text" name="choicea" placeholder="1st Choice" value={quiz3.choicea} onChange={handleInputChangeQuiz3}/>
-          <input type="text" name="choiceb" placeholder="2nd Choice" value={quiz3.choiceb} onChange={handleInputChangeQuiz3}/>
-          <input type="text" name="choicec" placeholder="3rd Choice" value={quiz3.choicec} onChange={handleInputChangeQuiz3}/>
-          <input type="text" name="answer" placeholder="answer" value={quiz3.answer} onChange={handleInputChangeQuiz3}/>
-          <input type="text" name="explanation" placeholder="Explnation" value={quiz3.explanation} onChange={handleInputChangeQuiz3}/>
+          <input type="text" name="question"  className="form-control mt-1" placeholder="Question" value={quiz3.question} onChange={handleInputChangeQuiz3}/>
+          <input type="text" name="choicea"  className="form-control mt-1" placeholder="1st Choice" value={quiz3.choicea} onChange={handleInputChangeQuiz3}/>
+          <input type="text" name="choiceb"  className="form-control mt-1" placeholder="2nd Choice" value={quiz3.choiceb} onChange={handleInputChangeQuiz3}/>
+          <input type="text" name="choicec"  className="form-control mt-1" placeholder="3rd Choice" value={quiz3.choicec} onChange={handleInputChangeQuiz3}/>
+          <input type="text" name="answer"  className="form-control mt-1" placeholder="answer" value={quiz3.answer} onChange={handleInputChangeQuiz3}/>
+          <input type="text" name="explanation"  className="form-control mt-1" placeholder="Explnation" value={quiz3.explanation} onChange={handleInputChangeQuiz3}/>
           <br></br>
 
           <div className="login-btn-add">
