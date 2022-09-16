@@ -211,23 +211,8 @@ const  NewAnimal = () => {
       <div>
         <NavWrapper>
           <input type="text" name="animal_name" placeholder="Common Name" value={values.animal_name} onChange={handleInputChange}/>
-          <input type="text" name="animal_sciname" placeholder="Scientific Name" value={values.animal_sciname} onChange={handleInputChange}/>        
-          <div className="form-group mt-3">
-              <label>Animal Enclosure</label>
-            <select  name="animal_enclosure" className="form-control mt-1" onChange={handleInputChange} >
-            <option value={String("Elephant")}>Elephant</option>
-            <option value={String("Hippopotamus")}>Hippopotamus</option>
-            <option value={String("Aviary")}>Aviary</option>
-            <option value={String("Hyena")}>Hyena</option>
-            <option value={String("Savana")}>Savana</option>
-            <option value={String("Apex Predators")}>Apex Predators</option>
-            <option value={String("Philippine Endemic")}>Philippine Endemic</option>
-            <option value={String("Outdoor Reptiles")}>Outdoor Reptiles</option>
-            <option value={String("Indoor Reptiles")}>Indoor Reptiles</option>
-            <option value={String("Primates")}>Primates</option>
-            <option value={String("Butterfly Garden")}>Butterfly Garden</option>
-             </select>
-            </div>
+          <input type="text" name="animal_sciname" placeholder="Scientific Name" value={values.animal_sciname} onChange={handleInputChange}/>
+          <input type="text" name="animal_enclosure" placeholder="Enclosure" value={values.animal_enclosure} onChange={handleInputChange}/>
           <input type="text" name="animal_habitat" placeholder="Animal Habitat" value={values.animal_habitat} onChange={handleInputChange}/>
           <input type="text" name="animal_description" placeholder="Description" value={values.animal_description} onChange={handleInputChange}/>
             <br></br>
