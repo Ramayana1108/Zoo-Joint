@@ -121,7 +121,7 @@ const NewUser = () => {
             
             <div className="login-btn-add">
               <button onClick={AddUser} type="submit" className="btn btn-primary-add">
-                Save
+                Register
               </button>
               
             </div>
