@@ -4,6 +4,8 @@ import { animalColumns } from "../datatablesource/animals_DatatableSource";
 import { useEffect, useState } from "react";
 import { Link,Navigate,useNavigate } from 'react-router-dom';
 
+import { ArchiveModal } from "../Modals/AnimalsPageModals";
+
 
 import {
   collection,
@@ -25,6 +27,8 @@ const AnimalDatatable = () => {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [search, setSearch] = useState(null);
+  const [archiveModalOpen, setArchiveModalOpen] = useState(false);
+  const [id,setId]= useState();
  
   useEffect(() => {
     const unsub = onSnapshot(       
@@ -52,17 +56,6 @@ const AnimalDatatable = () => {
     setFilteredData(data.filter(item => item?.animal_name.toLowerCase().includes(search.toLowerCase()) || item?.animal_enclosure.toLowerCase().includes(search.toLowerCase())))
   }, [search]);
 
-  const handleArchive= async (id) => {
-    const docRef = doc(db,'animals',id);
-   
-        updateDoc(docRef,{
-            animal_archive: true
-        } ).then(response => {
-          alert("Successfully Archived")
-        }).catch(error =>{
-          console.log(error.message)
-        })
-  };
 
   const actionColumn = [
     {
@@ -82,7 +75,7 @@ const AnimalDatatable = () => {
             <div
               className="deleteButton"
               hidden={params.row.role === 'Admin' ? true : false}
-              onClick={() => handleArchive(params.row.id)}
+              onClick={() => {setArchiveModalOpen(true);setId(params.row.id);}}
             >
               Archive
             </div>
@@ -110,6 +103,9 @@ const AnimalDatatable = () => {
         pageSize={9}
         rowsPerPageOptions={[9]}
       />
+      {
+        archiveModalOpen &&(<ArchiveModal closeArchiveModal={()=>setArchiveModalOpen(false)} animalId ={id}/>)
+      }
       </div>
   );
 };

@@ -45,6 +45,7 @@ const AboutUsUpdate = () => {
        //Updating animal
   const UpdateAboutus = (e) => {
     e.preventDefault();
+    
     const imagename = (file.name === undefined || file.name == null || file.name <= 0) ? true : false;
     console.log(imagename)
     const storageRef = ref(storage, 'images/'+file.name);

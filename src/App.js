@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useState} from "react";
 import "bootstrap/dist/css/bootstrap.min.css"
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { BrowserRouter, Routes, Route,Outlet,Navigate } from "react-router-dom"
+
 
 
 import Users from "./pages/Admin/Users/Users";
@@ -17,14 +18,21 @@ import AnimalList from "./pages/Animals/AnimalList";
 import ManageAnimal from "./pages/Animals/UpdateAnimal";
 import AnimalarchiveList from "./pages/Animals/ArchiveAnimal";
 import NewAnimal from "./pages/Animals/NewAnimal";
+import Logout from "./pages/Home/Logout";
+import ProtectedRoutes from "./services/ProtectedRoutes";
+import ForgotPassword from "./pages/Home/ForgotPassword";
 
 
 function App() {
+  
     return (      
         <div>          
            <BrowserRouter>
             <Routes>
               <Route path="/" element={<Login />} />
+              <Route path="/forgotpassword" element={<ForgotPassword />} />
+
+              <Route element={<ProtectedRoutes/>}>
               <Route path="/users" element={<Users />} />
               <Route path="/resetPassword" element={<ResetPassword />} />
               <Route path="/newUser" element={<NewUser/>}/>
@@ -44,6 +52,8 @@ function App() {
               <Route path="/updateanimals" element={<ManageAnimal/>}/>
               <Route path="/archiveanimals" element={<AnimalarchiveList/>}/>
 
+              <Route path="/logout" element={<Logout/>}/>
+              </Route>
             </Routes>
           </BrowserRouter>
         </div> 

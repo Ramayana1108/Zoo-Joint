@@ -42,7 +42,7 @@ export const SidebarData = [
   },
   {
     title: 'Logout',
-    path: '/support',
+    path: '/logout',
     icon: <ImIcons.ImExit />,
     cName: 'nav-text'
   }
