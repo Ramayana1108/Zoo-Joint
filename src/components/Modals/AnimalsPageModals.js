@@ -49,11 +49,11 @@ export function ArchiveModal({closeArchiveModal,animalId}){
       <div class="ArchiveModal" id="modalId">
       <div class="firstModal-content">
         <div class="modaltitle">
-          <p>Restore</p>
+          <p>Archive</p>
         </div>
         <div class="modaldescription">
           <p>
-            Do you want to restore animal?
+            Do you want to archive animal?
           </p>
         </div>
         <div class="archiveBtn">

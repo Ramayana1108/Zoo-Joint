@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { Link,Navigate,useNavigate } from 'react-router-dom';
 import "../datatables/Css/userDatatable.scss"
 
+import { DeleteModal } from "../Modals/UsersModals";
+
 import {
   collection,
   getDocs,
@@ -14,12 +16,15 @@ import {
 } from "firebase/firestore";
 import { db } from "../../services/firebase-config";
 
+
 const Datatable = () => {
   const navigate = useNavigate();
 
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [search, setSearch] = useState(null);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [id,setId]= useState();
 
     //user query
     const colRef = collection(db,"Users");
@@ -52,14 +57,7 @@ const Datatable = () => {
       setFilteredData(data.filter(item => item?.first_name.toLowerCase().includes(search.toLowerCase()) || item?.last_name.toLowerCase().includes(search.toLowerCase()) || item?.username.toLowerCase().includes(search.toLowerCase())))
   }, [search])
 
-  const handleDelete = async (id) => {
-    try {
-      await deleteDoc(doc(db, "Users", id));
-      setData(data.filter((item) => item.id !== id));
-    } catch (err) {
-      console.log(err);
-    }
-  };
+ 
 
   const actionColumn = [
     {
@@ -79,7 +77,9 @@ const Datatable = () => {
             <div
               className="deleteButton" style={{backgroundColor: "white", color: "#c4391d", borderColor: "#c4391d"}}
               hidden={params.row.role === 'Admin' ? true : false}
-              onClick={() => handleDelete(params.row.id)} 
+              onClick={() => {setDeleteModalOpen(true);setId(params.row.id);if(deleteModalOpen === false){
+                setData(data.filter((item) => item.id !== id));
+              }}} 
             >
               Delete
             </div>
@@ -93,7 +93,6 @@ const Datatable = () => {
   return (
 
     <div className="datatable">
-      
       <div className="datatableTitle">
         <h1 style={{color: "black"}}>Admin Staff</h1>
       <Link to="/newUser" className="link">
@@ -109,6 +108,9 @@ const Datatable = () => {
         pageSize={9}
         rowsPerPageOptions={[9]}
       />
+       {
+        deleteModalOpen &&(<DeleteModal closeDeleteModal={()=>setDeleteModalOpen(false)} userId ={id}/>)
+      }
       </div>
   );
 };

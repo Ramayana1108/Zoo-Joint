@@ -3,6 +3,7 @@ import React,{useState, useEffect} from "react";
 import { Link, useLocation, useNavigate,location,state } from 'react-router-dom'
 import { collection, query, where,getDocs, doc, getDoc,updateDoc, QuerySnapshot } from "firebase/firestore";
 import NavWrapper from "../../../components/navbar/NavWrapper";
+import { UpdateUserModal } from "../../../components/Modals/UsersModals";
 import bcrypt from 'bcryptjs';
 
 
@@ -17,6 +18,9 @@ const UserUpdate = () => {
     //kuha data from firebase
     const [data, setData] = useState("");
     const [values, setValues] = useState("");
+    const [canEdit, setCanEdit] = useState("");
+    
+    const [updateUserModalOpen, setUpdateUserModalOpen] = useState(false);
 
     const docRef = doc(db,'Users',uid);
     
@@ -24,7 +28,8 @@ const UserUpdate = () => {
         getDoc(docRef).then(doc => {
             const newData = doc.data();
             setData(newData);
-            setValues(newData);            
+            setValues(newData);
+            setCanEdit(String(newData.canEdit));            
         });
         }, []);
         
@@ -44,20 +49,7 @@ const UserUpdate = () => {
          setIsSHown((isShown) => !isShown);
        };
 
-    //update Database
-    function HandleUpdate(e){
-        e.preventDefault();
-        updateDoc(docRef,{
-            canEdit:values.canEdit,
-            password: String(bcrypt.hashSync(values.password,10))
-        } ).then(response => {
-          alert("Successfully Updated")
-          navigate("/users");
-        }).catch(error =>{
-          console.log(error.message)
-        })
-    }
-
+   
     //cancel Button
     function Cancel(){
         navigate("/users")
@@ -128,14 +120,14 @@ const UserUpdate = () => {
 
             <div className="form-group mt-3">
               <label>Can Edit?</label>
-            <select name="canEdit" className="form-control mt-1" formonChange={handleInputChange}>
-            <option value={String(values.canEdit) === "true" ? Boolean(true) : Boolean(false)}>{values.canEdit === "true" ? "Yes" : "No"}</option>
-            <option value={String(values.canEdit) === "true" ? Boolean(false) : Boolean(true)}>{values.canEdit === "true" ? "No" : "Yes"}</option>
+            <select name="canEdit" className="form-control mt-1" onChange={handleInputChange}>
+            <option value={canEdit=== "true" ? true : false}>{canEdit === "true" ? "Yes" : "No"}</option>
+            <option value={canEdit === "true" ? false : true}>{canEdit === "true" ? "No" : "Yes"}</option>
              </select>
             </div>
             
             <div className="login-btn-add">
-              <button onClick={HandleUpdate} type="submit" className="btn btn-primary-add">
+              <button onClick={(e)=>{e.preventDefault(); setUpdateUserModalOpen(true); setData(values); setCanEdit(data.canEdit)}} type="submit" className="btn btn-primary-add">
                 Save
               </button>
               
@@ -148,6 +140,9 @@ const UserUpdate = () => {
             </div>
           </div>
         </form>
+        {
+         updateUserModalOpen &&(<UpdateUserModal closeUpdateUserModal={()=>setUpdateUserModalOpen(false)} data ={data} canEdit={canEdit} id={uid}/>)
+      }
       </div>
           </NavWrapper>
     );

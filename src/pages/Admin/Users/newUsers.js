@@ -5,7 +5,8 @@ import React,{useState} from "react";
 import { Link, useNavigate } from 'react-router-dom'
 import NavWrapper from "../../../components/navbar/NavWrapper";
 import "./newUser.scss"
-import bcrypt from 'bcryptjs';
+import { CreateUserModal } from "../../../components/Modals/UsersModals";
+
 
 const initialValues = {
     first_name: "",
@@ -17,6 +18,9 @@ const initialValues = {
 const NewUser = () => {
     const [isShown, setIsSHown] = useState(false);
     const [values, setValues] = useState(initialValues);
+    const [data, setData] = useState();
+    const [createUserModalOpen, setCreateUserModalOpen] = useState(false);
+
      //Redirecting
      const navigate = useNavigate();
 
@@ -29,25 +33,7 @@ const NewUser = () => {
       });
     };
 
-    const AddUser = (e) =>{
-        e.preventDefault();
-
-        addDoc(collection(db, "Users"), {
-            canEdit:true,
-            first_name: values.first_name,
-            last_name: values.last_name,
-            password: bcrypt.hashSync(values.password,10),
-            role:"Staff",
-            username: values.username
-         })
-         .then(() => {
-           alert('User Created' );
-           navigate("/users")
-         })
-         .catch((error) => {
-           alert(error.message);
-         });
-    }
+   
     const togglePassword = () => {
         setIsSHown((isShown) => !isShown);
       };
@@ -75,6 +61,7 @@ const NewUser = () => {
                 placeholder="Enter First Name"
                 value={values.first_name}
                 onChange={handleInputChange}
+                required
               />
 
             </div>
@@ -87,6 +74,7 @@ const NewUser = () => {
                 placeholder="Enter Last Name"
                 value={values.last_name} 
                 onChange={handleInputChange}
+                required
               />
             </div>
 
@@ -99,6 +87,7 @@ const NewUser = () => {
                 placeholder="Enter Username"
                 value={values.username} 
                 onChange={handleInputChange}
+                required
               />
             </div>
 
@@ -111,6 +100,7 @@ const NewUser = () => {
                 placeholder="Enter Password"
                 value={values.password} 
                 onChange={handleInputChange}
+                required
               />
             </div>
 
@@ -120,7 +110,7 @@ const NewUser = () => {
             </div>
             
             <div className="login-btn-add">
-              <button onClick={AddUser} type="submit" className="btn btn-primary-add">
+              <button onClick={(e)=>{e.preventDefault(); setCreateUserModalOpen(true); setData(values)}} type="submit" className="btn btn-primary-add">
                 Register
               </button>
               
@@ -133,6 +123,9 @@ const NewUser = () => {
             </div>
           </div>
         </form>
+        {
+         createUserModalOpen &&(<CreateUserModal closeCreateUserModalModal={()=>setCreateUserModalOpen(false)} data ={values}/>)
+      }
       </div>
           </NavWrapper>
         
