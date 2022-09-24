@@ -19,7 +19,7 @@ import { async } from "@firebase/util";
 import { FunctionsOutlined } from "@mui/icons-material";
 
 const Login = () => {
-  const [uname, setUName] = useState();
+  const [uname, setUName] = useState("");
   const [password, setPassword] = useState();
   const [usernameError, setUsernameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -28,54 +28,66 @@ const Login = () => {
   const username = sessionStorage.getItem("username");
   const role = sessionStorage.getItem("role");
   const [page, setPage] = useState();
+
     
  
   const handleSubmit = async (e)=>{
     e.preventDefault();
   
-    try{
-
-      const q = query(colRef, where("username","==",uname));  
-      const querySnapshot = await getDocs(q);
-      querySnapshot.forEach(async (doc)=>{
-        setData(doc.data());  
-      
-  });
-
-  if(data.username=== uname){
-    setUsernameError("");
+  if(!uname && !password){
     
-    bcrypt.compare(password,data.password, function(err,res){
-      if(err){
-        throw err;
-      }else if(!res){
-        setPasswordError("Incorrect Password")
-      }else{
-        setPasswordError("Password Match")
-        window.sessionStorage.setItem("username", data.username);
-        window.sessionStorage.setItem("role", data.role);
-
-        if (data.role === "Staff"){
-          setPage("/animals");
-        }else{
-          setPage("/users");
-        }
-      }
-      
-    });
-    
-    
-  }else{
-    
-    setUsernameError("user does not exist");
+    setUsernameError("Required");
+    setPasswordError("Required");
    
-  }  
+  }else if (!uname && password !== ""){setUsernameError("Required"); setPasswordError("");}
+  else if(!password && uname !== ""){
+    setUsernameError("");
+    setPasswordError("Required");
+  }
+  else{
+    
+    setUsernameError("");
+    setPasswordError("");
+
+    
+    const q = query(colRef, where("username","==",uname));  
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach(async (doc)=>{
+      setData(doc.data());  
+    });
+
+    if(uname === data.username){
+      bcrypt.compare(password,data.password, function(err,res){
+        if(err){
+          throw err;
+        }else if(!res){
+          setPasswordError("Incorrect Password")
+        }else{
+          setPasswordError("Password Match")
+          window.sessionStorage.setItem("username", data.username);
+          window.sessionStorage.setItem("role", data.role);
+  
+          if (data.role === "Staff"){
+            setPage("/animals");
+          }else{
+            setPage("/users");
+          }
+        }
+        
+      });
+      
+    }else{
+      setUsernameError("user does not exist");
+
+    }
+
+
+   
+  }
 
 
   console.log(data);
-    }catch(error){
-      console.log(error);
-    }
+   
   
   
   }
@@ -99,7 +111,7 @@ const Login = () => {
             type="text"
             className="form-control mt-1"
             placeholder="Enter username"
-            onChange={(e)=> {setUName(e.target.value);setUsernameError("")}}
+            onChange={(e)=> {setUName(e.target.value);setUsernameError("");}}
           />
           {usernameError}
         </div>
