@@ -67,7 +67,7 @@ const Login = () => {
     
   }else{
     
-    setUsernameError("");
+    setUsernameError("user does not exist");
    
   }  
 
