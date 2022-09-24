@@ -396,14 +396,6 @@ const  NewAnimal = () => {
             placeholder="Enter Third Choice"
             value={quiz1.choicec} onChange={handleInputChangeQuiz1}/>
 
-          <input
-            type="text"
-            name="choiced"
-            className="form-control mt-1"
-            placeholder="Enter Fourth Choice"
-            value={quiz1.choicec} onChange={handleInputChangeQuiz1}/>
-
-
           <br></br>
           <label>Answer</label>
           <input
@@ -454,14 +446,6 @@ const  NewAnimal = () => {
             placeholder="Enter Third Choice"
             value={quiz2.choicec} onChange={handleInputChangeQuiz2}/>
 
-          <input
-            type="text"
-            name="choiced"
-            className="form-control mt-1"
-            placeholder="Enter Fourth Choice"
-            value={quiz1.choicec} onChange={handleInputChangeQuiz2}/>
-
-
           <br></br>
           <label>Answer</label>
           <input
@@ -511,14 +495,6 @@ const  NewAnimal = () => {
             className="form-control mt-1"
             placeholder="Enter Third Choice"
             value={quiz3.choicec} onChange={handleInputChangeQuiz3}/>
-
-          <input
-            type="text"
-            name="choiced"
-            className="form-control mt-1"
-            placeholder="Enter Fourth Choice"
-            value={quiz1.choicec} onChange={handleInputChangeQuiz3}/>
-
 
           <br></br>
           <label>Answer</label>

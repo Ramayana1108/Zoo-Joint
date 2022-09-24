@@ -36,13 +36,13 @@ const Login = () => {
   
   if(!uname && !password){
     
-    setUsernameError("Required");
-    setPasswordError("Required");
+    setUsernameError("Please fill out this field.");
+    setPasswordError("Please fill out this field.");
    
-  }else if (!uname && password !== ""){setUsernameError("Required"); setPasswordError("");}
+  }else if (!uname && password !== ""){setUsernameError("Please fill out this field."); setPasswordError("");}
   else if(!password && uname !== ""){
     setUsernameError("");
-    setPasswordError("Required");
+    setPasswordError("Please fill out this field.");
   }
   else{
     
@@ -61,7 +61,7 @@ const Login = () => {
         if(err){
           throw err;
         }else if(!res){
-          setPasswordError("Incorrect Password")
+          setPasswordError("Incorrect Password!")
         }else{
           setPasswordError("Password Match")
           window.sessionStorage.setItem("username", data.username);
@@ -77,7 +77,7 @@ const Login = () => {
       });
       
     }else{
-      setUsernameError("user does not exist");
+      setUsernameError("User does not exist!");
 
     }
 
@@ -111,8 +111,7 @@ const Login = () => {
             type="text"
             className="form-control mt-1"
             placeholder="Enter username"
-            onChange={(e)=> {setUName(e.target.value);setUsernameError("");}}
-          />
+            onChange={(e)=> {setUName(e.target.value);setUsernameError("");}} required></input>
           {usernameError}
         </div>
         <div className="form-group mt-3">
