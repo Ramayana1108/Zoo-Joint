@@ -73,13 +73,13 @@ const ForgotPassword = () => {
          {emailError}
         </div>
      <br></br>
-        <div className="login-btn">
-          <button type="submit" className="btn btn-primary" onClick={handleSubmit}>
+        <div className="login-btn-add">
+          <button type="submit" className="btn btn-primary-add" onClick={handleSubmit}>
             Submit
           </button>
         </div>
-        <div className="login-btn">
-          <button type="submit" className="btn btn-primary" onClick={Cancel}>           
+        <div className="login-btn-add">
+          <button type="submit" className="btn btn-primary-cancel" onClick={Cancel}>           
             Cancel         
           </button>
         </div>
