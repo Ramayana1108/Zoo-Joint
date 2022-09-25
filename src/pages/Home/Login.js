@@ -116,8 +116,7 @@ const Login = () => {
             id="floatingUsername"
             required />
             <label for="floatingUsername">Username</label>
-
-          {usernameError}
+            <div className="usernameError">{usernameError}</div>
         </div>
         <div className="form-floating mt-3">
           <input
@@ -128,7 +127,7 @@ const Login = () => {
             id="floatingPassword"
             required />
             <label for="floatingPassword">Password</label>
-          {passwordError}
+          <div className="passwordError">{passwordError}</div>
         </div>
         <div className="d-grid">
           <p className="forgot-password text-right">
