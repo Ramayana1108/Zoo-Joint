@@ -108,15 +108,11 @@ const NewUser = () => {
             <label htmlFor="checkbox">Show Password?&nbsp;</label>
             <input id="checkbox" type="checkbox" checked={isShown}  onChange={togglePassword}/>
             </div>
-            
-            <div className="login-btn-add">
+            <br></br>
+            <div className="newusers-btn-add">
               <button onClick={(e)=>{e.preventDefault(); setCreateUserModalOpen(true); setData(values)}} type="submit" className="btn btn-primary-add">
                 Register
               </button>
-              
-            </div>
-
-            <div className="login-btn-add">
               <button onClick={Cancel} className="btn btn-primary-cancel">
                 Cancel
               </button>

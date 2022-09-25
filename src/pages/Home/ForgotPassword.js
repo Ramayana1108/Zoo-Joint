@@ -1,6 +1,7 @@
 import React, {useState,useEffect} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Login.scss";
+import "./ForgotPassword.scss";
 import PropTypes from 'prop-types';
 import bcrypt from 'bcryptjs';
 import Users from '../Admin/Users/Users'
@@ -73,12 +74,10 @@ const ForgotPassword = () => {
          {emailError}
         </div>
      <br></br>
-        <div className="login-btn-add">
+        <div className="forgotpassword-btn-add">
           <button type="submit" className="btn btn-primary-add" onClick={handleSubmit}>
             Submit
           </button>
-        </div>
-        <div className="login-btn-add">
           <button type="submit" className="btn btn-primary-cancel" onClick={Cancel}>           
             Cancel         
           </button>
