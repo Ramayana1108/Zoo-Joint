@@ -120,7 +120,6 @@ const Login = () => {
           {usernameError}
         </div>
         <div className="form-floating mt-3">
-          {/* <label>Password</label> */}
           <input
             type="password"
             className={`form-control mt-1 ${isSubmitted && (usernameError || passwordError) ? 'is-invalid':  ''}`}
