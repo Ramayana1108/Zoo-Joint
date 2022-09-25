@@ -129,7 +129,7 @@ export function RestoreModal({closeRestoreModal,animalId}){
       <div class="DeleteModal" id="modalId">
       <div class="firstModal-content">
         <div class="modaltitle">
-          <p>Restore</p>
+          <p>Delete</p>
         </div>
         <div class="modaldescription">
           <p>

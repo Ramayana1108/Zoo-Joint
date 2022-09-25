@@ -1,0 +1,49 @@
+.RestoreModal{
+    border-style: solid;
+    border-color: #668d3c;
+    border-width: 1px;
+    border-radius: 10px;
+}
+.seeAnimalsBtnDiv{
+    text-align: center;
+    justify-content: center;
+    margin-bottom: 1%;
+}
+.overlay{
+    background-color: rgba(0,0,0,0.9);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+.seeAnimalsBtn{
+    border-width: 1px;
+}
+.modaltitle{
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+}
+.modaldescription{
+    padding: 10px;
+    text-align: center;
+}
+.DeleteModal{
+    border-style: solid;
+    border-color: #668d3c;
+    border-width: 1px;
+    border-radius: 10px;
+    
+}
+.deleteAnimalsBtn{
+    text-align: center;
+    justify-content: center;
+    border-width: 1px;
+    margin-bottom: 1%;
+}
+.closeBtn{
+    text-align: center;
+    justify-content: center;
+    border-width: 1px;
+    margin-bottom: 1%;
+    margin-left: 2%;
+}

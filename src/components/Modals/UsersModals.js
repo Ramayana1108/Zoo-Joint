@@ -1,7 +1,7 @@
 import { ref, deleteObject} from "firebase/storage";
 import bcrypt from 'bcryptjs';
 import { useNavigate } from 'react-router-dom'
-
+import './Modals.scss'
 
 
 import {
