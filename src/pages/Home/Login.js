@@ -30,10 +30,12 @@ const Login = () => {
   const [page, setPage] = useState();
 
     
+  const [isSubmitted, setIsSubmitted] = useState(false);
  
   const handleSubmit = async (e)=>{
     e.preventDefault();
-  
+    setIsSubmitted(true);
+    
   if(!uname && !password){
     
     setUsernameError("Please fill out this field.");
@@ -105,23 +107,28 @@ const Login = () => {
         <div class="center">
           <img src="/images/logo.png" className="loginLogo" />
         </div>
-        <div className="form-group mt-3">
-          <label>Username</label>
+        <div className="form-floating mt-3">
           <input
             type="text"
-            className="form-control mt-1"
+            className={`form-control mt-1 ${isSubmitted ? usernameError ? 'is-invalid':  'is-valid' : ''}`}
             placeholder="Enter username"
-            onChange={(e)=> {setUName(e.target.value);setUsernameError("");}} required></input>
+            onChange={(e)=> {setUName(e.target.value);setUsernameError("");setIsSubmitted(false)}} 
+            id="floatingUsername"
+            required />
+            <label for="floatingUsername">Username</label>
+
           {usernameError}
         </div>
-        <div className="form-group mt-3">
-          <label>Password</label>
+        <div className="form-floating mt-3">
+          {/* <label>Password</label> */}
           <input
             type="password"
-            className="form-control mt-1"
+            className={`form-control mt-1 ${isSubmitted && (usernameError || passwordError) ? 'is-invalid':  ''}`}
             placeholder="Enter password"
-            onChange={(e)=> {setPassword(e.target.value); setPasswordError("")}}
-          />
+            onChange={(e)=> {setPassword(e.target.value); setPasswordError("");setIsSubmitted(false)}}
+            id="floatingPassword"
+            required />
+            <label for="floatingPassword">Password</label>
           {passwordError}
         </div>
         <div className="d-grid">
