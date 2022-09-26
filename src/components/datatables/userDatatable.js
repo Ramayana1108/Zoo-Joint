@@ -30,7 +30,7 @@ const Datatable = () => {
     const colRef = collection(db,"Users");
     const q = query(colRef, where("role","==","Staff"))
   
-  
+
 
   useEffect(() => {
     const unsub = onSnapshot(
@@ -60,6 +60,7 @@ const Datatable = () => {
  
 
   const actionColumn = [
+    
     {
       field: "action",
       headerName: "Action",

@@ -15,9 +15,11 @@ import {
   onSnapshot, where, query,updateDoc
 } from "firebase/firestore";
 import { db } from "../../services/firebase-config";
+import { FilterDrama } from "@mui/icons-material";
 
 const AnimalDatatable = () => {
   const navigate = useNavigate();
+  const role = sessionStorage.getItem("role");
 
   //animal query
   const colRef = collection(db,"animals");
@@ -41,7 +43,6 @@ const AnimalDatatable = () => {
 
         setData(list);
         setFilteredData(list);
-        console.log(data)      
       },
       (error) => {
         console.log(error);
@@ -67,14 +68,15 @@ const AnimalDatatable = () => {
           <div className="cellAction"> 
           <button
               className="updateButton"
-              onClick={() => navigate('/updateanimals',{state: {aid:params.row.id}})}
+              onClick={() => {navigate('/updateanimals',{state: {aid:params.row.id}});}}
+            
             >
               Edit
             </button>
           
             <div
               className="deleteButton"
-              hidden={params.row.role === 'Admin' ? true : false}
+              hidden={role === 'Staff' ? true : false}
               onClick={() => {setArchiveModalOpen(true);setId(params.row.id);}}
             >
               Archive

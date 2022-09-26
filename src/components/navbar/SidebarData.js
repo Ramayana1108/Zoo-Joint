@@ -9,7 +9,7 @@ import * as CgIcons from 'react-icons/cg';
 import * as ImIcons from 'react-icons/im';
 import * as FcIcons from 'react-icons/fc';
 
-export const SidebarData = [
+export const SidebarDataAdmin = [
   {
     title: 'Admin Staff',
     path: '/users',
@@ -38,6 +38,34 @@ export const SidebarData = [
     title: 'Archives',
     path: '/archiveanimals',
     icon: <BsIcons.BsFillArchiveFill />,
+    cName: 'nav-text'
+  },
+  {
+    title: 'Logout',
+    path: '/logout',
+    icon: <ImIcons.ImExit />,
+    cName: 'nav-text'
+  }
+];
+
+export const SidebarDataStaff = [
+
+  {
+    title: 'Animals',
+    path: '/animals',
+    icon: <FaIcons.FaPaw />,
+    cName: 'nav-text'
+  },
+  {
+    title: 'About Us',
+    path: '/aboutus',
+    icon: <AiIcons.AiFillInfoCircle />,
+    cName: 'nav-text'
+  },
+  {
+    title: 'Chatbot',
+    path: '/chatbot',
+    icon: <AiIcons.AiFillWechat />,
     cName: 'nav-text'
   },
   {

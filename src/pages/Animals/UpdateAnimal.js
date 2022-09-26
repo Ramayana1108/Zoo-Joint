@@ -308,7 +308,7 @@ return (
                   className="form-control mt-1"
                   placeholder="Select Enclosure"
                   onChange={handleInputChange}>
-                  
+                  <option value="" disabled selected hidden>{values.animal_enclosure}</option>
                   <option value={String("Elephant")}>Elephant</option>
                   <option value={String("Hippopotamus")}>Hippopotamus</option>
                   <option value={String("Aviary")}>Aviary</option>
@@ -351,7 +351,7 @@ return (
                     className="form-control mt-1"
                     placeholder="Select Conservation Status"
                     onChange={handleInputChange}>
-                    
+                    <option value="" disabled selected hidden>{values.animal_conservationstatus}</option>
                     <option value={String("Not Evaluated")}>Not Evaluated</option>
                     <option value={String("Data Deficient")}>Data Deficient</option>
                     <option value={String("Least Concern")}>Least Concern</option>
@@ -459,12 +459,6 @@ return (
             placeholder="Enter Third Choice"
             value={quiz1.choicec} onChange={handleInputChangeQuiz1}/>
 
-          <input
-            type="text"
-            name="choiced"
-            className="form-control mt-1"
-            placeholder="Enter Fourth Choice"
-            value={quiz1.choicec} onChange={handleInputChangeQuiz1}/>
 
           <br></br>
           <label>Answer</label>
@@ -516,13 +510,7 @@ return (
             placeholder="Enter Third Choice"
             value={quiz2.choicec} onChange={handleInputChangeQuiz2}/>
 
-          <input
-            type="text"
-            name="choiced"
-            className="form-control mt-1"
-            placeholder="Enter Fourth Choice"
-            value={quiz1.choicec} onChange={handleInputChangeQuiz2}/>
-
+   
 
           <br></br>
           <label>Answer</label>
@@ -573,13 +561,6 @@ return (
             className="form-control mt-1"
             placeholder="Enter Third Choice"
             value={quiz3.choicec} onChange={handleInputChangeQuiz3}/>
-
-          <input
-            type="text"
-            name="choiced"
-            className="form-control mt-1"
-            placeholder="Enter Fourth Choice"
-            value={quiz1.choicec} onChange={handleInputChangeQuiz3}/>
 
 
           <br></br>

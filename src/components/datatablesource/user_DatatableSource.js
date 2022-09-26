@@ -24,6 +24,16 @@ export const userColumns = [
         field: "canEdit",
         headerName: "Can Edit",
         width: 230,
+        renderCell: (params)=>{
+          return(
+            <div className="cellAction"> 
+              {params.row.canEdit=== "true" ? "Yes":"No"}
+            </div>
+          );
+        }
+        
       },
+      
+     
   ];
   

@@ -145,7 +145,7 @@ export function DeleteModal({closeDeleteModal,userId}){
         console.log(canEdit);
         console.log(id);
         updateDoc(docRef,{
-            canEdit:Boolean(canEdit),
+            canEdit:canEdit,
             password: String(bcrypt.hashSync(data.password,10))
         } ).then(response => {
           alert("Successfully Updated")

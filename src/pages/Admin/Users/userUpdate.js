@@ -7,6 +7,7 @@ import { UpdateUserModal } from "../../../components/Modals/UsersModals";
 import bcrypt from 'bcryptjs';
 
 
+
 const UserUpdate = () => {
     //Redirecting
     const navigate = useNavigate();
@@ -120,14 +121,15 @@ const UserUpdate = () => {
 
             <div className="form-group mt-3">
               <label>Can Edit?</label>
-            <select name="canEdit" className="form-control mt-1" onChange={handleInputChange}>
-            <option value={canEdit=== "true" ? true : false}>{canEdit === "true" ? "Yes" : "No"}</option>
-            <option value={canEdit === "true" ? false : true}>{canEdit === "true" ? "No" : "Yes"}</option>
+            <select name="canEdit"  id="canEditDropdown" className="form-control mt-1" onChange={handleInputChange} placeholder ={values.canEdit} defaultValue={values.canEdit}>
+            <option value="" disabled selected hidden>{values.canEdit=== "true" ? "Yes":"No"}</option>
+            <option value={true}>Yes</option>
+            <option value={false}>No</option>
              </select>
             </div>
             
             <div className="login-btn-add">
-              <button onClick={(e)=>{e.preventDefault(); setUpdateUserModalOpen(true); setData(values); setCanEdit(data.canEdit)}} type="submit" className="btn btn-primary-add">
+              <button onClick={(e)=>{e.preventDefault(); setUpdateUserModalOpen(true); setCanEdit(values.canEdit)}} type="submit" className="btn btn-primary-add">
                 Save
               </button>
               
@@ -141,7 +143,7 @@ const UserUpdate = () => {
           </div>
         </form>
         {
-         updateUserModalOpen &&(<UpdateUserModal closeUpdateUserModal={()=>setUpdateUserModalOpen(false)} data ={data} canEdit={canEdit} id={uid}/>)
+         updateUserModalOpen &&(<UpdateUserModal closeUpdateUserModal={()=>setUpdateUserModalOpen(false)} data ={values} canEdit={canEdit} id={uid}/>)
       }
       </div>
           </NavWrapper>
