@@ -115,11 +115,12 @@ const AboutUsUpdate = () => {
           <div className="Auth-form-content-add">
           <div class="center">
           </div>
+
           <div className="form-group mt-3">
             <label>Email</label>
             <input
               type="text"
-              name="abt_name"
+              name="abt_email"
               placeholder="Enter Email"
               className="form-control mt-1"
               value={values.abt_email} 
