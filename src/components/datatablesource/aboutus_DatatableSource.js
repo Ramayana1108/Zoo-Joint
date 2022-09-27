@@ -2,11 +2,14 @@ export const userColumns = [
   {
     field: "abt_image",
     headerName: "Image",
-    width: 230,
+    width: 400,
+    height: 300,
+   
     renderCell: (params) => {
       return (
         <div className="cellWithImg">
-          <img className="cellImg" src={params.row.abt_image} />
+          <img className="cellImg" width="400" 
+       height="500" src={params.row.abt_image} />
         </div>
       );
     },

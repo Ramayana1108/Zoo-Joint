@@ -6,7 +6,6 @@ import { Link,Navigate,useNavigate } from 'react-router-dom';
 
 import { ArchiveModal } from "../Modals/AnimalsPageModals";
 
-
 import {
   collection,
   getDocs,
@@ -20,6 +19,8 @@ import { FilterDrama } from "@mui/icons-material";
 const AnimalDatatable = () => {
   const navigate = useNavigate();
   const role = sessionStorage.getItem("role");
+  const uname = sessionStorage.getItem("username");
+  const [permission,setPermission] = useState();
 
   //animal query
   const colRef = collection(db,"animals");
@@ -31,6 +32,7 @@ const AnimalDatatable = () => {
   const [search, setSearch] = useState(null);
   const [archiveModalOpen, setArchiveModalOpen] = useState(false);
   const [id,setId]= useState();
+  const colUserRef = collection(db,"Users");
  
   useEffect(() => {
     const unsub = onSnapshot(       
@@ -57,6 +59,21 @@ const AnimalDatatable = () => {
     setFilteredData(data.filter(item => item?.animal_name.toLowerCase().includes(search.toLowerCase()) || item?.animal_enclosure.toLowerCase().includes(search.toLowerCase())))
   }, [search]);
 
+  useEffect(() => {
+    getPermission();
+  }, []);
+
+
+  function getPermission(){
+    const q = query(colUserRef, where("username","==",uname));  
+    let userRole= [];
+    getDocs(q).then(async (response) => {
+      userRole =  response.docs.map((doc) => ({
+      permission: doc.data().canEdit,
+    }));  
+    setPermission(userRole[0].permission);
+  })
+  }
 
   const actionColumn = [
     {
@@ -69,7 +86,7 @@ const AnimalDatatable = () => {
           <button
               className="updateButton"
               onClick={() => {navigate('/updateanimals',{state: {aid:params.row.id}});}}
-            
+              hidden={String(permission)==="true"? false:true}
             >
               Edit
             </button>
@@ -99,11 +116,13 @@ const AnimalDatatable = () => {
       </div>
       <input type="text" onChange={ (e) => setSearch(e.target.value)} placeholder="Search" className="search-bar"/>
       <DataGrid
+        rowHeight={150}
+        autoHeight
         className="datagrid"
         rows={filteredData}
         columns={animalColumns.concat(actionColumn)}
-        pageSize={9}
-        rowsPerPageOptions={[9]}
+        pageSize={5}
+        rowsPerPageOptions={[5]}
       />
       {
         archiveModalOpen &&(<ArchiveModal closeArchiveModal={()=>setArchiveModalOpen(false)} animalId ={id}/>)

@@ -19,17 +19,16 @@ import { async } from "@firebase/util";
 import { FunctionsOutlined } from "@mui/icons-material";
 
 const Login = () => {
+  const [isShown, setIsSHown] = useState(false);
   const [uname, setUName] = useState("");
   const [password, setPassword] = useState("");
-  const [dbUname, setDbUName] = useState("");
-  const [dbPassword, setDbPassword] = useState("");
   const [usernameError, setUsernameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const [data, setData] = useState([]);
   const colRef = collection(db,"Users");
   const username = sessionStorage.getItem("username");
   const role = sessionStorage.getItem("role");
   const [page, setPage] = useState();
+
 
     
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -53,29 +52,27 @@ const Login = () => {
     setUsernameError("");
     setPasswordError("");
 
-    
+    let users =[];
     const q = query(colRef, where("username","==",uname));  
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach(async (doc)=>{
+    getDocs(q).then(async (response) => {
+        users = await response.docs.map((doc) => ({
+        username: doc.data().username,
+        password: doc.data().password,
+        role: doc.data().role,
+      }));     
+    }).then(()=>{
       
-      setData(doc.data());  
-    });
-
-    console.log(data)
-
-    if(uname === data.username){
-      bcrypt.compare(password,data.password, function(err,res){
+    if(uname === users[0].username){
+      bcrypt.compare(password,users[0].password, function(err,res){
         if(err){
           throw err;
         }else if(!res){
           setPasswordError("Incorrect Password!")
         }else{
           setPasswordError("Password Match")
-          console.log(data)
-          window.sessionStorage.setItem("username", data.username);
-          window.sessionStorage.setItem("role", data.role);
-  
-          if (data.role === "Staff"){
+          window.sessionStorage.setItem("username", users[0].username);
+          window.sessionStorage.setItem("role", users[0].role);
+          if (users[0].role === "Staff"){
             setPage("/animals");
           }else{
             setPage("/users");
@@ -86,22 +83,22 @@ const Login = () => {
       
     }else{
       setUsernameError("User does not exist!");
-      
-      
-
     }
-
-
+ 
+    });
    
   }
 
 
-  console.log(data);
-   
-  
   
   }
 
+
+
+
+  const togglePassword = () => {
+    setIsSHown((isShown) => !isShown);
+  };
 
   return (
     <div className="Auth-form-container">
@@ -128,12 +125,16 @@ const Login = () => {
         </div>
         <div className="form-floating mt-3">
           <input
-            type="password"
+             type={isShown ? "text" : "password"}
             className={`form-control mt-1 ${isSubmitted && (usernameError || passwordError) ? 'is-invalid':  ''}`}
             placeholder="Enter password"
             onChange={(e)=> {setPassword(e.target.value); setPasswordError("");setIsSubmitted(false)}}
             id="floatingPassword"
             required />
+             <div class="right">
+            <label htmlFor="checkbox">Show Password?&nbsp;</label>
+            <input id="checkbox" type="checkbox" checked={isShown}  onChange={togglePassword}/>
+            </div>
             <label for="floatingPassword">Password</label>
           <div className="passwordError">{passwordError}</div>
         </div>

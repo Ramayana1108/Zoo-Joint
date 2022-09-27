@@ -23,7 +23,6 @@ import { FunctionsOutlined } from "@mui/icons-material";
 const ForgotPassword = () => {
     const [email,setEmail] = useState();
     const [emailError,setEmailError] = useState("");
-    const [data, setData] = useState([]);
     const colRef = collection(db,"Users");
 
    const navigate = useNavigate();
@@ -33,20 +32,22 @@ const ForgotPassword = () => {
     e.preventDefault();
     
         const q = query(colRef, where("email","==",email));  
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach(async (doc)=>{
-          setData(doc.data());  
-        });
-        console.log(data.email);
-
-        if(!data.email){
-            setEmailError("email does not exist or is not an administrator");
+        let useremail= [];
+        getDocs(q).then(async (response) => {
+          useremail = await response.docs.map((doc) => ({
+          email: doc.data().email,
+      
+        }));     
+      }).then(()=>{
+        console.log(useremail[0].email);
+        if(!useremail[0].email){
+          setEmailError("email does not exist or is not an administrator");
         }else{
-            setEmailError("email sent")
+          setEmailError("email sent")
         }
-  
-  
-  
+
+      })
+
 
    }
 

@@ -11,13 +11,15 @@ import {
   getDocs,
   deleteDoc,
   doc,
-  onSnapshot,
+  onSnapshot,where, query
 } from "firebase/firestore";
 import { db } from "../../services/firebase-config";
 
 const ChatbotDatatable = () => {
   const navigate = useNavigate();
-
+  const colUserRef = collection(db,"Users");
+  const uname = sessionStorage.getItem("username");
+  const [permission,setPermission] = useState();
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -41,6 +43,21 @@ const ChatbotDatatable = () => {
     };
   }, []);
 
+  useEffect(() => {
+    getPermission();
+  }, []);
+
+  function getPermission(){
+    const q = query(colUserRef, where("username","==",uname));  
+    let userRole= [];
+    getDocs(q).then(async (response) => {
+      userRole =  response.docs.map((doc) => ({
+      permission: doc.data().canEdit,
+    }));  
+    setPermission(userRole[0].permission);
+  })
+  }
+
   const actionColumn = [
     {
       field: "action",
@@ -52,6 +69,7 @@ const ChatbotDatatable = () => {
           <button
               className="updateButton"
               onClick={() => navigate('/updateChatbot',{state: {qid:params.row.id}})}
+              hidden={permission==="true"? false:true}
             >
               Edit
             </button>

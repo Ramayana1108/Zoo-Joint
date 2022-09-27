@@ -10,13 +10,15 @@ import {
   getDocs,
   deleteDoc,
   doc,
-  onSnapshot,
+  onSnapshot,where, query
 } from "firebase/firestore";
 import { db } from "../../services/firebase-config";
 
 const AboutusDatatable = () => {
   const navigate = useNavigate();
-
+  const colUserRef = collection(db,"Users");
+  const uname = sessionStorage.getItem("username");
+  const [permission,setPermission] = useState();
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -41,6 +43,22 @@ const AboutusDatatable = () => {
     };
   }, []);
 
+  useEffect(() => {
+    getPermission();
+  }, []);
+
+
+  function getPermission(){
+    const q = query(colUserRef, where("username","==",uname));  
+    let userRole= [];
+    getDocs(q).then(async (response) => {
+      userRole =  response.docs.map((doc) => ({
+      permission: doc.data().canEdit,
+    }));  
+    setPermission(userRole[0].permission);
+  })
+  }
+
   const actionColumn = [
     {
       field: "action",
@@ -51,7 +69,7 @@ const AboutusDatatable = () => {
           <div className="cellAction"> 
           <button
               className="updateButton"
-              hidden={params.row.role === 'Admin' ? true : false}
+              hidden={permission==="true"? false:true}
               onClick={() => navigate('/updateaboutus',{state: {abtid:params.row.id}})}
             >
               Edit
