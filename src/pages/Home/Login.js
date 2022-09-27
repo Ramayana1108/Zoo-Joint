@@ -20,7 +20,9 @@ import { FunctionsOutlined } from "@mui/icons-material";
 
 const Login = () => {
   const [uname, setUName] = useState("");
-  const [password, setPassword] = useState();
+  const [password, setPassword] = useState("");
+  const [dbUname, setDbUName] = useState("");
+  const [dbPassword, setDbPassword] = useState("");
   const [usernameError, setUsernameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [data, setData] = useState([]);
@@ -55,8 +57,11 @@ const Login = () => {
     const q = query(colRef, where("username","==",uname));  
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach(async (doc)=>{
+      
       setData(doc.data());  
     });
+
+    console.log(data)
 
     if(uname === data.username){
       bcrypt.compare(password,data.password, function(err,res){
@@ -66,6 +71,7 @@ const Login = () => {
           setPasswordError("Incorrect Password!")
         }else{
           setPasswordError("Password Match")
+          console.log(data)
           window.sessionStorage.setItem("username", data.username);
           window.sessionStorage.setItem("role", data.role);
   
@@ -80,6 +86,8 @@ const Login = () => {
       
     }else{
       setUsernameError("User does not exist!");
+      
+      
 
     }
 

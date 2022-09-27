@@ -112,7 +112,8 @@ export function RestoreModal({closeRestoreModal,animalId}){
             deleteObject(sound_url)  
           }
           
-        }).then(()=>{        
+        }).then(()=>{    
+            deleteDoc(doc(db,"animals/"+animalId+"/animal_quiz/quiz1"));
             deleteDoc(doc(db,"animals/"+animalId+"/animal_quiz/quiz2"));
             deleteDoc(doc(db,"animals/"+animalId+"/animal_quiz/quiz3"));
             deleteDoc(doc(db,"animals",animalId));          

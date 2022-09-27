@@ -570,7 +570,7 @@ return (
             name="answer"
             className="form-control mt-1"
             placeholder="Enter Answer" 
-            alue={quiz3.answer} onChange={handleInputChangeQuiz3}/>
+            value={quiz3.answer} onChange={handleInputChangeQuiz3}/>
 
           <br></br>
           <label>Explanation</label>
