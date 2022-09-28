@@ -12,7 +12,7 @@ export const animalColumns = [
       renderCell: (params) => {
         return (
           <div className="cellWithImg" >
-            <img width="300" height="225 " 
+            <img width="250" height="250" 
              className="cellImg" src={params.row.animal_imageurl} />
           </div>
         );

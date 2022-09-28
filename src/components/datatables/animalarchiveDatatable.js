@@ -1,5 +1,5 @@
 import React from "react";
-import "../datatables/Css/datatable.scss"
+import "../datatables/Css/animalarchiveDatatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 import { animalColumns } from "../datatablesource/animalsarchive_DatatableSource";
 import { useEffect, useState } from "react";
