@@ -68,7 +68,9 @@ const AnimalarchiveDatatable = () => {
     {
       field: "action",
       headerName: "Action",
-      width: 200,
+      headerAlign: 'center',
+      align: 'center',
+      width:300,
       renderCell: (params) => {
         return (
           <div className="cellAction">         
@@ -79,7 +81,6 @@ const AnimalarchiveDatatable = () => {
             >
               Restore
             </div>
-
             <button
               className="deleteButton"
               onClick={() => {setDeleteModalOpen(true);setId(params.row.id);}}
@@ -102,13 +103,20 @@ const AnimalarchiveDatatable = () => {
         <h1 style={{color: "black"}}>Animal Archives</h1>
       </div>
       <input type="text" onChange={ (e) => setSearch(e.target.value)} placeholder="Search" className="search-bar"/>
+      
       <DataGrid
         className="datagrid"
         rows={filteredData}
         columns={animalColumns.concat(actionColumn)}
-        pageSize={9}
-        rowsPerPageOptions={[9]}
+        pageSize={5}
+        rowsPerPageOptions={[5]}
+        disableColumnFilter={true}
+        disableColumnMenu={true}
+        disableColumnSelector={true}
+        sortable={false}
+      
       />
+      
       {
         restoreModalOpen &&(<RestoreModal closeRestoreModal={()=>setRestoreModalOpen(false)} animalId ={id}/>)
       }

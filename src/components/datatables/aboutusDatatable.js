@@ -91,7 +91,7 @@ const AboutusDatatable = () => {
         columns={userColumns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}
-        
+        getRowHeight={() => 'auto'} 
       />
       </div>
   );

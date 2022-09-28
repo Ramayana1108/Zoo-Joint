@@ -79,7 +79,11 @@ const AnimalDatatable = () => {
     {
       field: "action",
       headerName: "Action",
+      headerAlign: 'center',
+      align: 'center',
+      flex:.5,
       width: 200,
+      sort:false,
       renderCell: (params) => {
         return (
           <div className="cellAction"> 
@@ -116,13 +120,17 @@ const AnimalDatatable = () => {
       </div>
       <input type="text" onChange={ (e) => setSearch(e.target.value)} placeholder="Search" className="search-bar"/>
       <DataGrid
-        rowHeight={150}
+        rowHeight={400}
         autoHeight
         className="datagrid"
         rows={filteredData}
         columns={animalColumns.concat(actionColumn)}
         pageSize={5}
         rowsPerPageOptions={[5]}
+        disableColumnFilter={true}
+        disableColumnMenu={true}
+        disableColumnSelector={true}
+        hideSortIcons={true}
       />
       {
         archiveModalOpen &&(<ArchiveModal closeArchiveModal={()=>setArchiveModalOpen(false)} animalId ={id}/>)

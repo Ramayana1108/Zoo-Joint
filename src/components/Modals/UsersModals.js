@@ -133,7 +133,7 @@ export function DeleteModal({closeDeleteModal,userId}){
   }
 
 
-  export function UpdateUserModal({closeUpdateUserModal,data,canEdit,id}){
+  export function UpdateUserModal({closeUpdateUserModal,password,canEdit,id}){
     
     const navigate = useNavigate();
 
@@ -142,18 +142,30 @@ export function DeleteModal({closeDeleteModal,userId}){
     //update Database
     function HandleUpdate(e){
         e.preventDefault();
-        console.log(canEdit);
-        console.log(id);
-        updateDoc(docRef,{
+
+        if(password === ""){
+          updateDoc(docRef,{
             canEdit:canEdit,
-            password: String(bcrypt.hashSync(data.password,10))
-        } ).then(response => {
-          alert("Successfully Updated")
-          closeUpdateUserModal();
-          navigate("/users");
+         } ).then(response => {
+           alert("Successfully Updated")
+           closeUpdateUserModal();
+           navigate("/users");
         }).catch(error =>{
-          console.log(error.message)
-        })
+           console.log(error.message)
+         })
+        }else{
+          updateDoc(docRef,{
+            canEdit:canEdit,
+            password: String(bcrypt.hashSync(password,10))
+         } ).then(response => {
+           alert("Successfully Updated")
+           closeUpdateUserModal();
+           navigate("/users");
+        }).catch(error =>{
+           console.log(error.message)
+         })
+        }
+  
     }
 
 

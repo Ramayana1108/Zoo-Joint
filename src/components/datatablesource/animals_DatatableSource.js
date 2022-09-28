@@ -3,12 +3,16 @@ import { autocompleteClasses } from "@mui/material";
 export const animalColumns = [
     {
       field: "animal_imageurl",
-      headerName: "Image",
+      headerName: "Image",     
+      headerAlign: 'center',
+      align: 'center',
+      flex:1,
       width:300,
+      sort:false,
       renderCell: (params) => {
         return (
           <div className="cellWithImg" >
-            <img width="250" height="150" 
+            <img width="300" height="225 " 
              className="cellImg" src={params.row.animal_imageurl} />
           </div>
         );
@@ -17,13 +21,22 @@ export const animalColumns = [
     {
       field: "animal_name",
       headerName: "Name",
-      width: 230,
+      headerAlign: 'center',
+      align: 'center',
+      flex:.75,
+      width:300,
+      sort:false,
     },
   
     {
       field: "animal_enclosure",
       headerName: "Enclosure",
-      width: 100,
+      headerAlign: 'center',
+      align: 'center',
+      flex:.75,
+      width:300,
+      sort:false,
     },
+
   ];
   

@@ -19,6 +19,7 @@ const UserUpdate = () => {
     //kuha data from firebase
     const [data, setData] = useState("");
     const [values, setValues] = useState("");
+    const [password, setPassword]= useState("");
     const [canEdit, setCanEdit] = useState("");
     
     const [updateUserModalOpen, setUpdateUserModalOpen] = useState(false);
@@ -30,7 +31,7 @@ const UserUpdate = () => {
             const newData = doc.data();
             setData(newData);
             setValues(newData);
-            setCanEdit(String(newData.canEdit));            
+            setCanEdit(String(newData.canEdit));     
         });
         }, []);
         
@@ -110,7 +111,7 @@ const UserUpdate = () => {
                 name="password"
                 className="form-control mt-1"
                 placeholder="Enter New Password"
-                onChange={handleInputChange}
+                onChange={(e)=>setPassword(e.target.value)}
               />
             </div>
 
@@ -131,7 +132,7 @@ const UserUpdate = () => {
             <br></br>
             <div className="edituser-btn-add">
             {/*<div className="login-btn-add">*/}
-              <button onClick={(e)=>{e.preventDefault(); setUpdateUserModalOpen(true); setCanEdit(values.canEdit)}} type="submit" className="btn btn-primary-add">
+              <button onClick={(e)=>{e.preventDefault(); setUpdateUserModalOpen(true); setCanEdit(values.canEdit); }} type="submit" className="btn btn-primary-add">
                 Save
               </button>
               
@@ -146,7 +147,7 @@ const UserUpdate = () => {
           </div>
         </form>
         {
-         updateUserModalOpen &&(<UpdateUserModal closeUpdateUserModal={()=>setUpdateUserModalOpen(false)} data ={values} canEdit={canEdit} id={uid}/>)
+         updateUserModalOpen &&(<UpdateUserModal closeUpdateUserModal={()=>setUpdateUserModalOpen(false)} password ={password} canEdit={canEdit} id={uid}/>)
       }
       </div>
           </NavWrapper>
