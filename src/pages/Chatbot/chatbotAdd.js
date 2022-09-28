@@ -4,10 +4,13 @@ import React,{useState} from "react";
 import { Link, useNavigate } from 'react-router-dom'
 import NavWrapper from "../../components/navbar/NavWrapper";
 import "./chatbotAdd.scss"
+import { NewModal } from "../../components/Modals/ChatbotModal";
 
 const NewQA = () => {
-    const [isShown, setIsSHown] = useState(false);
+    const [qError, setQError] = useState("");
+    const [aError, setAError] = useState("");
     const [values, setValues] = useState([""]);
+    const [createQModalOpen, setCreateQModalOpen] = useState(false);
 
      //Redirecting
      const navigate = useNavigate();
@@ -22,21 +25,22 @@ const NewQA = () => {
 
     const AddQA = (e) =>{
         e.preventDefault();
-
-        addDoc(collection(db, "chatbot"), {
-            question: values.question,
-            answer: values.answer,
-           
-         })
-         .then(() => {
-           alert('Success' );
-           navigate("/chatbot")
-         })
-         .catch((error) => {
-           alert(error.message);
-         });
-
+        
+        if (!values.question && !values.answer ){
+          setQError("Please fill out this field.");
+          setAError("Please fill out this field.");
+        }else if(values.question !=="" && !values.answer ){
+          setQError("");
+          setAError("Please fill out this field.");
+        }else if(!values.question  && values.answer !=="" ){
+          setQError("Please fill out this field.");
+          setAError("");
+        }else{
+          setQError("");
+          setAError("");
+          setCreateQModalOpen(true);
          
+        }     
     }
      //cancel Button
      function Cancel(){
@@ -56,24 +60,26 @@ const NewQA = () => {
               <label>Question</label>
               <input
                 type="text"
-                className="form-control mt-1"
+                className={`form-control mt-1 ${qError ? 'is-invalid':  ''}`}
                 placeholder="Enter question"
                 name="question" 
                 value={values.question} 
                 onChange={handleInputChange}
               />
+              <div className="error-text">{qError}</div>
             </div>
 
             <div className="form-group mt-3">
               <label>Answer</label>
               <input
                 type="answer"
-                className="form-control mt-1"
+                className={`form-control mt-1 ${aError ? 'is-invalid':  ''}`}
                 placeholder="Enter answer"
                 name="answer" 
                 value={values.answer} 
                 onChange={handleInputChange}
               />
+              <div className="error-text">{aError}</div>
             </div>
             <br></br>
             
@@ -92,6 +98,9 @@ const NewQA = () => {
             </div>
           </div>
         </form>
+        {
+         createQModalOpen &&(<NewModal closeNewModal={()=>setCreateQModalOpen(false)} question ={values.question} answer={values.answer}/>)
+      }
       </div>
       </NavWrapper>
     );

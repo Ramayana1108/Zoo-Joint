@@ -6,6 +6,7 @@ import { collection, query, where,getDocs, doc, getDoc,updateDoc, QuerySnapshot 
 import firebase from 'firebase/compat/app';
 import 'firebase/firestore';
 import NavWrapper from "../../components/navbar/NavWrapper";
+import { UpdateModal } from "../../components/Modals/ChatbotModal";
 import "./chatbotAdd.scss"
 
 const ChatbotUpdate = () => {
@@ -19,6 +20,7 @@ const ChatbotUpdate = () => {
     //kuha data from firebase
     const [data, setData] = useState("");
     const [values, setValues] = useState("");
+    const [updateQModalOpen, setUpdateQModalOpen] = useState(false);
 
     const docRef = doc(db,'chatbot',qid);
     
@@ -42,16 +44,23 @@ const ChatbotUpdate = () => {
     //update Database
     function HandleUpdate(e){
         e.preventDefault();
-        updateDoc(docRef,{
-            question: String(values.question),
-            answer: String(values.answer),
-           
-        } ).then(response => {
-          alert("Successfully Updated")
-          navigate("/chatbot");
-        }).catch(error =>{
-          console.log(error.message)
-        })
+        
+        
+        if (!values.question && !values.answer ){
+          setQError("Please fill out this field.");
+          setAError("Please fill out this field.");
+        }else if(values.question !=="" && !values.answer ){
+          setQError("");
+          setAError("Please fill out this field.");
+        }else if(!values.question  && values.answer !=="" ){
+          setQError("Please fill out this field.");
+          setAError("");
+        }else{
+          setQError("");
+          setAError("");
+          setUpdateQModalOpen(true);
+         
+        }     
     }
 
     //cancel Button
@@ -72,24 +81,26 @@ const ChatbotUpdate = () => {
               <label>Question</label>
               <input
                 type="text"
-                className="form-control mt-1"
+                className={`form-control mt-1 ${qError ? 'is-invalid':  ''}`}
                 placeholder="Enter question"
                 name="question" 
                 value={values.question} 
                 onChange={handleInputChange}
               />
+               <div className="error-text">{qError}</div>
             </div>
 
             <div className="form-group mt-3">
               <label>Answer</label>
               <input
                 type="answer"
-                className="form-control mt-1"
+                className={`form-control mt-1 ${aError ? 'is-invalid':  ''}`}
                 placeholder="Enter answer"
                 name="answer" 
                 value={values.answer} 
                 onChange={handleInputChange}
               />
+              <div className="error-text">{aError}</div>
             </div>
             <br></br>
             <div className="addChatques-btn-add">
@@ -107,6 +118,9 @@ const ChatbotUpdate = () => {
             </div>
           </div>
         </form>
+        {
+        updateQModalOpen &&(<UpdateModal closeUpdateModal={()=>setUpdateQModalOpen(false)} question ={values.question} answer={values.answer} questionid={qid}/>)
+      }
       </div>
       </NavWrapper>
     );

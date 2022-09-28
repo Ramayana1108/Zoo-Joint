@@ -20,6 +20,12 @@ const NewUser = () => {
     const [values, setValues] = useState(initialValues);
     const [data, setData] = useState();
     const [createUserModalOpen, setCreateUserModalOpen] = useState(false);
+    const [fnameError, setFnameError] = useState("");
+    const [lnameError, setLnameError] = useState("");
+    const [unameError, setUnameError] = useState("");
+    const [passError, setPassError] = useState("");
+
+    const regex = "/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/";
 
      //Redirecting
      const navigate = useNavigate();
@@ -42,6 +48,50 @@ const NewUser = () => {
      function Cancel(){
       navigate("/users")
   }
+
+  const conditionalStatements = (e) =>{
+ 
+
+    if(!values.first_name ){
+      
+      setFnameError("Please fill out this field.");
+    }else{
+      
+      setFnameError("");
+    }
+
+    if(!values.last_name){
+      
+      setLnameError("Please fill out this field.");
+    }else{
+      
+      setLnameError("");
+    }
+
+    if(!values.username){
+     
+      setUnameError("Please fill out this field.");
+    }else{
+    
+      setUnameError("");
+    }
+
+    if(!values.password){
+      
+      setPassError("Please fill out this field.");
+    }else{
+      
+      setPassError("");
+    }
+
+    if(fnameError !=="" && lnameError !=="" && unameError !=="" && passError!=="" ){
+      e.preventDefault();
+      setCreateUserModalOpen(true); setData(values)
+    }
+   
+   
+    
+  }
     
 
     return(
@@ -57,38 +107,42 @@ const NewUser = () => {
               <input
                 type="string"
                 name="first_name"
-                className="form-control mt-1"
+                className={`form-control mt-1 ${fnameError ? 'is-invalid':  ''}`}
                 placeholder="Enter First Name"
                 value={values.first_name}
                 onChange={handleInputChange}
                 required
               />
-
+              <div className="error-text">{fnameError}</div>
             </div>
+
             <div className="form-group mt-3">
               <label>Last Name</label>
               <input
                 type="text"
                 name="last_name"
-                className="form-control mt-1"
+                className={`form-control mt-1 ${lnameError ? 'is-invalid':  ''}`}
                 placeholder="Enter Last Name"
                 value={values.last_name} 
                 onChange={handleInputChange}
                 required
               />
+              <div className="error-text">{lnameError}</div>
             </div>
+            
 
             <div className="form-group mt-3">
               <label>Username</label>
               <input
                 type="text"
                 name="username"
-                className="form-control mt-1"
+                className={`form-control mt-1 ${unameError? 'is-invalid':  ''}`}
                 placeholder="Enter Username"
                 value={values.username} 
                 onChange={handleInputChange}
                 required
               />
+              <div className="error-text">{unameError}</div>
             </div>
 
             <div className="form-group mt-3">
@@ -96,12 +150,13 @@ const NewUser = () => {
               <input
                 type={isShown ? "text" : "password"}
                 name="password"
-                className="form-control mt-1"
+                className={`form-control mt-1 ${passError ? 'is-invalid':  ''}`}
                 placeholder="Enter Password"
                 value={values.password} 
                 onChange={handleInputChange}
                 required
               />
+              <div className="error-text">{passError}</div>
             </div>
 
             <div class="right">
@@ -110,7 +165,7 @@ const NewUser = () => {
             </div>
             <br></br>
             <div className="newusers-btn-add">
-              <button onClick={(e)=>{e.preventDefault(); setCreateUserModalOpen(true); setData(values)}} type="submit" className="btn btn-primary-add">
+              <button onClick={conditionalStatements} type="submit" className="btn btn-primary-add">
                 Register
               </button>
               <button onClick={Cancel} className="btn btn-primary-cancel">
