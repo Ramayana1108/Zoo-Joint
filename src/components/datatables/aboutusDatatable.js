@@ -63,7 +63,10 @@ const AboutusDatatable = () => {
     {
       field: "action",
       headerName: "Action",
+      headerAlign: 'center',
+      align: 'center',
       width: 200,
+      flex:.75,
       renderCell: (params) => {
         return (
           <div className="cellAction"> 
@@ -86,12 +89,15 @@ const AboutusDatatable = () => {
         <h1 style={{color: "black"}}>About Us</h1>
       </div>
       <DataGrid
+        rowHeight={400}
+        rowsPerPageOptions={[1]}
         className="datagrid"
         rows={data}
         columns={userColumns.concat(actionColumn)}
-        pageSize={9}
-        rowsPerPageOptions={[9]}
-        getRowHeight={() => 'auto'} 
+        disableColumnFilter={true}
+        disableColumnMenu={true}
+        disableColumnSelector={true}
+        hideFooter={true} 
       />
       </div>
   );

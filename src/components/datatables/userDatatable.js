@@ -65,6 +65,9 @@ const Datatable = () => {
       field: "action",
       headerName: "Action",
       width: 200,
+      headerAlign: 'center',
+      align: 'center',
+      flex:.75,
       renderCell: (params) => {
         return (
           <div className="cellAction"> 

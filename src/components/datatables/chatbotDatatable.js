@@ -63,6 +63,9 @@ const ChatbotDatatable = () => {
       field: "action",
       headerName: "Action",
       width: 200,
+      headerAlign: 'center',
+      align: 'center',
+      flex:.40,
       renderCell: (params) => {
         return (
           <div className="cellAction"> 

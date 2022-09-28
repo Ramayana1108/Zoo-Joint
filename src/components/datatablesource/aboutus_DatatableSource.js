@@ -2,8 +2,9 @@ export const userColumns = [
   {
     field: "abt_image",
     headerName: "Image",
-    width: 400,
-    height: 300,
+    headerAlign: 'center',
+    align: 'center',
+    flex:1,
    
     renderCell: (params) => {
       return (
@@ -15,25 +16,11 @@ export const userColumns = [
     },
   },
   {
-    field: "abt_email",
-    headerName: "Email",
-    width: 230,
-  },
-
-  {
-    field: "abt_address",
-    headerName: "Address",
-    width: 100,
-  },
-  {
-    field: "abt_website",
-    headerName: "Website Link",
-    width: 100,
-  },
-  {
     field: "abt_description",
     headerName: "Description",
-    width: 500,
+    headerAlign: 'center',
+    align: 'center',
+    flex:1,
   },
   
 ];

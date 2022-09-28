@@ -130,7 +130,7 @@ const AnimalDatatable = () => {
         disableColumnFilter={true}
         disableColumnMenu={true}
         disableColumnSelector={true}
-        hideSortIcons={true}
+      
       />
       {
         archiveModalOpen &&(<ArchiveModal closeArchiveModal={()=>setArchiveModalOpen(false)} animalId ={id}/>)
