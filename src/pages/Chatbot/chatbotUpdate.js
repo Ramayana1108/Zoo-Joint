@@ -20,6 +20,8 @@ const ChatbotUpdate = () => {
     //kuha data from firebase
     const [data, setData] = useState("");
     const [values, setValues] = useState("");
+    const [qError, setQError] = useState("");
+    const [aError, setAError] = useState("");
     const [updateQModalOpen, setUpdateQModalOpen] = useState(false);
 
     const docRef = doc(db,'chatbot',qid);
