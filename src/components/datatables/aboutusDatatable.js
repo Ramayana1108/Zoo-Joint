@@ -18,7 +18,7 @@ const AboutusDatatable = () => {
   const navigate = useNavigate();
   const colUserRef = collection(db,"Users");
   const uname = sessionStorage.getItem("username");
-  const [permission,setPermission] = useState();
+  const [permission, setPermission] = useState();
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -69,7 +69,7 @@ const AboutusDatatable = () => {
           <div className="cellAction"> 
           <button
               className="updateButton"
-              hidden={permission==="true"? false:true}
+              hidden={String(permission)==="true"? false:true}
               onClick={() => navigate('/updateaboutus',{state: {abtid:params.row.id}})}
             >
               Edit

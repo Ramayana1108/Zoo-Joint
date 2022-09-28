@@ -110,7 +110,7 @@ const AnimalDatatable = () => {
     <div className="datatable">
       <div className="datatableTitle">
       <h1 style={{color: "black"}}>Animals</h1>
-      <Link to="/newanimals" className="link">
+      <Link to="/newanimals" className="link" hidden={String(permission)==="true"? false:true}>
           Add New
         </Link>
       </div>

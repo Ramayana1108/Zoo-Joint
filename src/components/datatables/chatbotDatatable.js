@@ -69,7 +69,7 @@ const ChatbotDatatable = () => {
           <button
               className="updateButton"
               onClick={() => navigate('/updateChatbot',{state: {qid:params.row.id}})}
-              hidden={permission==="true"? false:true}
+              hidden={String(permission)==="true"? false:true}
             >
               Edit
             </button>
@@ -88,7 +88,7 @@ const ChatbotDatatable = () => {
     <div className="datatable">
       <div className="datatableTitle">
         <h1 style={{color: "black"}}>Chatbot</h1>
-      <Link to="/addChatbot" className="link">
+      <Link to="/addChatbot" className="link"   hidden={String(permission)==="true"? false:true}>
           Add New
         </Link>
       </div>
