@@ -4,6 +4,7 @@ import { db, storage } from "../../services/firebase-config";
 import { collection, addDoc,doc,setDoc,updateDoc } from "firebase/firestore"; 
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { Link, useNavigate } from 'react-router-dom'
+import "./newAnimal.scss";
 
 const  NewAnimal = () => {
 
@@ -515,16 +516,18 @@ const  NewAnimal = () => {
             value={quiz3.explanation} onChange={handleInputChangeQuiz3}/>
           
           <br></br>
-          <div className="login-btn-add">
+          <div className="newanimal-btn-add">
+          {/*<div className="login-btn-add">*/}
           <button onClick={AddAnimal} type="submit" className="btn btn-primary-add">
             Save
             </button>
-            </div>
+           {/* </div>*/}
 
-            <div className="login-btn-add">
+          {/*  <div className="login-btn-add">*/}
           <button onClick={Cancel} className="btn btn-primary-cancel">
             Cancel
             </button>
+          {/*</div>*/}
           </div>
           </div>
           </form>

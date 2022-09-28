@@ -107,7 +107,7 @@ const AboutUsUpdate = () => {
         }
          
     return(
-      <div>
+      
       <NavWrapper>
       <h1 class="registerTitle">Edit About Us Page</h1>
       <div className="Auth-form-container-add">
@@ -173,25 +173,27 @@ const AboutUsUpdate = () => {
               onChange={(e) => setFile(e.target.files[0])}  
             />             
          {!per? "":per+"%"}      
-          </div>
+          {/*</div>*/}
           <br></br>
-          
-          <div className="login-btn-add">
+          <br></br>
+          <div className="editaboutus-btn-add">
+          {/*<div className="login-btn-add">*/}
             <button onClick={UpdateAboutus} className="btn btn-primary-add">
               Save
             </button>
             
-          </div>
+          {/*</div>*/}
 
-          <div className="login-btn-add">
+          {/*<div className="login-btn-add">*/}
             <button onClick={Cancel} className="btn btn-primary-cancel">
               Cancel
             </button>
           </div>
+          </div>
           </form>
           </div>
           </NavWrapper>
-          </div>
+          
           );
           };
 

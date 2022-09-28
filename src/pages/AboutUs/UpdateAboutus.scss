@@ -17,7 +17,13 @@
       width: 100vw;
       height: 50%;
       }
-
+      .editaboutus-btn-add {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        align-items: center; 
+      }
 }
 
 @media screen and (max-width: 600px) {
@@ -37,7 +43,14 @@
         width: 100vw;
         height: 65%;
         }
-
+        .editaboutus-btn-add {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          flex-direction: row;
+          align-items: center;
+           
+        }
   }
 
 .Login {
@@ -133,6 +146,7 @@ label {
   background-color: white;
   border-radius: 10px;
   color: #668d3c;
+  margin-left: 10px;
 }
 
 .btn-primary-cancel {

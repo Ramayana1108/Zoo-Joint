@@ -6,7 +6,7 @@ import { collection, query, where,getDocs, doc, getDoc,updateDoc, QuerySnapshot 
 import firebase from 'firebase/compat/app';
 import 'firebase/firestore';
 import NavWrapper from "../../components/navbar/NavWrapper";
-
+import "./chatbotAdd.scss"
 
 const ChatbotUpdate = () => {
     //Redirecting
@@ -91,19 +91,20 @@ const ChatbotUpdate = () => {
                 onChange={handleInputChange}
               />
             </div>
-            
-            <div className="login-btn-chatadd">
+            <br></br>
+            <div className="addChatques-btn-add">
+            {/*<div className="login-btn-chatadd">*/}
               <button onClick={HandleUpdate} className="btn btn-primary-add">
                 Save
               </button>
-            </div>
+            {/*</div>*/}
 
-            <div className="login-btn-chatadd">
+            {/*<div className="login-btn-chatadd">*/}
               <button onClick={Cancel} className="btn btn-primary-cancel">
                 Cancel
               </button>
+            {/*</div>*/}
             </div>
-
           </div>
         </form>
       </div>

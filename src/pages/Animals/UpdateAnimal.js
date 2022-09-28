@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { collection, query, where,getDocs, doc, getDoc,updateDoc, QuerySnapshot,onSnapshot, setDoc } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL,getStorage,deleteObject  } from "firebase/storage";
 import 'firebase/firestore';
-
+import "./UpdateAnimal.scss";
 import NavWrapper from "../../components/navbar/NavWrapper";
 
 
@@ -582,16 +582,18 @@ return (
             value={quiz3.explanation} onChange={handleInputChangeQuiz3}/>
           
           <br></br>
-          <div className="login-btn-add">
+          <div className="editanimal-btn-add">
+          {/*<div className="login-btn-add">*/}
           <button onClick={UpdateAnimal} type="submit" className="btn btn-primary-add">
             Save
             </button>
-            </div>
+          {/*</div>*/}
 
-            <div className="login-btn-add">
+          {/*  <div className="login-btn-add">*/}
           <button onClick={Cancel} className="btn btn-primary-cancel">
             Cancel
             </button>
+          {/*</div>*/}
           </div>
           </div>
           </form>

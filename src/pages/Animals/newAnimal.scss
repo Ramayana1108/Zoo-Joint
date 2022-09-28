@@ -17,6 +17,13 @@
         width: 100vw;
         height: 50%;
         }
+        .newanimal-btn-add {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          flex-direction: row;
+          align-items: center; 
+        }
   
   }
   
@@ -37,6 +44,13 @@
           width: 100vw;
           height: 65%;
           }
+          .newanimal-btn-add {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+            align-items: center; 
+          }         
   
     }
   

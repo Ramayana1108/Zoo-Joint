@@ -5,7 +5,7 @@ import { collection, query, where,getDocs, doc, getDoc,updateDoc, QuerySnapshot 
 import NavWrapper from "../../../components/navbar/NavWrapper";
 import { UpdateUserModal } from "../../../components/Modals/UsersModals";
 import bcrypt from 'bcryptjs';
-
+import "./userUpdate.scss";
 
 
 const UserUpdate = () => {
@@ -127,18 +127,21 @@ const UserUpdate = () => {
             <option value={false}>No</option>
              </select>
             </div>
-            
-            <div className="login-btn-add">
+            <br></br>
+            <br></br>
+            <div className="edituser-btn-add">
+            {/*<div className="login-btn-add">*/}
               <button onClick={(e)=>{e.preventDefault(); setUpdateUserModalOpen(true); setCanEdit(values.canEdit)}} type="submit" className="btn btn-primary-add">
                 Save
               </button>
               
-            </div>
+            {/*</div>*/}
 
-            <div className="login-btn-add">
+            {/*<div className="login-btn-add">*/}
               <button onClick={Cancel} className="btn btn-primary-cancel">
                 Cancel
               </button>
+              {/*</div>*/}
             </div>
           </div>
         </form>

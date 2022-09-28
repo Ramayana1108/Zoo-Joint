@@ -75,19 +75,21 @@ const NewQA = () => {
                 onChange={handleInputChange}
               />
             </div>
+            <br></br>
             
-            <div className="login-btn-chatadd">
+            <div className="addChatques-btn-add">
+            {/*<div className="login-btn-chatadd">*/}
               <button onClick={AddQA} className="btn btn-primary-add">
                 Save
               </button>
-            </div>
+            {/*</div>*/}
 
-            <div className="login-btn-chatadd">
+            {/*<div className="login-btn-chatadd">*/}
               <button onClick={Cancel} className="btn btn-primary-cancel">
                 Cancel
               </button>
+           {/* </div>*/}
             </div>
-
           </div>
         </form>
       </div>

@@ -16,6 +16,13 @@
         margin-top: 2%;  
         width: 100vw;
         height: 50%;
+        }
+        .addChatques-btn-add {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          flex-direction: row;
+          align-items: center; 
         }   
   }
 
@@ -36,6 +43,14 @@
         padding: 2%;  
         width: 100vw;
         height: 50%;
+        }
+        
+        .addChatques-btn-add {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          flex-direction: row;
+          align-items: center; 
         }    
     }
 .NewQA {
