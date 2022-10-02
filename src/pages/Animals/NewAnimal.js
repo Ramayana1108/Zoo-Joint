@@ -518,18 +518,16 @@ const  NewAnimal = () => {
             value={quiz3.explanation} onChange={handleInputChangeQuiz3}/>
           
           <br></br>
+          <br></br>
           <div className="newanimal-btn-add">
-          {/*<div className="login-btn-add">*/}
           <button onClick={AddAnimal} type="submit" className="btn btn-primary-add">
             Save
             </button>
-           {/* </div>*/}
-
-          {/*  <div className="login-btn-add">*/}
+           
           <button onClick={Cancel} className="btn btn-primary-cancel">
             Cancel
             </button>
-          {/*</div>*/}
+          
           </div>
           </div>
           </form>

@@ -45,10 +45,10 @@
           height: 65vh;
           }
 
-  .edituser-btn-add {
+  .newuser-btn-add {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly !important;
     flex-direction: row;
     align-items: center; 
   }
@@ -132,27 +132,20 @@
   }
   
   .btn-primary-add {
-    display: flex;
-    width: 40%;
-    align-items: center;
-    justify-content: center;
     padding: 5px 50px;
     border-color: #668d3c;
     background-color: white;
-    border-radius: 10px !important;
+    border-radius: 10px;
     color: #668d3c;
+
   }
   
   .btn-primary-cancel {
-      display: flex;
-      width: 40%;
-      align-items: center;
-      justify-content: center;
-      padding: 5px 50px;
-      border-color: #c4391d;
-      background-color: white;
-      border-radius: 10px !important;
-      color: #c4391d;
+    padding: 5px 50px;
+    border-color: #c4391d;
+    background-color: white;
+    border-radius: 10px;
+    color: #c4391d;
     }
   
   .btn-primary-add:hover {

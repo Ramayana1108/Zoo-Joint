@@ -82,19 +82,17 @@ const NewQA = () => {
               <div className="error-text">{aError}</div>
             </div>
             <br></br>
+            <br></br>
             
             <div className="addChatques-btn-add">
-            {/*<div className="login-btn-chatadd">*/}
               <button onClick={AddQA} className="btn btn-primary-add">
                 Save
               </button>
-            {/*</div>*/}
-
-            {/*<div className="login-btn-chatadd">*/}
+            
               <button onClick={Cancel} className="btn btn-primary-cancel">
                 Cancel
               </button>
-           {/* </div>*/}
+      
             </div>
           </div>
         </form>

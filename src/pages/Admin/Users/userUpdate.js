@@ -156,19 +156,14 @@ const UserUpdate = () => {
             </div>
             <br></br>
             <br></br>
-            <div className="edituser-btn-add">
-            {/*<div className="login-btn-add">*/}
+            <div className="newuser-btn-add">
               <button onClick={updateUser} type="submit" className="btn btn-primary-add">
                 Save
               </button>
               
-            {/*</div>*/}
-
-            {/*<div className="login-btn-add">*/}
               <button onClick={Cancel} className="btn btn-primary-cancel">
                 Cancel
               </button>
-              {/*</div>*/}
             </div>
           </div>
         </form>

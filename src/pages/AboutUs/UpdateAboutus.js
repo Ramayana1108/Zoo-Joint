@@ -174,18 +174,13 @@ const AboutUsUpdate = () => {
               onChange={(e) => setFile(e.target.files[0])}  
             />             
          {!per? "":per+"%"}      
-          {/*</div>*/}
           <br></br>
-          <br></br>
+          <br></br><br></br>
           <div className="editaboutus-btn-add">
-          {/*<div className="login-btn-add">*/}
             <button onClick={UpdateAboutus} className="btn btn-primary-add">
               Save
             </button>
             
-          {/*</div>*/}
-
-          {/*<div className="login-btn-add">*/}
             <button onClick={Cancel} className="btn btn-primary-cancel">
               Cancel
             </button>

@@ -220,7 +220,7 @@ const NewUser = () => {
             <input id="checkbox" type="checkbox" checked={isShown}  onChange={togglePassword}/>
             </div>
             <br></br>
-            <div className="newusers-btn-add">
+            <div className="newuser-btn-add">
               <button onClick={conditionalStatements} type="submit" className="btn btn-primary-add">
                 Register
               </button>

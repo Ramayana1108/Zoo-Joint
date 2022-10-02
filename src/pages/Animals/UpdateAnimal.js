@@ -578,18 +578,16 @@ return (
             value={quiz3.explanation} onChange={handleInputChangeQuiz3}/>
           
           <br></br>
+          <br></br>
           <div className="editanimal-btn-add">
-          {/*<div className="login-btn-add">*/}
           <button onClick={UpdateAnimal} type="submit" className="btn btn-primary-add">
             Save
             </button>
-          {/*</div>*/}
-
-          {/*  <div className="login-btn-add">*/}
+          
           <button onClick={Cancel} className="btn btn-primary-cancel">
             Cancel
             </button>
-          {/*</div>*/}
+    
           </div>
           </div>
           </form>
