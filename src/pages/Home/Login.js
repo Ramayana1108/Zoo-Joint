@@ -35,7 +35,7 @@ const Login = () => {
  
   const handleSubmit = async (e)=>{
     e.preventDefault();
-    setIsSubmitted(true);
+   
     
   if(!uname && !password){
     
@@ -62,29 +62,33 @@ const Login = () => {
       }));     
     }).then(()=>{
       
-    if(uname === users[0].username){
-      bcrypt.compare(password,users[0].password, function(err,res){
-        if(err){
-          throw err;
-        }else if(!res){
-          setPasswordError("Incorrect Password!")
-        }else{
-          setPasswordError("Password Match")
-          window.sessionStorage.setItem("username", users[0].username);
-          window.sessionStorage.setItem("role", users[0].role);
-          if (users[0].role === "Staff"){
-            setPage("/animals");
-          }else{
-            setPage("/users");
-          }
+      if (users.length === 0){
+        setUsernameError("User does not exist!");
+        setPasswordError("")
+      }else{
+        if(uname === users[0].username){
+          bcrypt.compare(password,users[0].password, function(err,res){
+            if(err){
+              throw err;
+            }else if(!res){
+              setPasswordError("Incorrect Password!")
+            }else{
+              setPasswordError("Password Match")
+              window.sessionStorage.setItem("username", users[0].username);
+              window.sessionStorage.setItem("role", users[0].role);
+              if (users[0].role === "Staff"){
+                setPage("/animals");
+              }else{
+                setPage("/users");
+              }
+            }
+            
+          });
+          
         }
-        
-      });
-      
-    }else{
-      setUsernameError("User does not exist!");
-    }
- 
+
+      }
+    
     });
    
   }
@@ -115,9 +119,9 @@ const Login = () => {
         <div className="form-floating mt-3">
           <input
             type="text"
-            className={`form-control mt-1 ${isSubmitted ? usernameError ? 'is-invalid':  'is-valid' : ''}`}
+            className={`form-control mt-1 ${ usernameError ? 'is-invalid':  ''}`}
             placeholder="Enter username"
-            onChange={(e)=> {setUName(e.target.value);setUsernameError("");setIsSubmitted(false)}} 
+            onChange={(e)=> {setUName(e.target.value);setUsernameError("");}} 
             id="floatingUsername"
             required />
             <label for="floatingUsername">Username</label>
@@ -126,9 +130,9 @@ const Login = () => {
         <div className="form-floating mt-3">
           <input
              type={isShown ? "text" : "password"}
-            className={`form-control mt-1 ${isSubmitted && (usernameError || passwordError) ? 'is-invalid':  ''}`}
+            className={`form-control mt-1 ${(usernameError || passwordError) ? 'is-invalid':  ''}`}
             placeholder="Enter password"
-            onChange={(e)=> {setPassword(e.target.value); setPasswordError("");setIsSubmitted(false)}}
+            onChange={(e)=> {setPassword(e.target.value); setPasswordError("");}}
             id="floatingPassword"
             required />
              <div class="right">
