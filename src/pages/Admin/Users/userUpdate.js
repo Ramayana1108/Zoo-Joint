@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate,location,state } from 'react-router-dom'
 import { collection, query, where,getDocs, doc, getDoc,updateDoc, QuerySnapshot } from "firebase/firestore";
 import NavWrapper from "../../../components/navbar/NavWrapper";
 import { UpdateUserModal } from "../../../components/Modals/UsersModals";
-import bcrypt from 'bcryptjs';
+import validator from 'validator'
 import "./userUpdate.scss";
 
 
@@ -20,6 +20,7 @@ const UserUpdate = () => {
     const [data, setData] = useState("");
     const [values, setValues] = useState("");
     const [password, setPassword]= useState("");
+    const [passError, setPassError] = useState("");
     const [canEdit, setCanEdit] = useState("");
     
     const [updateUserModalOpen, setUpdateUserModalOpen] = useState(false);
@@ -50,6 +51,30 @@ const UserUpdate = () => {
      const togglePassword = () => {
          setIsSHown((isShown) => !isShown);
        };
+
+    const updateUser =(e)=>{
+      e.preventDefault();
+
+      if(password !==""){
+        if (validator.isStrongPassword(password, {
+          minLength: 8, minLowercase: 1,
+          minUppercase: 1, minNumbers: 1, minSymbols: 1
+        })) {
+          setPassError("");
+          setUpdateUserModalOpen(true);
+          setCanEdit(values.canEdit); 
+        } else {
+          setPassError('Password must have at least 8 characters, 1 lowercase, 1 upprecase, 1 number and a symbol')
+        }
+
+      }else{
+      setPassError("");
+      setUpdateUserModalOpen(true);
+      setCanEdit(values.canEdit); 
+      }
+
+      
+    }
 
    
     //cancel Button
@@ -113,6 +138,7 @@ const UserUpdate = () => {
                 placeholder="Enter New Password"
                 onChange={(e)=>setPassword(e.target.value)}
               />
+              {passError}
             </div>
 
             <div class="right">
@@ -132,7 +158,7 @@ const UserUpdate = () => {
             <br></br>
             <div className="edituser-btn-add">
             {/*<div className="login-btn-add">*/}
-              <button onClick={(e)=>{e.preventDefault(); setUpdateUserModalOpen(true); setCanEdit(values.canEdit); }} type="submit" className="btn btn-primary-add">
+              <button onClick={updateUser} type="submit" className="btn btn-primary-add">
                 Save
               </button>
               
