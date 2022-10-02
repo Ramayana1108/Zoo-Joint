@@ -169,6 +169,7 @@ const AboutUsUpdate = () => {
           <input
               type="file"
               name="abt_image"
+              accept="image/png, image/jpeg, image/jpg"
               id="file"
               onChange={(e) => setFile(e.target.files[0])}  
             />             

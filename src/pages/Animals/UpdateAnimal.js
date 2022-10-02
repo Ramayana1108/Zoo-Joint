@@ -253,12 +253,6 @@ const  UpdateAnimal = () => {
       });
         
 
-
-
-
-
-
-
    
    
   };
@@ -409,6 +403,7 @@ return (
                         <input
                           type="file"
                           name="animal_image"
+                          accept="image/png, image/jpeg, image/jpg"
                           id="file"
                           onChange={(e) => setFile(e.target.files[0])}/>
                        
@@ -421,6 +416,7 @@ return (
                             <input
                               type="file"
                               name="animal_sound"
+                              accept=".mp3"
                               id="sound"
                               onChange={(e) => setSound(e.target.files[0])}/>
                           

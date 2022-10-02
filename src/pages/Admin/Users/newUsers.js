@@ -4,6 +4,7 @@ import { db } from "../../../services/firebase-config";
 import React,{useState} from "react";
 import { Link, useNavigate } from 'react-router-dom'
 import NavWrapper from "../../../components/navbar/NavWrapper";
+import validator from 'validator'
 import "./newUser.scss"
 import { CreateUserModal } from "../../../components/Modals/UsersModals";
 
@@ -50,47 +51,102 @@ const NewUser = () => {
   }
 
   const conditionalStatements = (e) =>{
- 
+    e.preventDefault();
 
-    if(!values.first_name ){
-      
+    if(!values.first_name && !values.last_name && !values.username && !values.password){
       setFnameError("Please fill out this field.");
-    }else{
-      
-      setFnameError("");
-    }
-
-    if(!values.last_name){
-      
       setLnameError("Please fill out this field.");
-    }else{
-      
-      setLnameError("");
-    }
-
-    if(!values.username){
-     
       setUnameError("Please fill out this field.");
-    }else{
-    
-      setUnameError("");
-    }
-
-    if(!values.password){
-      
       setPassError("Please fill out this field.");
-    }else{
-      
+    }else if (values.first_name !==""&& !values.last_name && !values.username && !values.password){
+      setFnameError("");
+      setLnameError("Please fill out this field.");
+      setUnameError("Please fill out this field.");
+      setPassError("Please fill out this field.");
+    }else if (values.first_name !==""&& values.last_name!=="" && !values.username && !values.password){
+      setFnameError("");
+      setLnameError("");
+      setUnameError("Please fill out this field.");
+      setPassError("Please fill out this field.");
+    }else if (values.first_name !==""&& !values.last_name && values.username !=="" && !values.password){
+      setFnameError("");
+      setLnameError("Please fill out this field.");
+      setUnameError("");
+      setPassError("Please fill out this field.");
+    }else if (values.first_name !==""&& !values.last_name && !values.username && values.password!==""){
+      setFnameError("");
+      setLnameError("Please fill out this field.");
+      setUnameError("Please fill out this field.");
       setPassError("");
-    }
+    }else if (values.first_name !==" "&& values.last_name !=="" && values.username !=="" && !values.password){
+      setFnameError("");
+      setLnameError("");
+      setUnameError("");
+      setPassError("Please fill out this field.");
+    }else if (values.first_name !==""&& values.last_name !=="" && !values.username  && values.password !==""){
+      setFnameError("");
+      setLnameError("");
+      setUnameError("Please fill out this field.");
+      setPassError("");
+    }else if (values.first_name !==""&& !values.last_name && values.username!=="" && values.password !==""){
+      setFnameError("");
+      setLnameError("Please fill out this field.");
+      setUnameError("");
+      setPassError("");
+    }else if (!values.first_name && values.last_name !=="" && !values.username && !values.password){
+      setFnameError("Please fill out this field.");
+      setLnameError("");
+      setUnameError("Please fill out this field.");
+      setPassError("Please fill out this field.");
+    }else if (!values.first_name && values.last_name !=="" && values.username !=="" && !values.password){
+      setFnameError("Please fill out this field.");
+      setLnameError("");
+      setUnameError("");
+      setPassError("Please fill out this field.");
+    }else if (!values.first_name && values.last_name !=="" && !values.username && values.password !=="" ){
+      setFnameError("Please fill out this field.");
+      setLnameError("");
+      setUnameError("Please fill out this field.");
+      setPassError("");
+    }else if (!values.first_name && values.last_name !=="" && values.username!=="" && values.password !=="" ){
+      setFnameError("Please fill out this field.");
+      setLnameError("");
+      setUnameError("");
+      setPassError("");
+    }else if (!values.first_name && !values.last_name  && values.username!=="" && !values.password  ){
+      setFnameError("Please fill out this field.");
+      setLnameError("Please fill out this field.");
+      setUnameError("");
+      setPassError("Please fill out this field.");
+    }else if (!values.first_name && !values.last_name  && values.username!=="" && values.password !=="" ){
+      setFnameError("Please fill out this field.");
+      setLnameError("Please fill out this field.");
+      setUnameError("");
+      setPassError("");
+    }else if (!values.first_name && !values.last_name  && !values.username && values.password !=="" ){
+      setFnameError("Please fill out this field.");
+      setLnameError("Please fill out this field.");
+      setUnameError("Please fill out this field.");
+      setPassError("");
+    }else{
+      setFnameError("");
+      setLnameError("");
+      setUnameError("");
+      setPassError("");
 
-    if(fnameError !=="" && lnameError !=="" && unameError !=="" && passError!=="" ){
-      e.preventDefault();
-      setCreateUserModalOpen(true); setData(values)
+      if (validator.isStrongPassword(values.password, {
+        minLength: 8, minLowercase: 1,
+        minUppercase: 1, minNumbers: 1, minSymbols: 1
+      })) {
+        setCreateUserModalOpen(true); setData(values)
+      } else {
+        setPassError('Password must have at least 8 characters, 1 lowercase, 1 upprecase, 1 number and a symbol')
+      }
+     
+      
+  
     }
    
-   
-    
   }
     
 
