@@ -1,10 +1,11 @@
 import "./Users.scss"
-import { collection, addDoc } from "firebase/firestore"; 
+import { collection, addDoc,where, query,getDocs, } from "firebase/firestore"; 
 import { db } from "../../../services/firebase-config";  
 import React,{useState} from "react";
 import { Link, useNavigate } from 'react-router-dom'
 import NavWrapper from "../../../components/navbar/NavWrapper";
 import validator from 'validator'
+import bcrypt from 'bcryptjs';
 import "./newUser.scss"
 import { CreateUserModal } from "../../../components/Modals/UsersModals";
 
@@ -20,13 +21,11 @@ const NewUser = () => {
     const [isShown, setIsSHown] = useState(false);
     const [values, setValues] = useState(initialValues);
     const [data, setData] = useState();
-    const [createUserModalOpen, setCreateUserModalOpen] = useState(false);
     const [fnameError, setFnameError] = useState("");
     const [lnameError, setLnameError] = useState("");
     const [unameError, setUnameError] = useState("");
     const [passError, setPassError] = useState("");
 
-    const regex = "/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/";
 
      //Redirecting
      const navigate = useNavigate();
@@ -134,14 +133,49 @@ const NewUser = () => {
       setUnameError("");
       setPassError("");
 
-      if (validator.isStrongPassword(values.password, {
-        minLength: 8, minLowercase: 1,
-        minUppercase: 1, minNumbers: 1, minSymbols: 1
-      })) {
-        setCreateUserModalOpen(true); setData(values)
-      } else {
-        setPassError('Password must have at least 8 characters, 1 lowercase, 1 upprecase, 1 number and a symbol')
+      const colRef = collection(db,"Users");
+      let users =[];
+      const q = query(colRef, where("username","==",values.username));  
+      getDocs(q).then(async (response) => {
+        users = await response.docs.map((doc) => ({
+        username: doc.data().username,
+       
+      }));     
+    }).then(()=>{
+      if (users.length === 0 ){
+        setUnameError("");
+        if (validator.isStrongPassword(values.password, {
+          minLength: 8, minLowercase: 1,
+          minUppercase: 1, minNumbers: 1, minSymbols: 1
+        })) {
+          addDoc(collection(db, "Users"), {
+            canEdit:true,
+            first_name: values.first_name,
+            last_name: values.last_name,
+            password: bcrypt.hashSync(values.password,10),
+            role:"Staff",
+            username: values.username
+         })
+         .then(() => {
+           alert('User Created' );
+           navigate("/users");
+         })
+         .catch((error) => {
+           alert(error.message);
+         });
+        } else {
+          setPassError('Password must have atleast 8 characters, 1 lowercase, 1 upprecase, 1 number and a symbol')
+        }
+
+      }else{
+        setUnameError("Username exists");
+
       }
+
+    });
+      
+
+    
      
       
   
@@ -230,9 +264,6 @@ const NewUser = () => {
             </div>
           </div>
         </form>
-        {
-         createUserModalOpen &&(<CreateUserModal closeCreateUserModalModal={()=>setCreateUserModalOpen(false)} data ={values}/>)
-      }
       </div>
           </NavWrapper>
         

@@ -1,6 +1,6 @@
 import { collection, addDoc } from "firebase/firestore"; 
 import { db } from "../../services/firebase-config";
-import React,{useState} from "react";
+import React,{useState, useEffect} from "react";
 import { Link, useNavigate } from 'react-router-dom'
 import NavWrapper from "../../components/navbar/NavWrapper";
 import "./chatbotAdd.scss"
@@ -10,7 +10,8 @@ const NewQA = () => {
     const [qError, setQError] = useState("");
     const [aError, setAError] = useState("");
     const [values, setValues] = useState([""]);
-    const [createQModalOpen, setCreateQModalOpen] = useState(false);
+    const [validator , setValidator] = useState(false);
+
 
      //Redirecting
      const navigate = useNavigate();
@@ -22,26 +23,37 @@ const NewQA = () => {
         [name]: value,
       });
     };
-
     const AddQA = (e) =>{
-        e.preventDefault();
-        
-        if (!values.question && !values.answer ){
-          setQError("Please fill out this field.");
-          setAError("Please fill out this field.");
-        }else if(values.question !=="" && !values.answer ){
-          setQError("");
-          setAError("Please fill out this field.");
-        }else if(!values.question  && values.answer !=="" ){
-          setQError("Please fill out this field.");
-          setAError("");
-        }else{
-          setQError("");
-          setAError("");
-          setCreateQModalOpen(true);
-         
-        }     
-    }
+      e.preventDefault();
+      
+      if (!values.question && !values.answer ){
+        setQError("Please fill out this field.");
+        setAError("Please fill out this field.");
+      }else if(values.question !=="" && !values.answer ){
+        setQError("");
+        setAError("Please fill out this field.");
+      }else if(!values.question  && values.answer !=="" ){
+        setQError("Please fill out this field.");
+        setAError("");
+      }else{
+        setQError("");
+        setAError("");
+          addDoc(collection(db, "chatbot"), {
+              question: values.question,
+              answer: values.answer,
+             
+           })
+           .then(() => {
+             alert('Success' );
+             navigate("/chatbot")
+           })
+           .catch((error) => {
+             alert(error.message);
+           });
+    
+       
+      }  
+    }   
      //cancel Button
      function Cancel(){
         navigate("/chatbot")
@@ -96,9 +108,7 @@ const NewQA = () => {
             </div>
           </div>
         </form>
-        {
-         createQModalOpen &&(<NewModal closeNewModal={()=>setCreateQModalOpen(false)} question ={values.question} answer={values.answer}/>)
-      }
+
       </div>
       </NavWrapper>
     );

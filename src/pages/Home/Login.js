@@ -135,12 +135,13 @@ const Login = () => {
             onChange={(e)=> {setPassword(e.target.value); setPasswordError("");}}
             id="floatingPassword"
             required />
+            <div className="passwordError">{passwordError}</div>
              <div class="right">
             <label htmlFor="checkbox">Show Password?&nbsp;</label>
             <input id="checkbox" type="checkbox" checked={isShown}  onChange={togglePassword}/>
             </div>
             <label for="floatingPassword">Password</label>
-          <div className="passwordError">{passwordError}</div>
+          
         </div>
         <div className="d-grid">
           <p className="forgot-password text-right">

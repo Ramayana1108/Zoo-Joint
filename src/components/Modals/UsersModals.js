@@ -76,61 +76,61 @@ export function DeleteModal({closeDeleteModal,userId}){
     );
   }
 
+  // export function CreateUserModal({closeCreateUserModalModal,data}){
+  //   const navigate = useNavigate();
 
-  export function CreateUserModal({closeCreateUserModalModal,data}){
-    const navigate = useNavigate();
+  //   const AddUser = (e) =>{
+  //       e.preventDefault();
 
-    const AddUser = (e) =>{
-        e.preventDefault();
+  //       addDoc(collection(db, "Users"), {
+  //           canEdit:true,
+  //           first_name: data.first_name,
+  //           last_name: data.last_name,
+  //           password: bcrypt.hashSync(data.password,10),
+  //           role:"Staff",
+  //           username: data.username
+  //        })
+  //        .then(() => {
+  //          alert('User Created' );
+  //          closeCreateUserModalModal();
+  //          navigate("/users")
+  //        })
+  //        .catch((error) => {
+  //          alert(error.message);
+  //        });
+  //   }
 
-        addDoc(collection(db, "Users"), {
-            canEdit:true,
-            first_name: data.first_name,
-            last_name: data.last_name,
-            password: bcrypt.hashSync(data.password,10),
-            role:"Staff",
-            username: data.username
-         })
-         .then(() => {
-           alert('User Created' );
-           closeCreateUserModalModal();
-           navigate("/users")
-         })
-         .catch((error) => {
-           alert(error.message);
-         });
-    }
+  //   return(
+  //       <>
+  //       <div style={OVERLAY_STYLES}/>
+  //       <div style ={MODAL_STYLES}>
+  //     <div class="CreateModal" id="modalId">
+  //     <div class="firstModal-content">
+  //       <div class="modaltitle">
+  //         <p>Create a User</p>
+  //       </div>
+  //       <div class="modaldescription">
+  //         <p>
+  //           Do you want to create user?
+  //         </p>
+  //       </div>
+  //       <div class="deleteAnimalsBtn">
+  //         <button class="deleteAnimalsBtn" onClick={AddUser}>
+  //           Yes
+  //         </button>
+  //         <button class="closeBtn"
+  //         id="closeBtn"
+  //         onClick={closeCreateUserModalModal}>
+  //           No
+  //         </button>
+  //       </div>
+  //     </div>
+  //   </div>
+  //   </div>
+  //   </>
+  //   );
+  // }
 
-    return(
-        <>
-        <div style={OVERLAY_STYLES}/>
-        <div style ={MODAL_STYLES}>
-      <div class="CreateModal" id="modalId">
-      <div class="firstModal-content">
-        <div class="modaltitle">
-          <p>Create a User</p>
-        </div>
-        <div class="modaldescription">
-          <p>
-            Do you want to create user?
-          </p>
-        </div>
-        <div class="deleteAnimalsBtn">
-          <button class="deleteAnimalsBtn" onClick={AddUser}>
-            Yes
-          </button>
-          <button class="closeBtn"
-          id="closeBtn"
-          onClick={closeCreateUserModalModal}>
-            No
-          </button>
-        </div>
-      </div>
-    </div>
-    </div>
-    </>
-    );
-  }
 
 
   export function UpdateUserModal({closeUpdateUserModal,password,canEdit,id}){

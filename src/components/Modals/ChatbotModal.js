@@ -29,54 +29,54 @@ const OVERLAY_STYLES = {
 }
 
 
-export function NewModal({closeNewModal,question,answer}){
-    const navigate = useNavigate();
-    const handleAdd= async () => {  
-        addDoc(collection(db, "chatbot"), {
-            question: question,
-            answer: answer,
+// export function NewModal({closeNewModal,question,answer}){
+//     const navigate = useNavigate();
+//     const handleAdd= async () => {  
+//         addDoc(collection(db, "chatbot"), {
+//             question: question,
+//             answer: answer,
            
-         })
-         .then(() => {
-           alert('Success' );
-           navigate("/chatbot")
-         })
-         .catch((error) => {
-           alert(error.message);
-         });
-      };
+//          })
+//          .then(() => {
+//            alert('Success' );
+//            navigate("/chatbot")
+//          })
+//          .catch((error) => {
+//            alert(error.message);
+//          });
+//       };
 
-    return(
-        <>
-        <div style={OVERLAY_STYLES}/>
-        <div style ={MODAL_STYLES}>
-      <div class="ArchiveModal" id="modalId">
-      <div class="firstModal-content">
-        <div class="modaltitle">
-          <p>New Query</p>
-        </div>
-        <div class="modaldescription">
-          <p>
-            Do you want to add new query?
-          </p>
-        </div>
-        <div class="archiveBtn">
-          <button class="archiveBtn" onClick={handleAdd}>
-            Yes
-          </button>
-          <button class="closeBtn"
-          id="closeBtn"
-          onClick={closeNewModal}>
-            No
-          </button>
-        </div>
-      </div>
-    </div>
-    </div>
-    </>
-    );
+//     return(
+//         <>
+//         <div style={OVERLAY_STYLES}/>
+//         <div style ={MODAL_STYLES}>
+//       <div class="ArchiveModal" id="modalId">
+//       <div class="firstModal-content">
+//         <div class="modaltitle">
+//           <p>New Query</p>
+//         </div>
+//         <div class="modaldescription">
+//           <p>
+//             Do you want to add new query?
+//           </p>
+//         </div>
+//         <div class="archiveBtn">
+//           <button class="archiveBtn" onClick={handleAdd}>
+//             Yes
+//           </button>
+//           <button class="closeBtn"
+//           id="closeBtn"
+//           onClick={closeNewModal}>
+//             No
+//           </button>
+//         </div>
+//       </div>
+//     </div>
+//     </div>
+//     </>
+//     );
   
-  }
+//   }
 
   export function UpdateModal({closeUpdateModal,question,answer ,questionid}){
     const navigate = useNavigate();

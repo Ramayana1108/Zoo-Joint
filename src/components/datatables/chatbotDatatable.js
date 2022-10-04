@@ -21,6 +21,8 @@ const ChatbotDatatable = () => {
   const uname = sessionStorage.getItem("username");
   const [permission,setPermission] = useState();
   const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+  const [search, setSearch] = useState(null);
 
   useEffect(() => {
     const unsub = onSnapshot(
@@ -31,7 +33,7 @@ const ChatbotDatatable = () => {
           list.push({ id: doc.id, ...doc.data() });
         });
         setData(list);
-        
+        setFilteredData(list);
       },
       (error) => {
         console.log(error);
@@ -86,6 +88,11 @@ const ChatbotDatatable = () => {
       },
     },
   ];
+
+  useEffect(() => {
+    setFilteredData(data.filter(item => item?.answer.toLowerCase().includes(search.toLowerCase()) || item?.question.toLowerCase().includes(search.toLowerCase())))
+    }, [search]);
+
   return (
   <div>
     <div className="datatable">
@@ -95,13 +102,14 @@ const ChatbotDatatable = () => {
           Add New
         </Link>
       </div>
-     
+      <input type="text" onChange={ (e) => setSearch(e.target.value)} placeholder="Search" className="search-bar"/>
+      <br></br>
       <DataGrid
         className="datagrid"
-        rows={data}
+        rows={filteredData}
         columns={chatColumns.concat(actionColumn)}
-        pageSize={9}
-        rowsPerPageOptions={[9]}
+        pageSize={8}
+        rowsPerPageOptions={[8]}
         
       />
       </div>
