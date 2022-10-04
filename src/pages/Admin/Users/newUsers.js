@@ -7,7 +7,7 @@ import NavWrapper from "../../../components/navbar/NavWrapper";
 import validator from 'validator'
 import bcrypt from 'bcryptjs';
 import "./newUser.scss"
-import { CreateUserModal } from "../../../components/Modals/UsersModals";
+
 
 
 const initialValues = {
@@ -50,7 +50,7 @@ const NewUser = () => {
   }
 
   const conditionalStatements = (e) =>{
-    e.preventDefault();
+    e.preventDefault()
 
     if(!values.first_name && !values.last_name && !values.username && !values.password){
       setFnameError("Please fill out this field.");
@@ -148,21 +148,25 @@ const NewUser = () => {
           minLength: 8, minLowercase: 1,
           minUppercase: 1, minNumbers: 1, minSymbols: 1
         })) {
-          addDoc(collection(db, "Users"), {
-            canEdit:true,
-            first_name: values.first_name,
-            last_name: values.last_name,
-            password: bcrypt.hashSync(values.password,10),
-            role:"Staff",
-            username: values.username
-         })
-         .then(() => {
-           alert('User Created' );
-           navigate("/users");
-         })
-         .catch((error) => {
-           alert(error.message);
-         });
+
+          if(window.confirm("Create user?")){
+            addDoc(collection(db, "Users"), {
+              canEdit:true,
+              first_name: values.first_name,
+              last_name: values.last_name,
+              password: bcrypt.hashSync(values.password,10),
+              role:"Staff",
+              username: values.username
+           })
+           .then(() => {
+             alert('User Created' );
+             navigate("/users");
+           })
+           .catch((error) => {
+             alert(error.message);
+           });
+          }
+          
         } else {
           setPassError('Password must have atleast 8 characters, 1 lowercase, 1 upprecase, 1 number and a symbol')
         }
@@ -258,7 +262,7 @@ const NewUser = () => {
               <button onClick={conditionalStatements} type="submit" className="btn btn-primary-add">
                 Register
               </button>
-              <button onClick={Cancel} className="btn btn-primary-cancel">
+              <button onClick={(e)=>{e.preventDefault(); if(window.confirm("Cancel?")){Cancel()}}} className="btn btn-primary-cancel">
                 Cancel
               </button>
             </div>

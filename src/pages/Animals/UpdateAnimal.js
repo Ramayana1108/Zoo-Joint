@@ -6,6 +6,7 @@ import { ref, uploadBytesResumable, getDownloadURL,getStorage,deleteObject  } fr
 import 'firebase/firestore';
 import "./UpdateAnimal.scss";
 import NavWrapper from "../../components/navbar/NavWrapper";
+import e from "cors";
 
 
 const  UpdateAnimal = () => {
@@ -101,7 +102,7 @@ const  UpdateAnimal = () => {
 
   //Updating animal
   const UpdateAnimal = (e) => {
-    e.preventDefault()
+   
     const imagename = (file.name === undefined || file.name == null || file.name <= 0) ? true : false;
     const soundname = (sound.name === undefined || sound.name == null || sound.name <= 0) ? true : false;
 
@@ -580,7 +581,7 @@ return (
           <br></br>
           <br></br>
           <div className="editanimal-btn-add">
-          <button onClick={UpdateAnimal} type="submit" className="btn btn-primary-add">
+          <button onClick={(e) => {e.preventDefault();if(window.confirm("Do you want to update animal?")){UpdateAnimal()}}} type="submit" className="btn btn-primary-add">
             Save
             </button>
           

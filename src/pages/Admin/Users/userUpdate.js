@@ -3,8 +3,9 @@ import React,{useState, useEffect} from "react";
 import { Link, useLocation, useNavigate,location,state } from 'react-router-dom'
 import { collection, query, where,getDocs, doc, getDoc,updateDoc, QuerySnapshot } from "firebase/firestore";
 import NavWrapper from "../../../components/navbar/NavWrapper";
-import { UpdateUserModal } from "../../../components/Modals/UsersModals";
+
 import validator from 'validator'
+import bcrypt from 'bcryptjs';
 import "./userUpdate.scss";
 
 
@@ -53,7 +54,7 @@ const UserUpdate = () => {
        };
 
     const updateUser =(e)=>{
-      e.preventDefault();
+     
 
       if(password !==""){
         if (validator.isStrongPassword(password, {
@@ -61,16 +62,29 @@ const UserUpdate = () => {
           minUppercase: 1, minNumbers: 1, minSymbols: 1
         })) {
           setPassError("");
-          setUpdateUserModalOpen(true);
-          setCanEdit(values.canEdit); 
+          updateDoc(docRef,{
+            canEdit:values.canEdit,
+            password: String(bcrypt.hashSync(password,10))
+          } ).then(response => {
+              alert("Successfully Updated")
+              navigate("/users");
+            }).catch(error =>{
+              console.log(error.message)
+            })
         } else {
           setPassError('Password must have at least 8 characters, 1 lowercase, 1 upprecase, 1 number and a symbol')
         }
 
       }else{
-      setPassError("");
-      setUpdateUserModalOpen(true);
-      setCanEdit(values.canEdit); 
+        setPassError("");
+        updateDoc(docRef,{
+         canEdit:values.canEdit,
+        } ).then(response => {
+          alert("Successfully Updated")
+          navigate("/users");
+        }).catch(error =>{
+          console.log(error.message)
+        })
       }
 
       
@@ -157,19 +171,17 @@ const UserUpdate = () => {
             <br></br>
             <br></br>
             <div className="newuser-btn-add">
-              <button onClick={updateUser} type="submit" className="btn btn-primary-add">
+              <button onClick={(e)=>{e.preventDefault(); if(window.confirm("Save changes made to user?")){updateUser()}}} type="submit" className="btn btn-primary-add">
                 Save
               </button>
               
-              <button onClick={Cancel} className="btn btn-primary-cancel">
+              <button onClick={(e)=>{e.preventDefault(); if(window.confirm("Cancel?")){Cancel()}}} className="btn btn-primary-cancel">
                 Cancel
               </button>
             </div>
           </div>
         </form>
-        {
-         updateUserModalOpen &&(<UpdateUserModal closeUpdateUserModal={()=>setUpdateUserModalOpen(false)} password ={password} canEdit={canEdit} id={uid}/>)
-      }
+ 
       </div>
           </NavWrapper>
     );

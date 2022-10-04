@@ -5,14 +5,13 @@ import { useEffect, useState } from "react";
 import { Link,Navigate,useNavigate } from 'react-router-dom';
 import "../datatables/Css/userDatatable.scss"
 
-import { DeleteModal } from "../Modals/UsersModals";
 
 import {
-  collection,
+  collection,getDoc,
   getDocs,
   deleteDoc,
-  doc,
-  onSnapshot,where, query
+  doc,addDoc,
+  onSnapshot, where, query,updateDoc
 } from "firebase/firestore";
 import { db } from "../../services/firebase-config";
 
@@ -23,8 +22,7 @@ const Datatable = () => {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [search, setSearch] = useState(null);
-  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-  const [id,setId]= useState();
+
 
     //user query
     const colRef = collection(db,"Users");
@@ -57,6 +55,15 @@ const Datatable = () => {
       setFilteredData(data.filter(item => item?.first_name.toLowerCase().includes(search.toLowerCase()) || item?.last_name.toLowerCase().includes(search.toLowerCase()) || item?.username.toLowerCase().includes(search.toLowerCase())))
   }, [search])
 
+
+  const handleDelete = async (userId) => {
+    try {
+      await deleteDoc(doc(db, "Users", userId));
+      alert("user has been deleted");
+    } catch (err) {
+      console.log(err);
+    }
+  };
  
 
   const actionColumn = [
@@ -81,9 +88,7 @@ const Datatable = () => {
             <div
               className="deleteButton" style={{backgroundColor: "white", color: "#c4391d", borderColor: "#c4391d"}}
               hidden={params.row.role === 'Admin' ? true : false}
-              onClick={() => {setDeleteModalOpen(true);setId(params.row.id);if(deleteModalOpen === false){
-                setData(data.filter((item) => item.id !== id));
-              }}} 
+              onClick={() =>{if(window.confirm("Do you want to delete user?")){handleDelete(params.row.id)}}} 
             >
               Delete
             </div>
@@ -112,9 +117,7 @@ const Datatable = () => {
         pageSize={9}
         rowsPerPageOptions={[9]}
       />
-       {
-        deleteModalOpen &&(<DeleteModal closeDeleteModal={()=>setDeleteModalOpen(false)} userId ={id}/>)
-      }
+
       </div>
   );
 };

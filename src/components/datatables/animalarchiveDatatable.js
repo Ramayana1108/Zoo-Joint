@@ -19,9 +19,6 @@ import {
 import { db, storage } from "../../services/firebase-config";
 
 
-import { RestoreModal,DeleteModal } from "../Modals/ArchivedAnimalsModals";
-
-
 const AnimalarchiveDatatable = () => {
   const navigate = useNavigate();
 
@@ -64,6 +61,58 @@ const AnimalarchiveDatatable = () => {
   }, [search]);
 
 
+  const getPathStorageFromUrl=(url)=>{
+
+    const baseUrl = "https://firebasestorage.googleapis.com/v0/b/manilazooproject.appspot.com/o/";
+  
+     url = url.replace(baseUrl,""); 
+  
+    let index = url.indexOf("?")
+  
+    url = url.substring(0,index);
+    
+    url = url.replace("%2F","/");
+  
+    return url;
+  }
+
+
+  const handleRestore= async (animalId) => {
+    const docRef = doc(db,'animals',animalId);
+      console.log(!animalId);
+        updateDoc(docRef,{
+            animal_archive: false
+        } ).then(response => {
+          alert("Animal Restored")
+        }).catch(error =>{
+          console.log(error.message)
+        })
+  };
+
+  const handleDelete = async (animalId) => {
+    const docRef = doc(db,'animals',animalId);
+      
+    getDoc(docRef).then(doc => {
+      const newData = doc.data();      
+      const image_url = ref(storage,getPathStorageFromUrl(newData.animal_imageurl));
+      const sound_url = ref(storage,getPathStorageFromUrl(newData.animal_sound));
+        deleteObject(image_url)   
+      
+      if(!sound_url){
+        deleteObject(sound_url)  
+      }
+      
+    }).then(()=>{    
+        deleteDoc(doc(db,"animals/"+animalId+"/animal_quiz/quiz1"));
+        deleteDoc(doc(db,"animals/"+animalId+"/animal_quiz/quiz2"));
+        deleteDoc(doc(db,"animals/"+animalId+"/animal_quiz/quiz3"));
+        deleteDoc(doc(db,"animals",animalId));          
+    }).then(()=>{
+      alert("Animal Deleted")
+    });
+  };
+  
+
   const actionColumn = [
     {
       field: "action",
@@ -77,13 +126,13 @@ const AnimalarchiveDatatable = () => {
             <div
               className="updateButton"
               hidden={params.row.role === 'Admin' ? true : false}
-              onClick={() => {setRestoreModalOpen(true);setId(params.row.id);}}
+              onClick={() =>{if(window.confirm("Do you want to restore animal?")){handleRestore(params.row.id)}}}
             >
               Restore
             </div>
             <button
               className="deleteButton"
-              onClick={() => {setDeleteModalOpen(true);setId(params.row.id);}}
+              onClick={() => {if(window.confirm("Do you want to delete animal?")){handleDelete(params.row.id)}}}
             >
               Delete
             </button>
@@ -117,12 +166,6 @@ const AnimalarchiveDatatable = () => {
       
       />
       
-      {
-        restoreModalOpen &&(<RestoreModal closeRestoreModal={()=>setRestoreModalOpen(false)} animalId ={id}/>)
-      }
-      {
-        deleteModalOpen &&(<DeleteModal closeDeleteModal={()=>setDeleteModalOpen(false)} animalId ={id}/>)
-      }
       </div>
      
   );

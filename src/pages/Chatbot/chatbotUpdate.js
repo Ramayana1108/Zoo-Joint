@@ -6,7 +6,7 @@ import { collection, query, where,getDocs, doc, getDoc,updateDoc, QuerySnapshot 
 import firebase from 'firebase/compat/app';
 import 'firebase/firestore';
 import NavWrapper from "../../components/navbar/NavWrapper";
-import { UpdateModal } from "../../components/Modals/ChatbotModal";
+
 import "./chatbotAdd.scss"
 
 const ChatbotUpdate = () => {
@@ -60,8 +60,18 @@ const ChatbotUpdate = () => {
         }else{
           setQError("");
           setAError("");
-          setUpdateQModalOpen(true);
-         
+          if(window.confirm("Save changes made to query?")){
+            updateDoc(docRef,{
+              question: String(values.question),
+              answer: String(values.answer),
+             
+          } ).then(response => {
+            alert("Successfully Updated")
+            navigate("/chatbot");
+          }).catch(error =>{
+            console.log(error.message)
+          })
+          }      
         }     
     }
 
@@ -112,16 +122,13 @@ const ChatbotUpdate = () => {
                 Save
               </button>
           
-              <button onClick={Cancel} className="btn btn-primary-cancel">
+              <button onClick={(e)=>{e.preventDefault(); if(window.confirm("Cancel?")){Cancel()}}} className="btn btn-primary-cancel">
                 Cancel
               </button>
            
             </div>
           </div>
         </form>
-        {
-        updateQModalOpen &&(<UpdateModal closeUpdateModal={()=>setUpdateQModalOpen(false)} question ={values.question} answer={values.answer} questionid={qid}/>)
-      }
       </div>
       </NavWrapper>
     );

@@ -4,7 +4,7 @@ import React,{useState, useEffect} from "react";
 import { Link, useNavigate } from 'react-router-dom'
 import NavWrapper from "../../components/navbar/NavWrapper";
 import "./chatbotAdd.scss"
-import { NewModal } from "../../components/Modals/ChatbotModal";
+
 
 const NewQA = () => {
     const [qError, setQError] = useState("");
@@ -38,18 +38,21 @@ const NewQA = () => {
       }else{
         setQError("");
         setAError("");
+        if(window.confirm("Add new Query?")){
           addDoc(collection(db, "chatbot"), {
-              question: values.question,
-              answer: values.answer,
-             
-           })
-           .then(() => {
-             alert('Success' );
-             navigate("/chatbot")
-           })
-           .catch((error) => {
-             alert(error.message);
-           });
+            question: values.question,
+            answer: values.answer,
+           
+         })
+         .then(() => {
+           alert('Success' );
+           navigate("/chatbot")
+         })
+         .catch((error) => {
+           alert(error.message);
+         });
+        }
+        
     
        
       }  
@@ -101,7 +104,7 @@ const NewQA = () => {
                 Save
               </button>
             
-              <button onClick={Cancel} className="btn btn-primary-cancel">
+              <button onClick={(e)=>{e.preventDefault(); if(window.confirm("Cancel?")){Cancel()}}} className="btn btn-primary-cancel">
                 Cancel
               </button>
       

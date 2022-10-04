@@ -44,7 +44,7 @@ const AboutUsUpdate = () => {
 
        //Updating animal
   const UpdateAboutus = (e) => {
-    e.preventDefault();
+  
     
     const imagename = (file.name === undefined || file.name == null || file.name <= 0) ? true : false;
     console.log(imagename)
@@ -177,11 +177,11 @@ const AboutUsUpdate = () => {
           <br></br>
           <br></br><br></br>
           <div className="editaboutus-btn-add">
-            <button onClick={UpdateAboutus} className="btn btn-primary-add">
+            <button onClick={(e)=>{e.preventDefault(); if(window.confirm("Save changes made to the About Us Page?")){UpdateAboutus()}}} className="btn btn-primary-add">
               Save
             </button>
             
-            <button onClick={Cancel} className="btn btn-primary-cancel">
+            <button onClick={(e)=>{e.preventDefault(); if(window.confirm("Cancel Changes?")){Cancel()}}} className="btn btn-primary-cancel">
               Cancel
             </button>
           </div>

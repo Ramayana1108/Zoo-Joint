@@ -54,7 +54,7 @@ const  NewAnimal = () => {
 
   //Add Animal with image
   const AddAnimal = (event) => {
-    event.preventDefault()
+ 
     const name = new Date().getTime() + file.name;
     const name2 = new Date().getTime() + sound.name;
 
@@ -246,7 +246,7 @@ const  NewAnimal = () => {
                   className="form-control mt-1"
                   placeholder="Select Enclosure"
                   onChange={handleInputChange}>
-                  
+                  <option value="" disabled selected hidden>Select Enclosure</option>
                   <option value={String("Elephant")}>Elephant</option>
                   <option value={String("Hippopotamus")}>Hippopotamus</option>
                   <option value={String("Aviary")}>Aviary</option>
@@ -289,7 +289,7 @@ const  NewAnimal = () => {
                     className="form-control mt-1"
                     placeholder="Select Conservation Status"
                     onChange={handleInputChange}>
-                    
+                    <option value="" disabled selected hidden>Select Conservation Status</option>
                     <option value={String("Not Evaluated")}>Not Evaluated</option>
                     <option value={String("Data Deficient")}>Data Deficient</option>
                     <option value={String("Least Concern")}>Least Concern</option>
@@ -520,11 +520,11 @@ const  NewAnimal = () => {
           <br></br>
           <br></br>
           <div className="newanimal-btn-add">
-          <button onClick={AddAnimal} type="submit" className="btn btn-primary-add">
+          <button onClick={(e) => {e.preventDefault();if(window.confirm("Do you want to add new animal?")){AddAnimal()}}} type="submit" className="btn btn-primary-add">
             Save
             </button>
            
-          <button onClick={Cancel} className="btn btn-primary-cancel">
+          <button onClick={(e) => {e.preventDefault();if(window.confirm("Do you want to exit from form")){Cancel()}}} className="btn btn-primary-cancel">
             Cancel
             </button>
           
