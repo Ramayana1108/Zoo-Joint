@@ -88,7 +88,7 @@ const Datatable = () => {
             <div
               className="deleteButton" style={{backgroundColor: "white", color: "#c4391d", borderColor: "#c4391d"}}
               hidden={params.row.role === 'Admin' ? true : false}
-              onClick={() =>{if(window.confirm("Do you want to delete user?")){handleDelete(params.row.id)}}} 
+              onClick={() =>{if(window.confirm("This action cannot be undone. Are you sure you want to delete this user?")){handleDelete(params.row.id)}}} 
             >
               Delete
             </div>

@@ -15,12 +15,7 @@ const  UsersList = () => {
   const [sidebar, setSidebar] = useState(false);
   const showSidebar = () => setSidebar(prevState => !prevState);
   return (
-      // <>
-      //   <Navbar sidebar={sidebar} showSidebar={showSidebar}/>
-      //   <div className="list" style={sidebar ? styles : null}>  
-      //       <Datatable />
-      //   </div>
-      // </>
+    
       <NavWrapper>
         <Datatable />
       </NavWrapper>

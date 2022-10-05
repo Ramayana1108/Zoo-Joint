@@ -171,11 +171,11 @@ const UserUpdate = () => {
             <br></br>
             <br></br>
             <div className="newuser-btn-add">
-              <button onClick={(e)=>{e.preventDefault(); if(window.confirm("Save changes made to user?")){updateUser()}}} type="submit" className="btn btn-primary-add">
+              <button onClick={(e)=>{e.preventDefault(); if(window.confirm("Do you want to save changes?")){updateUser()}}} type="submit" className="btn btn-primary-add">
                 Save
               </button>
               
-              <button onClick={(e)=>{e.preventDefault(); if(window.confirm("Cancel?")){Cancel()}}} className="btn btn-primary-cancel">
+              <button onClick={(e)=>{e.preventDefault(); if(window.confirm("Are you sure you want to cancel?")){Cancel()}}} className="btn btn-primary-cancel">
                 Cancel
               </button>
             </div>
