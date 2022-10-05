@@ -524,7 +524,7 @@ const  NewAnimal = () => {
             Save
             </button>
            
-          <button onClick={(e) => {e.preventDefault();if(window.confirm("Do you want to exit from form")){Cancel()}}} className="btn btn-primary-cancel">
+          <button onClick={(e) => {e.preventDefault();if(window.confirm("Are you sure you want to cancel?")){Cancel()}}} className="btn btn-primary-cancel">
             Cancel
             </button>
           

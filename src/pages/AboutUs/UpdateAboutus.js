@@ -177,11 +177,11 @@ const AboutUsUpdate = () => {
           <br></br>
           <br></br><br></br>
           <div className="editaboutus-btn-add">
-            <button onClick={(e)=>{e.preventDefault(); if(window.confirm("Save changes made to the About Us Page?")){UpdateAboutus()}}} className="btn btn-primary-add">
+            <button onClick={(e)=>{e.preventDefault(); if(window.confirm("Do you want to save changes?")){UpdateAboutus()}}} className="btn btn-primary-add">
               Save
             </button>
             
-            <button onClick={(e)=>{e.preventDefault(); if(window.confirm("Cancel Changes?")){Cancel()}}} className="btn btn-primary-cancel">
+            <button onClick={(e)=>{e.preventDefault(); if(window.confirm("Are you sure you want to cancel?")){Cancel()}}} className="btn btn-primary-cancel">
               Cancel
             </button>
           </div>

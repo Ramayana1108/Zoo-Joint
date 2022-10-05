@@ -83,7 +83,7 @@ const AnimalarchiveDatatable = () => {
         updateDoc(docRef,{
             animal_archive: false
         } ).then(response => {
-          alert("Animal Restored")
+          alert("Animal has been restored.")
         }).catch(error =>{
           console.log(error.message)
         })
@@ -126,13 +126,13 @@ const AnimalarchiveDatatable = () => {
             <div
               className="updateButton"
               hidden={params.row.role === 'Admin' ? true : false}
-              onClick={() =>{if(window.confirm("Do you want to restore animal?")){handleRestore(params.row.id)}}}
+              onClick={() =>{if(window.confirm("Are you sure you want to restore this animal?")){handleRestore(params.row.id)}}}
             >
               Restore
             </div>
             <button
               className="deleteButton"
-              onClick={() => {if(window.confirm("Do you want to delete animal?")){handleDelete(params.row.id)}}}
+              onClick={() => {if(window.confirm("This action cannot be undone. Are you sure you want to delete this animal?")){handleDelete(params.row.id)}}}
             >
               Delete
             </button>

@@ -78,7 +78,7 @@ const AnimalDatatable = () => {
         updateDoc(docRef,{
             animal_archive: true
         } ).then(response => {
-          alert("Successfully Archived")
+          alert("Animal archived successfully.")
         }).catch(error =>{
           console.log(error.message)
         })
@@ -107,7 +107,7 @@ const AnimalDatatable = () => {
             <div
               className="deleteButton"
               hidden={role === 'Staff' ? true : false}
-              onClick={() => {if(window.confirm("Do you want to archive animal?")){handleArchive(params.row.id)}}}
+              onClick={() => {if(window.confirm("Are you sure you want to archive this animal?")){handleArchive(params.row.id)}}}
             >
               Archive
             </div>

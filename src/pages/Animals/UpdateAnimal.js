@@ -581,11 +581,11 @@ return (
           <br></br>
           <br></br>
           <div className="editanimal-btn-add">
-          <button onClick={(e) => {e.preventDefault();if(window.confirm("Do you want to update animal?")){UpdateAnimal()}}} type="submit" className="btn btn-primary-add">
+          <button onClick={(e) => {e.preventDefault();if(window.confirm("Do you want to save changes?")){UpdateAnimal()}}} type="submit" className="btn btn-primary-add">
             Save
             </button>
           
-          <button onClick={Cancel} className="btn btn-primary-cancel">
+            <button onClick={(e) => {e.preventDefault();if(window.confirm("Are you sure you want to cancel?")){Cancel()}}} className="btn btn-primary-cancel">
             Cancel
             </button>
     
