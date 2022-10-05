@@ -38,7 +38,7 @@ const NewQA = () => {
       }else{
         setQError("");
         setAError("");
-        if(window.confirm("Add new Query?")){
+  
           addDoc(collection(db, "chatbot"), {
             question: values.question,
             answer: values.answer,
@@ -51,7 +51,7 @@ const NewQA = () => {
          .catch((error) => {
            alert(error.message);
          });
-        }
+        
         
     
        

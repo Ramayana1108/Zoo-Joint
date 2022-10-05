@@ -149,7 +149,6 @@ const NewUser = () => {
           minUppercase: 1, minNumbers: 1, minSymbols: 1
         })) {
 
-          if(window.confirm("Create user?")){
             addDoc(collection(db, "Users"), {
               canEdit:true,
               first_name: values.first_name,
@@ -165,7 +164,7 @@ const NewUser = () => {
            .catch((error) => {
              alert(error.message);
            });
-          }
+          
           
         } else {
           setPassError('Password must have atleast 8 characters, 1 lowercase, 1 upprecase, 1 number and a symbol')

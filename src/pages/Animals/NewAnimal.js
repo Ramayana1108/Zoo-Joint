@@ -520,7 +520,7 @@ const  NewAnimal = () => {
           <br></br>
           <br></br>
           <div className="newanimal-btn-add">
-          <button onClick={(e) => {e.preventDefault();if(window.confirm("Do you want to add new animal?")){AddAnimal()}}} type="submit" className="btn btn-primary-add">
+          <button onClick={AddAnimal} type="submit" className="btn btn-primary-add">
             Save
             </button>
            
