@@ -60,7 +60,7 @@ const ChatbotUpdate = () => {
         }else{
           setQError("");
           setAError("");
-          if(window.confirm("Save changes made to query?")){
+          if(window.confirm("Do you want to save changes?")){
             updateDoc(docRef,{
               question: String(values.question),
               answer: String(values.answer),
