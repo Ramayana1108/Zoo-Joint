@@ -108,7 +108,7 @@ const AnimalarchiveDatatable = () => {
         deleteDoc(doc(db,"animals/"+animalId+"/animal_quiz/quiz3"));
         deleteDoc(doc(db,"animals",animalId));          
     }).then(()=>{
-      alert("Animal Deleted")
+      alert("Animal deleted successfully.")
     });
   };
   
