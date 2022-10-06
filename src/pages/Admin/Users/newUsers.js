@@ -167,7 +167,7 @@ const NewUser = () => {
           
           
         } else {
-          setPassError('Password must have atleast 8 characters, 1 lowercase, 1 upprecase, 1 number and a symbol')
+          setPassError('Password must be at least 8 characters long, must contain at least 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character')
         }
 
       }else{
