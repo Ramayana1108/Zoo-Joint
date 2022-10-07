@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { collection, query, where,getDocs, doc, getDoc,updateDoc, QuerySnapshot } from "firebase/firestore";
 import firebase from 'firebase/compat/app';
 import 'firebase/firestore';
+import "./chatbotAdd.scss"
 import NavWrapper from "../../components/navbar/NavWrapper";
 
 import "./chatbotAdd.scss"

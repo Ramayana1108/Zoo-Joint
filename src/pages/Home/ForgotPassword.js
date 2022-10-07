@@ -30,7 +30,10 @@ const ForgotPassword = () => {
 
    const handleSubmit = async (e)=>{
     e.preventDefault();
-    
+
+      if(!email){
+        setEmailError("There is no input");
+      }else{
         const q = query(colRef, where("email","==",email));  
         let useremail= [];
         getDocs(q).then(async (response) => {
@@ -39,14 +42,15 @@ const ForgotPassword = () => {
       
         }));     
       }).then(()=>{
-        console.log(useremail[0].email);
-        if(!useremail[0].email){
+        if(useremail.length === 0){
           setEmailError("email does not exist or is not an administrator");
         }else{
           setEmailError("email sent")
         }
 
       })
+      }
+        
 
 
    }
@@ -70,9 +74,9 @@ const ForgotPassword = () => {
             type="text"
             className="form-control mt-1"
             placeholder="Enter Email"     
-            onChange={(e)=> setEmail(e.target.value)}     
+            onChange={(e)=> {setEmail(e.target.value); setEmailError("");}}     
           />
-         {emailError}
+           <div className="error-text">{emailError}</div>
         </div>
      <br></br>
         <div className="forgotpassword-btn-add">

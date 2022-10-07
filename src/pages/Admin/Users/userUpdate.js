@@ -54,7 +54,7 @@ const UserUpdate = () => {
        };
 
     const updateUser =(e)=>{
-     
+    e.preventDefault();
 
       if(password !==""){
         if (validator.isStrongPassword(password, {
@@ -62,29 +62,35 @@ const UserUpdate = () => {
           minUppercase: 1, minNumbers: 1, minSymbols: 1
         })) {
           setPassError("");
-          updateDoc(docRef,{
-            canEdit:values.canEdit,
-            password: String(bcrypt.hashSync(password,10))
-          } ).then(response => {
-              alert("Successfully Updated")
-              navigate("/users");
-            }).catch(error =>{
-              console.log(error.message)
-            })
+          if(window.confirm("Do you want to save changes?")){
+            updateDoc(docRef,{
+              canEdit:values.canEdit,
+              password: String(bcrypt.hashSync(password,10))
+            } ).then(response => {
+                alert("Successfully Updated")
+                navigate("/users");
+              }).catch(error =>{
+                console.log(error.message)
+              })
+          }
+          
         } else {
-          setPassError('Password must have at least 8 characters, 1 lowercase, 1 upprecase, 1 number and a symbol')
+          setPassError('* Password must have at least 8 characters, 1 lowercase, 1 upprecase, 1 number and a symbol')
         }
 
       }else{
         setPassError("");
-        updateDoc(docRef,{
-         canEdit:values.canEdit,
-        } ).then(response => {
-          alert("Successfully Updated")
-          navigate("/users");
-        }).catch(error =>{
-          console.log(error.message)
-        })
+        if(window.confirm("Do you want to save changes?")){
+          updateDoc(docRef,{
+            canEdit:values.canEdit,
+           } ).then(response => {
+             alert("Successfully Updated")
+             navigate("/users");
+           }).catch(error =>{
+             console.log(error.message)
+           })
+        }
+        
       }
 
       
@@ -152,7 +158,7 @@ const UserUpdate = () => {
                 placeholder="Enter New Password"
                 onChange={(e)=>setPassword(e.target.value)}
               />
-              {passError}
+               <div className="error-text">{passError}</div>
             </div>
 
             <div class="right">
@@ -171,7 +177,7 @@ const UserUpdate = () => {
             <br></br>
             <br></br>
             <div className="newuser-btn-add">
-              <button onClick={(e)=>{e.preventDefault(); if(window.confirm("Do you want to save changes?")){updateUser()}}} type="submit" className="btn btn-primary-add">
+              <button onClick={updateUser} type="submit" className="btn btn-primary-add">
                 Save
               </button>
               

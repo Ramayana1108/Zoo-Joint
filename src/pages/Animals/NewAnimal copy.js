@@ -23,30 +23,6 @@ const  NewAnimal = () => {
   
   const navigate = useNavigate();
 
-  const checkAnimalInfo = () =>{
-    if( !values.animal_name  || !values.animal_sciname ||! values.animal_enclosure ||
-      !values.animal_habitat || !values.animal_description || !values.animal_conservationstatus ||
-       !values.animal_behavior || !values.animal_diet ||!values.animal_distribution ||
-       !values.animal_nutrition){
-        return true
-       }else{
-        return false
-       }
-  }
-
-  const checkAnimalQuiz = () => {
-
-    if(!quiz1.question  || !quiz1.choicea  || !quiz1.choiceb ||
-      !quiz1.choicec   || !quiz1.answer  || !quiz1.explanation||  !quiz2.question|| !quiz2.choicea||
-      !quiz2.choiceb ||!quiz2.choicec || !quiz2.answer  || !quiz2.explanation  ||
-      !quiz3.question || !quiz3.choicea ||
-      !quiz3.choiceb  || !quiz3.choicec  || !quiz3.answer || !quiz3.explanation){
-        return true
-      }else{
-       return false
-      }
-  }
-
 
   //handle input change
   const handleInputChange = (e) => {
@@ -81,38 +57,11 @@ const  NewAnimal = () => {
 
   //Add Animal with image
   const AddAnimal = (event) => {
-    event.preventDefault();
-    
-    console.log(checkAnimalInfo())
+ 
     const name = new Date().getTime() + file.name;
     const name2 = new Date().getTime() + sound.name;
 
-    if( checkAnimalInfo() === true && !file === true && checkAnimalQuiz() === true){
-      setAnimalInfoError("*All animal information fields are required");
-      setImageError("* An image must be uploaded");
-      setQuizError("*All Animal Quiz Fields are required");
-    }else if( checkAnimalInfo() === false && !file === true && checkAnimalQuiz() === true ){
-      setAnimalInfoError("");
-      setImageError("* An image must be uploaded");
-      setQuizError("*All Animal Quiz Fields are required");
-    }else if( checkAnimalInfo() === false && !file === false && checkAnimalQuiz() === true ){
-      setAnimalInfoError("");
-      setImageError("");
-      setQuizError("*All Animal Quiz Fields are required");
-    }else if( checkAnimalInfo() === false && !file === true && checkAnimalQuiz() === false ){
-      setAnimalInfoError("");
-      setImageError("* An image must be uploaded");
-      setQuizError("");
-    }else if( checkAnimalInfo() === true && !file === false && checkAnimalQuiz() === false ){
-      setAnimalInfoError("*All animal information fields are required");
-      setImageError("");
-      setQuizError("");
-    }else{
-
-      setAnimalInfoError("");
-      setImageError("");
-      setQuizError("");
-      
+  
     const storageRef = ref(storage, 'images/'+file.name);
     const uploadTask = uploadBytesResumable(storageRef, file);
 
@@ -253,10 +202,6 @@ const  NewAnimal = () => {
         });
       }
     );
-
-    }
-
-   
   };
   
 
@@ -277,13 +222,12 @@ const  NewAnimal = () => {
             <div class="center">
             </div>
             <h2>Animal Information</h2>
-            <div className="error-text">{animalInfoError}</div>
             <div className="form-group mt-3">
               <label>Common Name</label><br></br>
               <input
                 type="text"
                 name="animal_name"
-                className={`form-control mt-1 ${animalInfoError ? 'is-invalid':  ''}`}
+                className="form-control mt-1"
                 placeholder="Enter Common Name"
                 value={values.animal_name} onChange={handleInputChange}/>
               </div>
@@ -293,7 +237,7 @@ const  NewAnimal = () => {
                 <input
                   type="text"
                   name="animal_sciname"
-                  className={`form-control mt-1 ${animalInfoError ? 'is-invalid':  ''}`}
+                  className="form-control mt-1"
                   placeholder="Enter Scientific Name"
                   value={values.animal_sciname} onChange={handleInputChange}/>
                   </div>
@@ -303,7 +247,7 @@ const  NewAnimal = () => {
                 <select
                   type="text"
                   name="animal_enclosure"
-                  className={`form-control mt-1 ${animalInfoError ? 'is-invalid':  ''}`}
+                  className="form-control mt-1"
                   placeholder="Select Enclosure"
                   onChange={handleInputChange}>
                   <option value="" disabled selected hidden>Select Enclosure</option>
@@ -326,7 +270,7 @@ const  NewAnimal = () => {
                 <input
                   type="text"
                   name="animal_habitat"
-                  className={`form-control mt-1 ${animalInfoError ? 'is-invalid':  ''}`}
+                  className="form-control mt-1"
                   placeholder="Enter Animal Habitat"
                   value={values.animal_habitat} onChange={handleInputChange}/>
                   </div>
@@ -336,7 +280,7 @@ const  NewAnimal = () => {
                 <input
                   type="text"
                   name="animal_description"
-                  className={`form-control mt-1 ${animalInfoError ? 'is-invalid':  ''}`}
+                  className="form-control mt-1"
                   placeholder="Enter Description"
                   value={values.animal_description} onChange={handleInputChange}/>
                   </div>
@@ -346,7 +290,7 @@ const  NewAnimal = () => {
                   <select
                     type="text"
                     name="animal_conservationstatus"
-                    className={`form-control mt-1 ${animalInfoError ? 'is-invalid':  ''}`}
+                    className="form-control mt-1"
                     placeholder="Select Conservation Status"
                     onChange={handleInputChange}>
                     <option value="" disabled selected hidden>Select Conservation Status</option>
@@ -367,7 +311,7 @@ const  NewAnimal = () => {
                   <input
                     type="text"
                     name="animal_behavior"
-                    className={`form-control mt-1 ${animalInfoError ? 'is-invalid':  ''}`}
+                    className="form-control mt-1"
                     placeholder="Enter Behavior"
                     value={values.animal_behavior} onChange={handleInputChange}/>
                     </div>
@@ -377,7 +321,7 @@ const  NewAnimal = () => {
                   <input
                     type="text"
                     name="animal_diet"
-                    className={`form-control mt-1 ${animalInfoError ? 'is-invalid':  ''}`}
+                    className="form-control mt-1"
                     placeholder="Enter Diet"
                     value={values.animal_diet} onChange={handleInputChange}/>
                     </div>
@@ -387,7 +331,7 @@ const  NewAnimal = () => {
                 <input 
                   type="text"
                   name="animal_distribution"
-                  className={`form-control mt-1 ${animalInfoError ? 'is-invalid':  ''}`}
+                  className="form-control mt-1"
                   placeholder="Enter Distribution"
                   value={values.animal_distribution} onChange={handleInputChange}/>
                   </div>
@@ -397,26 +341,22 @@ const  NewAnimal = () => {
                     <input
                       type="text"
                       name="animal_nutrition"
-                      className={`form-control mt-1 ${animalInfoError ? 'is-invalid':  ''}`}
+                      className="form-control mt-1"
                       placeholder="Enter Nutrition"
                       value={values.animal_nutrition} onChange={handleInputChange}/>
                       </div>
                       <br></br>
-                      <div className="error-text"> {imageError}</div><br></br>
+                     
                         <label htmlFor="file">Upload Image: &nbsp;</label>
-                        
                         <input
                           type="file"
                           name="animal_image"
-                          className={`form-control mt-1 ${imageError ? 'is-invalid':  ''}`}
                           accept="image/png, image/jpeg, image/jpg"
                           id="file"
                           onChange={(e) => setFile(e.target.files[0])}/>
                        
                         {!per? "":per+"%"}
-                        <br></br>
-                       
-                        <br></br>
+                        <br></br><br></br>
                        
                             <label htmlFor="sound">
                               Upload sound: &nbsp;
@@ -431,13 +371,11 @@ const  NewAnimal = () => {
                           {!per2? "":per2+"%"}
           <br></br><br></br>
           <h2>Animal Quiz</h2>
-          <div className="error-text"> {quizError}</div>
-          <br></br>
           <label>Question 1: </label>
           <input
             type="text"
             name="question"
-            className={`form-control mt-1 ${quizError ? 'is-invalid':  ''}`}
+            className="form-control mt-1"
             placeholder="Enter Question 1"
             value={quiz1.question} onChange={handleInputChangeQuiz1}/>
 
@@ -447,21 +385,21 @@ const  NewAnimal = () => {
           <input
             type="text"
             name="choicea"
-            className={`form-control mt-1 ${quizError ? 'is-invalid':  ''}`}
+            className="form-control mt-1"
             placeholder="Enter First Choice"
             value={quiz1.choicea} onChange={handleInputChangeQuiz1}/>
             
           <input
             type="text"
             name="choiceb"
-            className={`form-control mt-1 ${quizError ? 'is-invalid':  ''}`}
+            className="form-control mt-1"
             placeholder="Enter Second Choice"
             value={quiz1.choiceb} onChange={handleInputChangeQuiz1}/>
 
           <input
             type="text"
             name="choicec"
-            className={`form-control mt-1 ${quizError ? 'is-invalid':  ''}`}
+            className="form-control mt-1"
             placeholder="Enter Third Choice"
             value={quiz1.choicec} onChange={handleInputChangeQuiz1}/>
 
@@ -470,7 +408,7 @@ const  NewAnimal = () => {
           <input
             type="text"
             name="answer"
-            className={`form-control mt-1 ${quizError ? 'is-invalid':  ''}`}
+            className="form-control mt-1"
             placeholder="Enter Answer"
             value={quiz1.answer} onChange={handleInputChangeQuiz1}/>
           
@@ -479,7 +417,7 @@ const  NewAnimal = () => {
           <input
             type="text"
             name="explanation"
-            className={`form-control mt-1 ${quizError ? 'is-invalid':  ''}`}
+            className="form-control mt-1"
             placeholder="Enter Explanation"
             value={quiz1.explanation} onChange={handleInputChangeQuiz1}/>
 
@@ -488,7 +426,7 @@ const  NewAnimal = () => {
           <input
             type="text"
             name="question"
-            className={`form-control mt-1 ${quizError ? 'is-invalid':  ''}`}
+            className="form-control mt-1"
             placeholder="Enter Question 2"
             value={quiz2.question} onChange={handleInputChangeQuiz2}/>
 
@@ -497,21 +435,21 @@ const  NewAnimal = () => {
           <input
             type="text"
             name="choicea"
-            className={`form-control mt-1 ${quizError ? 'is-invalid':  ''}`}
+            className="form-control mt-1"
             placeholder="Enter First Choice"
             value={quiz2.choicea} onChange={handleInputChangeQuiz2}/>
             
           <input
             type="text"
             name="choiceb"
-            className={`form-control mt-1 ${quizError ? 'is-invalid':  ''}`}
+            className="form-control mt-1"
             placeholder="Enter Second Choice"
             value={quiz2.choiceb} onChange={handleInputChangeQuiz2}/>
 
           <input
             type="text"
             name="choicec"
-            className={`form-control mt-1 ${quizError ? 'is-invalid':  ''}`}
+            className="form-control mt-1"
             placeholder="Enter Third Choice"
             value={quiz2.choicec} onChange={handleInputChangeQuiz2}/>
 
@@ -520,7 +458,7 @@ const  NewAnimal = () => {
           <input
             type="text"
             name="answer" 
-            className={`form-control mt-1 ${quizError ? 'is-invalid':  ''}`}
+            className="form-control mt-1"
             placeholder="Enter Answer"
             value={quiz2.answer} onChange={handleInputChangeQuiz2}/>
 
@@ -529,7 +467,7 @@ const  NewAnimal = () => {
           <input
             type="text"
             name="explanation"
-            className={`form-control mt-1 ${quizError ? 'is-invalid':  ''}`}
+            className="form-control mt-1"
             placeholder="Enter Explanation"
             value={quiz2.explanation} onChange={handleInputChangeQuiz2}/>
           
@@ -538,7 +476,7 @@ const  NewAnimal = () => {
           <input
             type="text"
             name="question" 
-            className={`form-control mt-1 ${quizError ? 'is-invalid':  ''}`}
+            className="form-control mt-1"
             placeholder="Enter Question 3"
             value={quiz3.question} onChange={handleInputChangeQuiz3}/>
 
@@ -547,21 +485,21 @@ const  NewAnimal = () => {
           <input
             type="text"
             name="choicea"
-            className={`form-control mt-1 ${quizError ? 'is-invalid':  ''}`}
+            className="form-control mt-1"
             placeholder="Enter First Choice"
             value={quiz3.choicea} onChange={handleInputChangeQuiz3}/>
 
           <input
             type="text" 
             name="choiceb"
-            className={`form-control mt-1 ${quizError ? 'is-invalid':  ''}`}
+            className="form-control mt-1"
             placeholder="Enter Second Choice"
             value={quiz3.choiceb} onChange={handleInputChangeQuiz3}/>
 
           <input
             type="text"
             name="choicec"
-            className={`form-control mt-1 ${quizError ? 'is-invalid':  ''}`}
+            className="form-control mt-1"
             placeholder="Enter Third Choice"
             value={quiz3.choicec} onChange={handleInputChangeQuiz3}/>
 
@@ -570,7 +508,7 @@ const  NewAnimal = () => {
           <input
             type="text"
             name="answer"
-            className={`form-control mt-1 ${quizError ? 'is-invalid':  ''}`}
+            className="form-control mt-1"
             placeholder="Enter Answer" 
             alue={quiz3.answer} onChange={handleInputChangeQuiz3}/>
 
@@ -579,7 +517,7 @@ const  NewAnimal = () => {
           <input 
             type="text"
             name="explanation"
-            className={`form-control mt-1 ${quizError ? 'is-invalid':  ''}`}
+            className="form-control mt-1"
             placeholder="Enter Explanation"
             value={quiz3.explanation} onChange={handleInputChangeQuiz3}/>
           
