@@ -318,7 +318,7 @@ const  UpdateAnimal = () => {
 return (
       <div>
         <NavWrapper>
-        <h1 class="registerTitle">New Animal</h1> 
+        <h1 class="registerTitle">Edit Animal</h1> 
         <div className="Auth-form-container-add">
         <form className="Auth-form-add">
           <div className="Auth-form-content-add">
@@ -439,7 +439,9 @@ return (
                   placeholder="Enter Distribution"
                   value={values.animal_distribution} onChange={handleInputChange}/>
                   </div>
-
+                  <br></br>
+                  <br></br>
+                  <br></br>
                   <div className="form-group mt-3">
                     <label>Nutrition</label>
                     <input
@@ -460,7 +462,8 @@ return (
                           onChange={(e) => setFile(e.target.files[0])}/>
                        
                         {!per? "":per+"%"}
-                        <br></br><br></br>
+                        <br></br>
+                        <br></br>
                        
                             <label htmlFor="sound">
                               Upload sound: &nbsp;
@@ -486,7 +489,7 @@ return (
             value={quiz1.question} onChange={handleInputChangeQuiz1}/>
 
             <br></br>
-
+            
           <label>Choices</label>
           <input
             type="text"
@@ -537,6 +540,7 @@ return (
             placeholder="Enter Question 2"
             value={quiz2.question} onChange={handleInputChangeQuiz2}/>
 
+          <br></br>
           <br></br>
           <label>Choices</label>
           <input

@@ -391,7 +391,9 @@ const  NewAnimal = () => {
                   placeholder="Enter Distribution"
                   value={values.animal_distribution} onChange={handleInputChange}/>
                   </div>
-
+                  <br></br>
+                  <br></br>
+                  <br></br>
                   <div className="form-group mt-3">
                     <label>Nutrition</label>
                     <input
@@ -492,7 +494,7 @@ const  NewAnimal = () => {
             placeholder="Enter Question 2"
             value={quiz2.question} onChange={handleInputChangeQuiz2}/>
 
-          <br></br>
+          
           <label>Choices</label>
           <input
             type="text"
