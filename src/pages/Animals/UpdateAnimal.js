@@ -321,7 +321,7 @@ return (
         <h1 class="registerTitle">Edit Animal</h1> 
         <div className="Auth-form-container-add">
         <form className="Auth-form-animal">
-          <div className="Auth-form-content-add">
+          <div className="Auth-form-content-animal">
             <div class="center">
             </div>
             <h2>Animal Information</h2>
@@ -368,7 +368,9 @@ return (
                   <option value={String("Butterfly Garden")}>Butterfly Garden</option>
                 </select>
                 </div>
-
+            <br></br>
+            <br></br>
+            
             <div className="form-group mt-3">
               <label>Animal Habitat</label>
                 <input
@@ -409,7 +411,7 @@ return (
                     <option value={String("Extinct")}>Extinct</option>
                     </select>
                       </div>
-
+              
               <div className="form-group mt-3">
                 <label>Behavior</label>
                   <input
@@ -439,8 +441,7 @@ return (
                   placeholder="Enter Distribution"
                   value={values.animal_distribution} onChange={handleInputChange}/>
                   </div>
-                  <br></br>
-                  <br></br>
+                  
                   <br></br>
                   <div className="form-group mt-3">
                     <label>Nutrition</label>
@@ -451,6 +452,8 @@ return (
                       placeholder="Enter Nutrition"
                       value={values.animal_nutrition} onChange={handleInputChange}/>
                       </div>
+                      </div>
+                      <div className="upload2">
                       <br></br>
                         <label htmlFor="file">Upload Image: &nbsp;</label>
                         <input
@@ -476,7 +479,9 @@ return (
                               onChange={(e) => setSound(e.target.files[0])}/>
                           
                           {!per2? "":per2+"%"}
+                          </div>
           <br></br><br></br>
+          <div className="Auth-form-content-quiz">
           <h2>Animal Quiz</h2>
           <div className="error-text"> {quizError}</div>
           <br></br>
@@ -540,7 +545,6 @@ return (
             placeholder="Enter Question 2"
             value={quiz2.question} onChange={handleInputChangeQuiz2}/>
 
-          <br></br>
           <br></br>
           <label>Choices</label>
           <input
@@ -634,7 +638,7 @@ return (
             className={`form-control mt-1 ${!quiz3.explanation && quizError !==""? 'is-invalid':  ''}`}
             placeholder="Enter Explanation"
             value={quiz3.explanation} onChange={handleInputChangeQuiz3}/>
-          
+          </div>
           <br></br>
           <br></br>
           <div className="editanimal-btn-add">
@@ -647,7 +651,7 @@ return (
             </button>
     
           </div>
-          </div>
+          
           </form>
           </div>
         </NavWrapper>  

@@ -273,7 +273,7 @@ const  NewAnimal = () => {
         <h1 class="registerTitle">New Animal</h1> 
         <div className="Auth-form-container-add">
         <form className="Auth-form-animal">
-          <div className="Auth-form-content-add">
+          <div className="Auth-form-content-animal">
             <div class="center">
             </div>
             <h2>Animal Information</h2>
@@ -320,7 +320,7 @@ const  NewAnimal = () => {
                   <option value={String("Butterfly Garden")}>Butterfly Garden</option>
                 </select>
                 </div>
-
+            
             <div className="form-group mt-3">
               <label>Animal Habitat</label>
                 <input
@@ -391,9 +391,6 @@ const  NewAnimal = () => {
                   placeholder="Enter Distribution"
                   value={values.animal_distribution} onChange={handleInputChange}/>
                   </div>
-                  <br></br>
-                  <br></br>
-                  <br></br>
                   <div className="form-group mt-3">
                     <label>Nutrition</label>
                     <input
@@ -403,6 +400,8 @@ const  NewAnimal = () => {
                       placeholder="Enter Nutrition"
                       value={values.animal_nutrition} onChange={handleInputChange}/>
                       </div>
+                      </div>
+                      <div className="upload">
                       <br></br>
                       <div className="error-text"> {imageError}</div><br></br>
                         <label htmlFor="file">Upload Image: &nbsp;</label>
@@ -431,10 +430,13 @@ const  NewAnimal = () => {
                               onChange={(e) => setSound(e.target.files[0])}/>
                           
                           {!per2? "":per2+"%"}
+                          </div>
           <br></br><br></br>
+          <div className="Auth-form-content-quiz">
           <h2>Animal Quiz</h2>
           <div className="error-text"> {quizError}</div>
           <br></br>
+          
           <label>Question 1: </label>
           <input
             type="text"
@@ -584,7 +586,8 @@ const  NewAnimal = () => {
             className={`form-control mt-1 ${!quiz3.explanation && quizError !=="" ? 'is-invalid':  ''}`}
             placeholder="Enter Explanation"
             value={quiz3.explanation} onChange={handleInputChangeQuiz3}/>
-          
+            
+          </div>
           <br></br>
           <br></br>
           <div className="newanimal-btn-add">
@@ -597,7 +600,7 @@ const  NewAnimal = () => {
             </button>
           
           </div>
-          </div>
+          
           </form>
           </div>
         </NavWrapper>  
