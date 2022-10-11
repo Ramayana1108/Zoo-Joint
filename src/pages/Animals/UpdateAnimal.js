@@ -320,7 +320,7 @@ return (
         <NavWrapper>
         <h1 class="registerTitle">Edit Animal</h1> 
         <div className="Auth-form-container-add">
-        <form className="Auth-form-add">
+        <form className="Auth-form-animal">
           <div className="Auth-form-content-add">
             <div class="center">
             </div>

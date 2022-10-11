@@ -111,7 +111,7 @@ const AboutUsUpdate = () => {
       <NavWrapper>
       <h1 class="registerTitle">Edit About Us Page</h1>
       <div className="Auth-form-container-add">
-        <form className="Auth-form-add">
+        <form className="Auth-form-about">
           <div className="Auth-form-content-add">
           <div class="center">
           </div>
