@@ -401,6 +401,7 @@ const  NewAnimal = () => {
                       value={values.animal_nutrition} onChange={handleInputChange}/>
                       </div>
                       </div>
+                      
                       <div className="upload">
                       <br></br>
                       <div className="error-text"> {imageError}</div><br></br>
@@ -496,7 +497,7 @@ const  NewAnimal = () => {
             placeholder="Enter Question 2"
             value={quiz2.question} onChange={handleInputChangeQuiz2}/>
 
-          
+<br></br>
           <label>Choices</label>
           <input
             type="text"
