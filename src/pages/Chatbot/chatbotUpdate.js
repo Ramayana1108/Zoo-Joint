@@ -67,7 +67,7 @@ const ChatbotUpdate = () => {
               answer: String(values.answer),
              
           } ).then(response => {
-            alert("Successfully Updated")
+            alert("Response Updated Successfully.")
             navigate("/chatbot");
           }).catch(error =>{
             console.log(error.message)

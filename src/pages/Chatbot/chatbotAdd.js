@@ -45,7 +45,7 @@ const NewQA = () => {
            
          })
          .then(() => {
-           alert('Success' );
+           alert('Response Added Successfully.' );
            navigate("/chatbot")
          })
          .catch((error) => {
