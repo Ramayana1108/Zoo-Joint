@@ -146,7 +146,7 @@ const AboutUsUpdate = () => {
               type="text"
               name="abt_description"
               placeholder="Enter Description"
-              className="form-control mt-1 textareas"
+              className="form-control mt-1 textareas-desc"
               value={values.abt_description} 
               onChange={handleInputChange}
             />
