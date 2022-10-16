@@ -399,10 +399,10 @@ const NewAnimal = () => {
 
                 <div className="form-group mt-1">
                   <label>Animal Habitat</label>
-                  <input
+                  <textarea
                     type="text"
                     name="animal_habitat"
-                    className={`form-control mt-1 ${
+                    className={`form-control mt-1 textareas ${
                       !values.animal_habitat
                         ? "is-invalid" && animalInfoError !== ""
                         : ""
@@ -418,10 +418,10 @@ const NewAnimal = () => {
               <div className="animal-form-group">
                 <div className="form-group mt-1">
                   <label>Description</label>
-                  <input
+                  <textarea
                     type="text"
                     name="animal_description"
-                    className={`form-control mt-1 ${
+                    className={`form-control mt-1 textareas-description ${
                       !values.animal_description && animalInfoError !== ""
                         ? "is-invalid"
                         : ""
@@ -475,10 +475,10 @@ const NewAnimal = () => {
 
                 <div className="form-group mt-1">
                   <label>Behavior</label>
-                  <input
+                  <textarea
                     type="text"
                     name="animal_behavior"
-                    className={`form-control mt-1 ${
+                    className={`form-control mt-1 textareas ${
                       !values.animal_behavior && animalInfoError !== ""
                         ? "is-invalid"
                         : ""
@@ -491,10 +491,10 @@ const NewAnimal = () => {
 
                 <div className="form-group mt-1">
                   <label>Diet</label>
-                  <input
+                  <textarea
                     type="text"
                     name="animal_diet"
-                    className={`form-control mt-1 ${
+                    className={`form-control mt-1 textareas ${
                       !values.animal_diet && animalInfoError !== ""
                         ? "is-invalid"
                         : ""
@@ -510,10 +510,10 @@ const NewAnimal = () => {
               <div className="animal-form-group">
                 <div className="form-group mt-1">
                   <label>Distribution</label>
-                  <input
+                  <textarea
                     type="text"
                     name="animal_distribution"
-                    className={`form-control mt-1 ${
+                    className={`form-control mt-1 textareas ${
                       !values.animal_distribution && animalInfoError !== ""
                         ? "is-invalid"
                         : ""
@@ -526,10 +526,10 @@ const NewAnimal = () => {
 
                 <div className="form-group mt-1">
                   <label>Nutrition</label>
-                  <input
+                  <textarea
                     type="text"
                     name="animal_nutrition"
-                    className={`form-control mt-1 ${
+                    className={`form-control mt-1 textareas ${
                       !values.animal_nutrition && animalInfoError !== ""
                         ? "is-invalid"
                         : ""
