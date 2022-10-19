@@ -75,9 +75,9 @@ const ForgotPassword = () => {
             className={`form-control mt-1 ${ emailError ? 'is-invalid':  ''}`}
             placeholder="Enter Email"     
             onChange={(e)=> {setEmail(e.target.value); setEmailError("");}}  
-            id="floatingUsername"
+            id="floatingEmail"
             required />
-            <label for="floatingUsername">Email</label>   
+            <label for="floatingEmail">Email</label>   
            <div className="error-text">{emailError}</div>
         </div>
      <br></br>
