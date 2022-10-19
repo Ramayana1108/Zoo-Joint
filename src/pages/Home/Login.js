@@ -39,13 +39,13 @@ const Login = () => {
     
   if(!uname && !password){
     
-    setUsernameError("Please fill out this field.");
-    setPasswordError("Please fill out this field.");
+    setUsernameError("*Please fill out this field.");
+    setPasswordError("*Please fill out this field.");
    
-  }else if (!uname && password !== ""){setUsernameError("Please fill out this field."); setPasswordError("");}
+  }else if (!uname && password !== ""){setUsernameError("*Please fill out this field."); setPasswordError("");}
   else if(!password && uname !== ""){
     setUsernameError("");
-    setPasswordError("Please fill out this field.");
+    setPasswordError("*Please fill out this field.");
   }
   else{
     

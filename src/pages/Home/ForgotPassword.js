@@ -21,7 +21,8 @@ import { async } from "@firebase/util";
 import { FunctionsOutlined } from "@mui/icons-material";
 
 const ForgotPassword = () => {
-    const [email,setEmail] = useState();
+  const [isShown, setIsSHown] = useState(false);
+    const [email,setEmail] = useState("");
     const [emailError,setEmailError] = useState("");
     const colRef = collection(db,"Users");
 
@@ -32,7 +33,7 @@ const ForgotPassword = () => {
     e.preventDefault();
 
       if(!email){
-        setEmailError("There is no input");
+        setEmailError("*Please fill out this field.");
       }else{
         const q = query(colRef, where("email","==",email));  
         let useremail= [];
@@ -43,9 +44,9 @@ const ForgotPassword = () => {
         }));     
       }).then(()=>{
         if(useremail.length === 0){
-          setEmailError("email does not exist or is not an administrator");
+          setEmailError("Email does not exist or is not an administrator");
         }else{
-          setEmailError("email sent")
+          setEmailError("Email sent")
         }
 
       })
@@ -68,14 +69,15 @@ const ForgotPassword = () => {
         <div class="center">
           <img src="/images/logo.png" className="loginLogo" />
         </div>
-        <div className="form-group mt-3">
-          <label>Email</label>
+        <div className="form-floating mt-3">
           <input
             type="text"
-            className="form-control mt-1"
+            className={`form-control mt-1 ${ emailError ? 'is-invalid':  ''}`}
             placeholder="Enter Email"     
-            onChange={(e)=> {setEmail(e.target.value); setEmailError("");}}     
-          />
+            onChange={(e)=> {setEmail(e.target.value); setEmailError("");}}  
+            id="floatingEmail"
+            required />
+            <label for="floatingEmail">Email</label>   
            <div className="error-text">{emailError}</div>
         </div>
      <br></br>

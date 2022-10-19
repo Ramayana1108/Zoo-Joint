@@ -144,11 +144,11 @@ const NewAnimal = () => {
       !file === true
     ) {
       setAnimalInfoError("*All animal information fields are required");
-      setImageError("* An image must be uploaded");
+      setImageError("*An image must be uploaded");
     }else if(checkAnimalInfo() === false &&
     !file === true){
       setAnimalInfoError("");
-      setImageError("* An image must be uploaded");
+      setImageError("*An image must be uploaded");
     }else if(
       checkAnimalInfo() === true &&
       !file === false
