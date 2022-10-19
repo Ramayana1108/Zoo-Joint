@@ -32,7 +32,7 @@ const ForgotPassword = () => {
     e.preventDefault();
 
       if(!email){
-        setEmailError("There is no input");
+        setEmailError("Please fill out this field.");
       }else{
         const q = query(colRef, where("email","==",email));  
         let useremail= [];
