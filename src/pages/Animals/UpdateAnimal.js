@@ -863,7 +863,7 @@ const  UpdateAnimal = () => {
 return (
   <div>
   <NavWrapper>
-    <h1 class="registerTitle">New Animal</h1>
+    <h1 class="registerTitle">Edit Animal</h1>
     <div className="Auth-form-container-add">
       <form className="Auth-form-animal">
         <div className="Auth-form-content-animal">
