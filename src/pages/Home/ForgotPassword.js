@@ -1,12 +1,8 @@
-import React, {useState,useEffect} from "react";
+import React, {useState,useRef} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Login.scss";
 import "./ForgotPassword.scss";
-import PropTypes from 'prop-types';
-import bcrypt from 'bcryptjs';
-import Users from '../Admin/Users/Users'
-import Login from "./Login";
-
+import emailjs from 'emailjs-com';
 import { Navigate } from "react-router";
 import {useNavigate, Link } from "react-router-dom";
 import {
@@ -14,17 +10,16 @@ import {
   getDocs,
   deleteDoc,
   doc,
-  onSnapshot,where, query, getDoc
+  onSnapshot,where, query, updateDoc
 } from "firebase/firestore";
 import { db } from "../../services/firebase-config";
-import { async } from "@firebase/util";
-import { FunctionsOutlined } from "@mui/icons-material";
+
 
 const ForgotPassword = () => {
-  const [isShown, setIsSHown] = useState(false);
-    const [email,setEmail] = useState("");
+    const [user_email,setUser_Email] = useState();
     const [emailError,setEmailError] = useState("");
     const colRef = collection(db,"Users");
+  
 
    const navigate = useNavigate();
 
@@ -32,28 +27,43 @@ const ForgotPassword = () => {
    const handleSubmit = async (e)=>{
     e.preventDefault();
 
-      if(!email){
-        setEmailError("*Please fill out this field.");
+      if(!user_email){
+        setEmailError("There is no input");
       }else{
-        const q = query(colRef, where("email","==",email));  
+        const q = query(colRef, where("email","==",user_email));  
         let useremail= [];
         getDocs(q).then(async (response) => {
           useremail = await response.docs.map((doc) => ({
           email: doc.data().email,
-      
+          id: doc.id      
         }));     
       }).then(()=>{
-        if(useremail.length === 0){
-          setEmailError("Email does not exist or is not an administrator");
+        if(useremail[0].email === 0){
+          setEmailError("email does not exist or is not an administrator");
         }else{
-          setEmailError("Email sent")
-        }
+          var templateParams = {
+            user_email: useremail[0].email,
+            link:  "http://localhost:3000/resetpassword/"+ useremail[0].id
+        };
+          emailjs.send('service_rbj9nsp', 'template_7eppjnx', templateParams, 'toC84K2tm5N48z4A-')
+          .then((result) => {
+            const docRef = doc(db,'Users',  useremail[0].id );
+            const now = new Date().getTime()+ 30*60000;
+            
+            updateDoc(docRef,{
+              reset_request_date_time:now,
+            } ).then(()=>{
+              alert("Email Sent");
+              navigate("/");
+            })
 
+          
+          }, (error) => {
+              console.log(error.text);
+          });
+        }
       })
       }
-        
-
-
    }
 
     const Cancel = () =>{
@@ -69,15 +79,15 @@ const ForgotPassword = () => {
         <div class="center">
           <img src="/images/logo.png" className="loginLogo" />
         </div>
-        <div className="form-floating mt-3">
+        <div className="form-group mt-3">
+          <label>Email</label>
           <input
             type="text"
-            className={`form-control mt-1 ${ emailError ? 'is-invalid':  ''}`}
+            name="user_email"
+            className="form-control mt-1"
             placeholder="Enter Email"     
-            onChange={(e)=> {setEmail(e.target.value); setEmailError("");}}  
-            id="floatingEmail"
-            required />
-            <label for="floatingEmail">Email</label>   
+            onChange={(e)=> {setUser_Email(e.target.value); setEmailError("");}}     
+          />
            <div className="error-text">{emailError}</div>
         </div>
      <br></br>

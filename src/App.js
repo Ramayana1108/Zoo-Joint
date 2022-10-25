@@ -32,12 +32,11 @@ function App() {
             <Routes>
               <Route path="/" element={<Login />} />
               <Route path="/forgotpassword" element={<ForgotPassword />} />
-
+              <Route path="/resetpassword/:id" element={<ResetPassword />} />
               <Route element={<ProtectedRoutes/>}>
 
                 <Route element={<AdminRoutes/>}>
                   <Route path="/users" element={<Users />} />
-                  <Route path="/resetPassword" element={<ResetPassword />} />
                   <Route path="/newUser" element={<NewUser/>}/>
                   <Route path="/updateUser" element={<UserUpdate/>}/>
                   <Route path="/archiveanimals" element={<AnimalarchiveList/>}/>
