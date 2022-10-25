@@ -24,7 +24,7 @@ const ResetPassword = () => {
   useEffect(() => {
     console.log(id)
     getDoc(docRef).then((results)=>{
-       if(date2.getTime()<=results.data().reset_request_date_time){        
+       if(date2.getTime()-100*60000<=results.data().reset_request_date_time/*date2.getTime()<=results.data().reset_request_date_time*/){        
         setValidLink(true)
       }else{ 
         setValidLink(false)
@@ -125,9 +125,9 @@ const ResetPassword = () => {
       <div className="Auth-form-content">
         <div class="center">
           <img src="/images/logo.png" className="loginLogo" />
-        </div>
-        <div className="form-floating mt-3" >
-          <h3>Link has expired</h3>
+          <br></br>
+          <br></br>
+          <h3>Link has expired!</h3>
         </div>
       </div>
     </form>
