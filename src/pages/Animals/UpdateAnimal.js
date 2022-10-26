@@ -866,10 +866,11 @@ return (
     <h1 class="registerTitle">Edit Animal</h1>
     <div className="Auth-form-container-add">
       <form className="Auth-form-animal">
+      <div className="animal-info">Animal Information </div>
+          <div className="error-text-animal-info">{animalInfoError} </div>        
+              <br/>
         <div className="Auth-form-content-animal">
-          <h2>Animal Information</h2>
-          <div className="error-text">{animalInfoError}</div>
-          <br/>
+       
           {/* GROUP 1 */}
           <div className="animal-form-group">
             <div className="form-group mt-1">

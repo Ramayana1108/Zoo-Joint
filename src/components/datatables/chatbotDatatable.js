@@ -106,6 +106,7 @@ const ChatbotDatatable = () => {
       <br></br>
       <DataGrid
         className="datagrid"
+        sx={{height:'725px'}}
         rows={filteredData}
         columns={chatColumns.concat(actionColumn)}
         pageSize={8}

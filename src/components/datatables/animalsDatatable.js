@@ -14,6 +14,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../../services/firebase-config";
 import { FilterDrama } from "@mui/icons-material";
+import { maxHeight } from "@mui/system";
 
 const AnimalDatatable = () => {
   const navigate = useNavigate();
@@ -119,6 +120,7 @@ const AnimalDatatable = () => {
       },
     },
   ];
+ 
   return (
 
     <div className="datatable">
@@ -129,9 +131,10 @@ const AnimalDatatable = () => {
         </Link>
       </div>
       <input type="text" onChange={ (e) => setSearch(e.target.value)} placeholder="Search" className="search-bar"/>
+
       <DataGrid
-        rowHeight={400}
-        autoHeight
+      sx={{height:'725px'}}
+        rowHeight={325}
         className="datagrid"
         rows={filteredData}
         columns={animalColumns.concat(actionColumn)}
@@ -142,7 +145,6 @@ const AnimalDatatable = () => {
         disableColumnSelector={true}
       
       />
-      
       </div>
   );
 };

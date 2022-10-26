@@ -138,6 +138,10 @@
 h2 {
   column-span: all;
 }
+.animal-info{
+  font-size: 30px;
+padding-left: 4.4%;
+}
 
 .Auth-form-title-add {
   text-align: center;
@@ -234,4 +238,10 @@ height: 70px;
 
 .setAnimalInfoError{
   font-size: 5px;
+}
+.error-text-animal-info{
+  font-size: 15px;
+  color:#c4391d;
+  padding-left: 4.4%;
+  padding-top: -1;
 }

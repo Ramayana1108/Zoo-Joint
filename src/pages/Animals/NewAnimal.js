@@ -419,10 +419,12 @@ const NewAnimal = () => {
         <h1 class="registerTitle">New Animal</h1>
         <div className="Auth-form-container-add">
           <form className="Auth-form-animal">
-            <div className="Auth-form-content-animal">
-              <h2>Animal Information</h2>
-              <div className="error-text">{animalInfoError}</div>
+          <div className="animal-info">Animal Information </div>
+          <div className="error-text-animal-info">{animalInfoError} </div>
+             
               <br/>
+            <div className="Auth-form-content-animal">
+              
               {/* GROUP 1 */}
               <div className="animal-form-group">
                 <div className="form-group mt-1">
@@ -543,7 +545,7 @@ const NewAnimal = () => {
                 <br/>
 
                 <div className="form-group mt-1">
-                  <div className="error-text"> {imageError}</div>
+                
                   <label htmlFor="file">Upload Image: &nbsp;</label>
                   <input
                     type="file"
@@ -555,10 +557,10 @@ const NewAnimal = () => {
                     id="file"
                     onChange={(e) => setFile(e.target.files[0])}
                   />
-
                   {!per ? "" : per + "%"}
+                  <div className="error-text" > {imageError}</div>
                 </div>
-<br/>
+              <br hidden={imageError? true:false}/>
 
                 <div className="form-group mt-1">
                   <label htmlFor="sound">Upload sound: &nbsp;</label>

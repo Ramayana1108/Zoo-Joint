@@ -154,7 +154,8 @@ const AnimalarchiveDatatable = () => {
       
       <DataGrid
         className="datagrid"
-        rowHeight={400}
+        sx={{height:'725px'}}
+        rowHeight={325}
         rows={filteredData}
         columns={animalColumns.concat(actionColumn)}
         pageSize={5}
