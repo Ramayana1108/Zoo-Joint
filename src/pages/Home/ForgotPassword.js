@@ -53,7 +53,7 @@ const ForgotPassword = () => {
           var templateParams = {
             user_email: useremail[0].email,
             name: useremail[0].name,
-            link:  "https://zoo-joint.herokuapp.com/resetpassword/"+ useremail[0].id + makeid()
+            link:  "http://localhost:3000/resetpassword/"+ useremail[0].id + makeid()
         };
           emailjs.send('service_rbj9nsp', 'template_7eppjnx', templateParams, 'toC84K2tm5N48z4A-')
           .then((result) => {
@@ -89,15 +89,19 @@ const ForgotPassword = () => {
         <div class="center">
           <img src="/images/logo.png" className="loginLogo" />
         </div>
-        <div className="form-group mt-3">
-          <label>Email</label>
+        <br></br>
+        <h2 class="center-header">Forgot Password</h2>
+        <div className="form-floating mt-3">
+         
           <input
             type="text"
+            id="floatingEmail"
+            placeholder="Email"
             name="user_email"
-            className="form-control mt-1"
-            placeholder="Enter Email"     
+            className="form-control mt-1"     
             onChange={(e)=> {setUser_Email(e.target.value); setEmailError("");}}     
-          />
+          required/>
+           <label for="floatingEmail">Email</label>
            <div className="error-text">{emailError}</div>
         </div>
      <br></br>

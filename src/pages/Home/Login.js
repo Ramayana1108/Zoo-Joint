@@ -114,6 +114,8 @@ const Login = () => {
         <div class="center">
           <img src="/images/logo.png" className="loginLogo" />
         </div>
+        <br></br>
+        <h2 class="center-header">Login</h2>
         <div className="form-floating mt-3">
           <input
             type="text"

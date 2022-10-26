@@ -85,6 +85,8 @@ const ResetPassword = () => {
         <div class="center">
           <img src="/images/logo.png" className="loginLogo" />
         </div>
+        <br></br>
+        <h2 class="center-header">Reset Password</h2>
         <div className="form-floating mt-3">
           <input
             type="password"
@@ -100,18 +102,18 @@ const ResetPassword = () => {
           <input
             type="password"
             className={`form-control mt-1 ${ repassError ? 'is-invalid':  ''}`}
-            placeholder="Retype password"
+            placeholder="Confirm New Password"
             onChange={(e)=> {setRepass(e.target.value);setRepassError("");}} 
             id="floatingPassword"
             required />
             <div className="passwordError">{repassError}</div>
-            <label for="floatingPassword">Retype password</label>
+            <label for="floatingPassword">Confirm New Password</label>
           <br></br>
         </div>
   
         <div className="login-btn">
           <button type="submit" className="btn btn-primary" onClick={handleSubmit}>
-            Submit
+            Reset
           </button>
         </div>
       </div>
