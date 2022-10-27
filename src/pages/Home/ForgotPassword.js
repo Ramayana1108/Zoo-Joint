@@ -63,7 +63,7 @@ const ForgotPassword = () => {
             updateDoc(docRef,{
               reset_request_date_time:now,
             } ).then(()=>{
-              alert("Email Sent");
+              alert("Email Sent!");
               navigate("/");
             })
 
