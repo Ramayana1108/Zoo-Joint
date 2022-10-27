@@ -38,17 +38,24 @@ const ResetPassword = () => {
     e.preventDefault();
     console.log(validLink)
     
-    if(!pass){
+    if(!pass && !repass){
       setPassError("*Please fill out this field.");
+      setRepassError("*Please fill out this field.");
+    }else if(pass !=="" && !repass){
+      setPassError("");
+      setRepassError("*Please fill out this field.");
+    }if(!pass && repass !==""){
+      setPassError("*Please fill out this field.");
+      setRepassError("");
     }else{
       setPassError("");
-      if(pass !==""){
+      setRepassError("");
+      
         if (validator.isStrongPassword(pass, {
           minLength: 8, minLowercase: 1,
           minUppercase: 1, minNumbers: 1, minSymbols: 1
         })){
-            
-            if(pass=== repass){
+            if(pass === repass){
               setPassError("");
               setRepassError("");
               updateDoc(docRef,{
@@ -63,17 +70,13 @@ const ResetPassword = () => {
             }else{
               setRepassError("Passwords do not match");
             }
-
-
         }else{
           setPassError('* Password must have at least 8 characters, 1 lowercase, 1 upprecase, 1 number and a symbol')
         }
-      }
+      
     }
   
   }
-
-
 
 
   return (

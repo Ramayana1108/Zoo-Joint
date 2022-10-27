@@ -112,7 +112,7 @@ const Datatable = () => {
       <br></br>
       <DataGrid
         className="datagrid"
-        sx={{height:'725px'}}
+        autoHeight
         rows={filteredData}
         columns={userColumns.concat(actionColumn)}
         pageSize={9}

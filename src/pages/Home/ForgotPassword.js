@@ -53,7 +53,7 @@ const ForgotPassword = () => {
           var templateParams = {
             user_email: useremail[0].email,
             name: useremail[0].name,
-            link:  "https://zoo-joint.herokuapp.com/resetpassword/"+ useremail[0].id + makeid()
+            link:  "http://localhost:3000/resetpassword/"+ useremail[0].id + makeid()
         };
           emailjs.send('service_rbj9nsp', 'template_7eppjnx', templateParams, 'toC84K2tm5N48z4A-')
           .then((result) => {
