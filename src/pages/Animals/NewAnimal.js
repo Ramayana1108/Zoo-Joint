@@ -419,7 +419,7 @@ const NewAnimal = () => {
         <h1 class="registerTitle">New Animal</h1>
         <div className="Auth-form-container-add">
           <form className="Auth-form-animal">
-          <div className="animal-info">Animal Information </div>
+          <h2 className="animal-info">Animal Information </h2>
           <div className="error-text-animal-info">{animalInfoError} </div>
              
               <br/>
@@ -580,7 +580,7 @@ const NewAnimal = () => {
               {/* END GROUP 1 */}
 
               {/* GROUP 2 */}
-              <br/>
+             
               <div className="animal-form-group2">
               <div className="form-group mt-1">
                   <label>Animal Habitat</label>
