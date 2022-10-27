@@ -233,6 +233,7 @@ const NewAnimal = () => {
                       }
                     );
                   }else{
+                    uploadTask2.cancel()
                     alert("Animal Added");
                     navigate("/animals");
                   }
