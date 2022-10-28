@@ -391,10 +391,6 @@ const  UpdateAnimal = () => {
 
           if(window.confirm("Do you want to save changes?")){
         
-            deleteDoc(doc(db,"animals/"+aid+"/animal_quiz/quiz1"));
-            deleteDoc(doc(db,"animals/"+aid+"/animal_quiz/quiz2"));
-            deleteDoc(doc(db,"animals/"+aid+"/animal_quiz/quiz3"));
-        
             const storageRef = ref(storage, 'images/'+file.name);
             const uploadTask = uploadBytesResumable(storageRef, file);
         
@@ -772,6 +768,8 @@ const  UpdateAnimal = () => {
           
               
             }else{
+              uploadTask.cancel()
+              uploadTask2.cancel()
               updateDoc(docRef, {
                   animal_name:values.animal_name,
                   animal_sciname:values.animal_sciname,
