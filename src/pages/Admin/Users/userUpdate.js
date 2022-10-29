@@ -169,7 +169,7 @@ const UserUpdate = () => {
             <div className="form-group mt-3">
               <label>Can Edit?</label>
             <select name="canEdit"  id="canEditDropdown" className="form-control mt-1" onChange={handleInputChange} placeholder ={values.canEdit} defaultValue={values.canEdit}>
-            <option value="" disabled selected hidden>{values.canEdit=== "true" ? "Yes":"No"}</option>
+            <option value="" disabled selected hidden>{canEdit.toString() === "false" ? "No" : "Yes"}</option>
             <option value={true}>Yes</option>
             <option value={false}>No</option>
              </select>

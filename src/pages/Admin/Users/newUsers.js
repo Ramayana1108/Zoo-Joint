@@ -150,7 +150,7 @@ const NewUser = () => {
         })) {
 
             addDoc(collection(db, "Users"), {
-              canEdit:true,
+              canEdit:false,
               first_name: values.first_name,
               last_name: values.last_name,
               password: bcrypt.hashSync(values.password,10),

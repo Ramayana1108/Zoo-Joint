@@ -109,8 +109,8 @@ const ChatbotDatatable = () => {
         sx={{height:'725px'}}
         rows={filteredData}
         columns={chatColumns.concat(actionColumn)}
-        pageSize={8}
-        rowsPerPageOptions={[8]}
+        pageSize={11}
+        rowsPerPageOptions={[11]}
         
       />
       </div>
