@@ -36,13 +36,13 @@ const Login = () => {
     
   if(!uname && !password){
     
-    setUsernameError("*Please fill out this field.");
-    setPasswordError("*Please fill out this field.");
+    setUsernameError("Please fill out this field");
+    setPasswordError("Please fill out this field");
    
-  }else if (!uname && password !== ""){setUsernameError("*Please fill out this field."); setPasswordError("");}
+  }else if (!uname && password !== ""){setUsernameError("Please fill out this field"); setPasswordError("");}
   else if(!password && uname !== ""){
     setUsernameError("");
-    setPasswordError("*Please fill out this field.");
+    setPasswordError("Please fill out this field");
   }
   else{
     
@@ -61,7 +61,7 @@ const Login = () => {
     }).then(()=>{
       
       if (users.length === 0){
-        setUsernameError("User does not exist!");
+        setUsernameError("User does not exist");
         setPasswordError("")
       }else{
         if(uname === users[0].username){
@@ -69,7 +69,7 @@ const Login = () => {
             if(err){
               throw err;
             }else if(!res){
-              setPasswordError("Incorrect Password!")
+              setPasswordError("Incorrect Password")
             }else{
               setPasswordError("Password Match")
               window.sessionStorage.setItem("username", users[0].username);

@@ -83,7 +83,7 @@ const AnimalarchiveDatatable = () => {
         updateDoc(docRef,{
             animal_archive: false
         } ).then(response => {
-          alert("Animal restored successfully.")
+          alert("Animal restored successfully")
         }).catch(error =>{
           console.log(error.message)
         })
@@ -107,7 +107,7 @@ const AnimalarchiveDatatable = () => {
         deleteDoc(doc(db,"animals/"+animalId+"/animal_quiz/quiz3"));
         deleteDoc(doc(db,"animals",animalId));          
     }).then(()=>{
-      alert("Animal deleted successfully.")
+      alert("Animal deleted successfully")
     });
   };
   

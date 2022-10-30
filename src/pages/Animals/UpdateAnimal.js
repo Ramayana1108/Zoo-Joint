@@ -175,7 +175,7 @@ const  UpdateAnimal = () => {
   const UpdateAnimal = (e) => {
     e.preventDefault();
     if(checkAnimalInfo() === true){
-      setAnimalInfoError("*All animal information fields are required");
+      setAnimalInfoError("All animal information fields are required");
     }else {
       setAnimalInfoError("");
       const imagename = (file.name === undefined || file.name == null || file.name <= 0) ? true : false;
@@ -254,7 +254,7 @@ const  UpdateAnimal = () => {
                                             animal_distribution:values.animal_distribution,
                                             animal_nutrition:values.animal_nutrition,
                                             }).then(()=>{
-                                                alert('Animal Updated' );
+                                                alert('Animal updated successfully' );
                                                 navigate("/animals")
                                             });
                                         }).catch((error) => {
@@ -278,7 +278,7 @@ const  UpdateAnimal = () => {
                                 animal_distribution:values.animal_distribution,
                                 animal_nutrition:values.animal_nutrition,
                                 }).then(()=>{
-                                    alert('Animal Updated' );
+                                    alert('Animal updated successfully' );
                                     navigate("/animals")
                                 });
                           }
@@ -329,7 +329,7 @@ const  UpdateAnimal = () => {
                                 animal_distribution:values.animal_distribution,
                                 animal_nutrition:values.animal_nutrition,
                                 }).then(()=>{
-                                    alert('Animal Updated' );
+                                    alert('Animal updated successfully' );
                                     navigate("/animals")
                                 });
                             }).catch((error) => {
@@ -353,7 +353,7 @@ const  UpdateAnimal = () => {
                     animal_distribution:values.animal_distribution,
                     animal_nutrition:values.animal_nutrition,
                     }).then(()=>{
-                        alert('Animal Updated' );
+                        alert('Animal updated successfully' );
                         navigate("/animals")
                     });
               }
@@ -375,7 +375,7 @@ const  UpdateAnimal = () => {
                 animal_distribution:values.animal_distribution,
                 animal_nutrition:values.animal_nutrition,
                 }).then(()=>{
-                    alert('Animal Updated' );
+                    alert('Animal updated successfully' );
                     navigate("/animals")
                 });
           }
@@ -385,7 +385,7 @@ const  UpdateAnimal = () => {
           }
       }else{
         if (checkAnimalQuiz() === true){
-          setQuizError("*All Animal Quiz Fields are required");
+          setQuizError("All Animal Quiz Fields are required");
         }else{
           setQuizError("");
 
@@ -485,7 +485,7 @@ const  UpdateAnimal = () => {
                                                       explanation: String(quiz3.explanation)
                                                     }).then(() => {
                                                          
-                                                          alert('Animal Updated' );
+                                                          alert('Animal updated successfully' );
                                                           navigate("/animals")
                                               
                                                     })
@@ -560,7 +560,7 @@ const  UpdateAnimal = () => {
                                           explanation: String(quiz3.explanation)
                                         }).then(() => {
                                              
-                                              alert('Animal Updated' );
+                                              alert('Animal updated successfully' );
                                               navigate("/animals")
                                   
                                         })
@@ -662,7 +662,7 @@ const  UpdateAnimal = () => {
                                           explanation: String(quiz3.explanation)
                                         }).then(() => {
                                              
-                                              alert('Animal Updated' );
+                                              alert('Animal updated successfully' );
                                               navigate("/animals")
                                   
                                         })
@@ -737,7 +737,7 @@ const  UpdateAnimal = () => {
                               explanation: String(quiz3.explanation)
                             }).then(() => {
                                  
-                                  alert('Animal Updated' );
+                                  alert('Animal updated successfully' );
                                   navigate("/animals")
                       
                             })
@@ -812,7 +812,7 @@ const  UpdateAnimal = () => {
                           explanation: String(quiz3.explanation)
                         }).then(() => {
                              
-                              alert('Animal Updated' );
+                              alert('Animal updated successfully' );
                               navigate("/animals")
                   
                         })

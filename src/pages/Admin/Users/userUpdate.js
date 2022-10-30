@@ -67,7 +67,7 @@ const UserUpdate = () => {
               canEdit:values.canEdit,
               password: String(bcrypt.hashSync(password,10))
             } ).then(response => {
-                alert("Successfully Updated")
+                alert("User updated successfully")
                 navigate("/users");
               }).catch(error =>{
                 console.log(error.message)
@@ -75,7 +75,7 @@ const UserUpdate = () => {
           }
           
         } else {
-          setPassError('* Password must have at least 8 characters, 1 lowercase, 1 upprecase, 1 number and a symbol')
+          setPassError('Password must have at least 8 characters, 1 lowercase, 1 upprecase, 1 number and a symbol')
         }
 
       }else{
@@ -84,7 +84,7 @@ const UserUpdate = () => {
           updateDoc(docRef,{
             canEdit:values.canEdit,
            } ).then(response => {
-             alert("Successfully Updated")
+             alert("User updated successfully")
              navigate("/users");
            }).catch(error =>{
              console.log(error.message)

@@ -39,13 +39,13 @@ const ResetPassword = () => {
     console.log(validLink)
     
     if(!pass && !repass){
-      setPassError("*Please fill out this field.");
-      setRepassError("*Please fill out this field.");
+      setPassError("Please fill out this field");
+      setRepassError("Please fill out this field");
     }else if(pass !=="" && !repass){
       setPassError("");
-      setRepassError("*Please fill out this field.");
+      setRepassError("Please fill out this field");
     }if(!pass && repass !==""){
-      setPassError("*Please fill out this field.");
+      setPassError("Please fill out this field");
       setRepassError("");
     }else{
       setPassError("");
@@ -71,7 +71,7 @@ const ResetPassword = () => {
               setRepassError("Passwords do not match");
             }
         }else{
-          setPassError('* Password must have at least 8 characters, 1 lowercase, 1 upprecase, 1 number and a symbol')
+          setPassError('Password must have at least 8 characters, 1 lowercase, 1 upprecase, 1 number and a symbol')
         }
       
     }

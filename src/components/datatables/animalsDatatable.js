@@ -80,7 +80,7 @@ const AnimalDatatable = () => {
         updateDoc(docRef,{
             animal_archive: true
         } ).then(response => {
-          alert("Animal archived successfully.")
+          alert("Animal archived successfully")
         }).catch(error =>{
           console.log(error.message)
         })

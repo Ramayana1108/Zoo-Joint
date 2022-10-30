@@ -59,7 +59,7 @@ const Datatable = () => {
   const handleDelete = async (userId) => {
     try {
       await deleteDoc(doc(db, "Users", userId));
-      alert("User deleted successfully.");
+      alert("User deleted successfully");
     } catch (err) {
       console.log(err);
     }

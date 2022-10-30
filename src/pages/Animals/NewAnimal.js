@@ -143,17 +143,17 @@ const NewAnimal = () => {
       checkAnimalInfo() === true &&
       !file === true
     ) {
-      setAnimalInfoError("*All animal information fields are required");
-      setImageError("*An image must be uploaded");
+      setAnimalInfoError("All animal information fields are required");
+      setImageError("An image must be uploaded");
     }else if(checkAnimalInfo() === false &&
     !file === true){
       setAnimalInfoError("");
-      setImageError("*An image must be uploaded");
+      setImageError("An image must be uploaded");
     }else if(
       checkAnimalInfo() === true &&
       !file === false
     ) {
-      setAnimalInfoError("*All animal information fields are required");
+      setAnimalInfoError("All animal information fields are required");
       setImageError("");
     }else{
       setAnimalInfoError("");
@@ -222,7 +222,7 @@ const NewAnimal = () => {
                               animal_sound: downloadURL,
                             })
                               .then(() => {
-                                alert("Animal Added");
+                                alert("Animal added successfully");
                                 navigate("/animals");
                               })
                               .catch((error) => {
@@ -234,7 +234,7 @@ const NewAnimal = () => {
                     );
                   }else{
                     uploadTask2.cancel()
-                    alert("Animal Added");
+                    alert("Animal added successfully");
                     navigate("/animals");
                   }
                              
@@ -248,7 +248,7 @@ const NewAnimal = () => {
         
       }else{
         if(checkAnimalQuiz() === true){
-          setQuizError("*All Animal Quiz Fields are required");
+          setQuizError("All Animal Quiz Fields are required");
         }else{
           setQuizError("");
           uploadTask.on(
@@ -363,7 +363,7 @@ const NewAnimal = () => {
                                             animal_sound: downloadURL,
                                           })
                                             .then(() => {
-                                              alert("Animal Added");
+                                              alert("Animal added successfully");
                                               navigate("/animals");
                                             })
                                             .catch((error) => {
@@ -375,7 +375,7 @@ const NewAnimal = () => {
                                   );
                                 }else{
                                   uploadTask2.cancel()
-                                  alert("Animal Added");
+                                  alert("Animal added successfully");
                                   navigate("/animals");
                                 }
                               })

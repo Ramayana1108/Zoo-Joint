@@ -36,7 +36,7 @@ const ForgotPassword = () => {
    const handleSubmit = async (e)=>{
     e.preventDefault();
       if(!user_email){
-        setEmailError("*Please fill out this field.");
+        setEmailError("Please fill out this field");
       }else{
         const q = query(colRef, where("email","==",user_email));  
         let useremail= [];
@@ -48,7 +48,7 @@ const ForgotPassword = () => {
         }));     
       }).then(()=>{
         if(useremail[0].email === 0){
-          setEmailError("*Email does not exist or is not an administrator");
+          setEmailError("Email does not exist or is not an administrator");
         }else{
           var templateParams = {
             user_email: useremail[0].email,
